@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class LoginController extends Controller
 {
@@ -36,5 +39,14 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function check(Request $request)
+    {
+        $user = DB::select("select * from users where email = '$request->email' AND password = '$request->password'");
+        if($user)
+          return view('home',$user);
+        else
+          return view('auth/login')->with('status','Incorrect Username or Password');
     }
 }
