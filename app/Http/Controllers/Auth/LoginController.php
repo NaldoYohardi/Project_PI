@@ -52,20 +52,23 @@ class LoginController extends Controller
           $email_verified = $key->email_verified;
           $level = $key->level;
         }
-        $userdata = array (
-            'name' => $name,
-            'email' => $email,
-            'email_verified' => $email_verified,
-            'level' => $level
-        );
 
-        if($user)
+
+        if($user){
+          $userdata = array (
+              'name' => $name,
+              'email' => $email,
+              'email_verified' => $email_verified,
+              'level' => $level
+          );
           if($email_verified == 1){
               return view('home',$user);
           } else {
               return redirect('/')->with('status','Email Not Verified');
           }
+        }
         else
           return redirect('/')->with('status','Incorrect Username or Password');
     }
+
 }

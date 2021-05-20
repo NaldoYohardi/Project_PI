@@ -75,8 +75,23 @@ class RegisterController extends Controller
          $user->save();
 
          if($user != null){
-           return redirect('/');
-         }
-         //return error messsage
+            MailController::sendSignupEmail($user->name, $user->email, $user->verification_code);
+            return redirect('/')->with(session()->flash('alert-success', 'Your account has been created. Please check email for verification.'));
+        }
+
+         return redirect('/')->with(session()->flash('alert-danger', 'Something went wrong!'));
+     }
+
+     public function verifyUser(Request $request)
+     {
+       $verification_code = \Illuminate\Support\Facades\Request::get('code');
+       $user = User::where(['verification_code' => $verification_code])->first();
+       if($user != NULL)
+       {
+         $user->email_verified = 1;
+         $user->save();
+         return redirect('/')->with(session()->flash('alert-success', 'Your account is verified please login.'));
+       }
+       return redirect('/')->with(session()->flash('alert-danger', 'Invalid Verification code!'));
      }
 }

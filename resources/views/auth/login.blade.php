@@ -1,9 +1,19 @@
 @extends('layouts.app')
 
+@section('title', 'Verify')
+@section('MainTitle', 'Verify')
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+          <!-- code di bawah untuk buat alert setelah melakukan register harap jangan di hapus!  -->
+          @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+            @if(Session::has('alert-' . $msg))
+              <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismis="alert" aria-label="close">&times;</a></p>
+            @endif
+          @endforeach
+          <!-- end here! -->
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
 
@@ -75,4 +85,5 @@
         </div>
     </div>
 </div>
+
 @endsection
