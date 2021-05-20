@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\MailController;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -62,12 +64,19 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
-    protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
-    }
+     public function register(Request $request)
+     {
+         $user = new User();
+         $user->name = $request->name;
+         $user->email = $request->email;
+         $user->password = Hash::make($request->password);
+         $user->verification_code = sha1(time());
+         $user->level = 0;
+         $user->save();
+
+         if($user != null){
+           return redirect('/');
+         }
+         //return error messsage
+     }
 }
