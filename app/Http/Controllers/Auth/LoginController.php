@@ -47,6 +47,6 @@ class LoginController extends Controller
         if($user)
           return view('home',$user);
         else
-          return view('auth/login')->with('status','Incorrect Username or Password');
+          return redirect('/')->with('status','Incorrect Username or Password');
     }
 }
