@@ -21,3 +21,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/check', 'Auth\LoginController@check');
+
+// route for verification email
+Route::get('/verify', 'Auth\RegisterController@verifyUser')->name('verify.user');
