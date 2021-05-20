@@ -44,23 +44,22 @@ class LoginController extends Controller
     public function check(Request $request)
     {
         $user = DB::select("select * from users where email = '$request->email' AND password = '$request->password'");
-        foreach ($user as $key){
-          $name = $key->user_id;
-          $email = $key->email;
-          $email_verified = $key->email_verified;
-          $password = $key->password;
-          $level = $key->level;
-        }
+          foreach ($user as $key){
+            $name = $key->name;
+            $email = $key->email;
+            $email_verified = $key->email_verified;
+            $password = $key->password;
+            $level = $key->level;
+          }
         $userdata = array (
             'name' => $name,
             'email' => $email,
             'email_verified' => $email_verified,
             'level' => $level
         );
-        $verify = DB::select("select email_verified from users where email = '$request->email' AND password = '$request->password'");
 
         if($user)
-          if($userdata['email_verified']== 1){
+          if($email_verified == 1){
               return view('home',$user);
           } else {
               return redirect('/')->with('status','Email Not Verified');
