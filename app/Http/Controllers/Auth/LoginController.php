@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 
 
@@ -43,12 +44,12 @@ class LoginController extends Controller
 
     public function check(Request $request)
     {
-        $user = DB::select("select * from users where email = '$request->email' AND password = '$request->password'");
+        $password = sha1($request->password);
+        $user = DB::select("select * from users where email = '$request->email' AND password = '$password'");
         foreach ($user as $key){
-          $name = $key->user_id;
+          $name = $key->name;
           $email = $key->email;
           $email_verified = $key->email_verified;
-          $password = $key->password;
           $level = $key->level;
         }
         $userdata = array (
@@ -57,7 +58,6 @@ class LoginController extends Controller
             'email_verified' => $email_verified,
             'level' => $level
         );
-        $verify = DB::select("select email_verified from users where email = '$request->email' AND password = '$request->password'");
 
         if($user)
           if($userdata['email_verified']== 1){
