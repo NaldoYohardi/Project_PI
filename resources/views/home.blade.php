@@ -1,9 +1,10 @@
-@extends('layouts.main')
+@extends('layouts.app')
 
 @section('title', 'Home')
 @section('MainTitle', 'Home')
 
 @section('content')
+<p>hello {{ Session::get('name') }}</p>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
