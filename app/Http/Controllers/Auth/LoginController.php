@@ -59,6 +59,7 @@ class LoginController extends Controller
           Session::put('name',$name);
           Session::put('email', $email);
           Session::put('level', $level);
+          Session::put('LoggIN', 1);
 
           if($email_verified == 1){
               return redirect('/loginIN');

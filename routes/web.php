@@ -32,4 +32,4 @@ Route::get('/loginIN', 'Auth\LoginController@loginIN');
 Route::get('/logOUT', 'Auth\LoginController@logOUT');
 
 //route forgotPass
-Route::get('/resetPass', 'Auth\ResetsPasswords');
+Route::get('/resetPass', 'Auth\ResetPasswordController@resetPass');
