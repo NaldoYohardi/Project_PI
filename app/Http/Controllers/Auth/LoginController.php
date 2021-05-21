@@ -52,8 +52,6 @@ class LoginController extends Controller
           $email_verified = $key->email_verified;
           $level = $key->level;
         }
-
-
         if($user){
           $userdata = array (
               'name' => $name,
