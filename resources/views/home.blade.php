@@ -1,9 +1,10 @@
-@extends('layouts.main')
+@extends('layouts.app')
 
 @section('title', 'Home')
 @section('MainTitle', 'Home')
 
-@section('content_data')
+@section('content')
+<p>hello {{ Session::get('name') }}</p>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -22,7 +23,7 @@
 </div>
 @endsection
 
-@section('content')
+@section('content_data')
 <div class="row">
   <div class="col-lg col-md col-sm">
     <div class="card card-stats">
