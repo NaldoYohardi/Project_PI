@@ -46,16 +46,16 @@ class LoginController extends Controller
 
     public function check(Request $request)
     {
-        $password = sha1($request->password);
-        $user = DB::select("select * from users where email = '$request->email' AND password = '$password'");
+        $user = DB::select("select * from users where email = '$request->email'");
         foreach ($user as $key){
           $name = $key->name;
+          $pswd = $key->password;
           $email = $key->email;
           $email_verified = $key->email_verified;
           $level = $key->level;
         }
 
-        if($user){
+        if(password_verify($request->password,$pswd)){
           Session::put('name',$name);
           Session::put('email', $email);
           Session::put('level', $level);
