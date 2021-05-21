@@ -27,3 +27,9 @@ Route::get('/verify', 'Auth\RegisterController@verifyUser')->name('verify.user')
 
 //route loginIN
 Route::get('/loginIN', 'Auth\LoginController@loginIN');
+
+//route Logout
+Route::get('/logOUT', 'Auth\LoginController@logOUT');
+
+//route forgotPass
+Route::get('/resetPass', 'Auth\ResetsPasswords');

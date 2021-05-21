@@ -74,4 +74,10 @@ class LoginController extends Controller
     {
       return view('home');
     }
+
+    public function logOUT()
+    {
+      Session::flush();
+      return redirect('/');
+    }
 }

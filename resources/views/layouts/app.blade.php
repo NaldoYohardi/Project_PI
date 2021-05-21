@@ -154,21 +154,23 @@
                       </p>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                      <a class="dropdown-item" href="#">Profile</a>
-                      <a class="dropdown-item" href="#">Settings</a>
+                      <a class="dropdown-item" href="#">{{ Session::get('name') }}</a>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Log out</a>
+                      <a class="dropdown-item" href="/logOUT">Log out</a>
                     </div>
                   </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->
+
                     @guest
-                        @if (Route::has('register'))
+                        <?php if ( Session::get('level') == 1){ ?>
+                          @if (Route::has('register'))
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                             </li>
-                        @endif
+                          @endif
+                        <?php } ?>
                     @else
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
