@@ -1,3 +1,9 @@
+<?php
+if(Session::get('LoggIN')==1)
+  Session::flush();
+{?>
+<?php } ?>
+
 @extends('layouts.main')
 
 @section('title', 'Login')
