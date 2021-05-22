@@ -203,6 +203,8 @@
                 @yield('content_data')
               </div>
               @yield('content')
+            </div>
+          </div>
 
 
   <!--   Core JS Files   -->
