@@ -68,14 +68,12 @@ if(Session::get('LoggIN')==1)
     </div>
 
     <div class="text-center p-t-136">
-      @if (Route::has('password.request'))
-        <span class="txt1">
-          Forgot
-        </span>
-        <a class="txt2 btn-link" href="{{ route('password.request') }}">
-          {{ __('Password?') }}
-        </a>
-      @endif
+      <span class="txt1">
+        Forgot
+      </span>
+      <a class="txt2 btn-link" href="{{ url('/reset') }}">
+        {{ __('Password?') }}
+      </a>
     </div>
 
   </form>

@@ -164,7 +164,6 @@
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->
-
                     @guest
                         <?php if ( Session::get('level') == 1){ ?>
                           @if (Route::has('register'))
@@ -199,13 +198,50 @@
           <!-- End Navbar -->
           <div class="content">
             <div class="container-fluid">
-              <div class="alert alert-success" role="alert">
+              <!-- <div class="alert alert-success" role="alert">
                 @yield('content_data')
-              </div>
+              </div> -->
               @yield('content')
             </div>
           </div>
 
+          <footer class="footer">
+          <div class="container-fluid">
+          <nav class="float-left">
+            <ul>
+              <li>
+                <a href="#">
+                  Testing Footer
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  Blog
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  Licences
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <div class="copyright float-right">
+            ©
+            <script>
+              document.write(new Date().getFullYear())
+            </script>2021, made with <i class="material-icons">favorite</i> by
+            <a href="#" target="_blank">Laravel</a> for a better web.
+          </div>
+          </div>
+          </footer>
+          <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; right: 0px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div>
+        </div>
 
   <!--   Core JS Files   -->
   <script src="/js/core/jquery.min.js" type="text/javascript"></script>

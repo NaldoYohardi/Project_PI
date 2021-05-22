@@ -41,7 +41,7 @@
     </div>
 
     <div class="text-center p-t-136">
-      <a class="txt2 btn-link" href="{{ route('login') }}">
+      <a class="txt2 btn-link" href="{{ url('/') }}">
         {{ __('Go Back?') }}
       </a>
     </div>
