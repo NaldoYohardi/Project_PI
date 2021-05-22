@@ -55,7 +55,7 @@ class LoginController extends Controller
           $level = $key->level;
         }
 
-        if($user)
+        if($user == NULL)
         {
           return redirect('/')->with('status','Email not Found');
         }
