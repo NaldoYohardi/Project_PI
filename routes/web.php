@@ -17,12 +17,23 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
+Route::get('/home', 'Controller@home');
+Route::get('/table', 'Controller@table');
+
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/check', 'Auth\LoginController@check');
-
 // route for verification email
 Route::get('/verify', 'Auth\RegisterController@verifyUser')->name('verify.user');
 
+<<<<<<< HEAD
 Route::get('generateQr', 'QrController@generateQrCode');
+=======
+//route loginIN
+Route::get('/loginIN', 'Auth\LoginController@loginIN');
+
+//route Logout
+Route::get('/logOUT', 'Auth\LoginController@logOUT');
+
+//route forgotPass
+Route::get('/resetPass', 'Auth\ResetPasswordController@resetPass');
+>>>>>>> 0c0bf7a9e3f4b95d984f214d530b3563931f4b30

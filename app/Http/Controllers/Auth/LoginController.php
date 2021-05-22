@@ -8,7 +8,9 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
-
+use Session;
+use Cookie;
+use Tracker;
 
 class LoginController extends Controller
 {
@@ -44,25 +46,23 @@ class LoginController extends Controller
 
     public function check(Request $request)
     {
-        $password = sha1($request->password);
-        $user = DB::select("select * from users where email = '$request->email' AND password = '$password'");
+        $user = DB::select("select * from users where email = '$request->email'");
         foreach ($user as $key){
           $name = $key->name;
+          $pswd = $key->password;
           $email = $key->email;
           $email_verified = $key->email_verified;
           $level = $key->level;
         }
 
+        if(password_verify($request->password,$pswd)){
+          Session::put('name',$name);
+          Session::put('email', $email);
+          Session::put('level', $level);
+          Session::put('LoggIN', 1);
 
-        if($user){
-          $userdata = array (
-              'name' => $name,
-              'email' => $email,
-              'email_verified' => $email_verified,
-              'level' => $level
-          );
           if($email_verified == 1){
-              return view('home',$user);
+              return redirect('/loginIN');
           } else {
               return redirect('/')->with('status','Email Not Verified');
           }
@@ -71,4 +71,14 @@ class LoginController extends Controller
           return redirect('/')->with('status','Incorrect Username or Password');
     }
 
+    public function loginIN()
+    {
+      return view('home');
+    }
+
+    public function logOUT()
+    {
+      Session::flush();
+      return redirect('/');
+    }
 }
