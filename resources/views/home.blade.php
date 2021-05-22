@@ -1,3 +1,10 @@
+<?php
+if(Session::get('LoggIN')==0)
+{?>
+  <script>
+    window.location.href='{{url('')}}';
+  </script>
+<?php } ?>
 @extends('layouts.app')
 
 @section('title', 'Home')
