@@ -4,6 +4,10 @@
 @section('MainTitle', 'Register')
 
 @section('content')
+<?php
+if(Session::get('LoggIN')==0)
+    url('/');
+ ?>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
