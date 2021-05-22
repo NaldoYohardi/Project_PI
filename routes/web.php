@@ -24,3 +24,5 @@ Route::post('/check', 'Auth\LoginController@check');
 
 // route for verification email
 Route::get('/verify', 'Auth\RegisterController@verifyUser')->name('verify.user');
+
+Route::get('generateQr', 'QrController@generateQrCode');
