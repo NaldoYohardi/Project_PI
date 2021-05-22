@@ -55,6 +55,7 @@ class LoginController extends Controller
           $level = $key->level;
         }
 
+        if($user){
         if(password_verify($request->password,$pswd)){
           Session::put('name',$name);
           Session::put('email', $email);
@@ -68,8 +69,11 @@ class LoginController extends Controller
           }
         }
         else
-          return redirect('/')->with('status','Incorrect Username or Password');
-    }
+          return redirect('/')->with('status','Incorrect Email or Password');
+        }
+        else
+          return redirect('/')->with('status','Invalid Account');
+      }
 
     public function loginIN()
     {
