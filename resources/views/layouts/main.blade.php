@@ -38,10 +38,33 @@
 
   </head>
   <body>
-  <div id="app">
-    @yield('content_test')
+  <div class="limiter" id="tabs">
+    <div class="container-login100">
+      <div class="wrap-login100">
+        @yield('content')
+
+        <div class="login100-pic js-tilt" data-tilt>
+          <img src="/laravel.PNG" alt="IMG">
+        </div>
+
+      </div>
+    </div>
+  </div>
   </div>
 
+  <script type="text/javascript">
+    var header = document.getElementById("tabs");
+    var btns = header.getElementsByClassName("bn");
+    var log = header.getElementsByClassName('fn');
+    function changelog(){
+      document.getElementById('forgot').style.display='none';
+      document.getElementById('login').style.display='block'
+    }
+    function changepass(){
+      document.getElementById('login').style.display='none';
+      document.getElementById('forgot').style.display='block'
+    }
+  </script>
 <!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->

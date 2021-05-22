@@ -14,7 +14,6 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        Session::flush();
         Session::put('LoggIN', 0);
         $this->middleware('auth');
     }
@@ -26,6 +25,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('auth/login');
+      return view('auth/login');
     }
 }
