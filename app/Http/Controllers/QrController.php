@@ -14,5 +14,6 @@ class QrController extends Controller
                      ->size(200)->errorCorrection('H')
                      ->generate('W3Adda Laravel Tutorial');
      return response($image)->header('Content-type','image/png');
+     
 }
 }
