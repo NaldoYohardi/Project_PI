@@ -1,10 +1,16 @@
+<?php
+if(Session::get('LoggIN')==0)
+{?>
+  <script>
+    window.location.href='{{url('')}}';
+  </script>
+<?php } ?>
 @extends('layouts.app')
 
 @section('title', 'Register')
 @section('MainTitle', 'Register')
 
 @section('content')
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
