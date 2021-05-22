@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Session;
 
 class HomeController extends Controller
 {
@@ -13,6 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
+        Session::put('LoggIN', 0);
         $this->middleware('auth');
     }
 
@@ -23,6 +25,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('auth/login');
     }
 }

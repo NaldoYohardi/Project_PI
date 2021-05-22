@@ -1,3 +1,10 @@
+<?php
+if(Session::get('LoggIN')==0)
+{?>
+  <script>
+    window.location.href='{{url('')}}';
+  </script>
+<?php } ?>
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
   <head>
@@ -203,6 +210,8 @@
                 @yield('content_data')
               </div>
               @yield('content')
+            </div>
+          </div>
 
 
   <!--   Core JS Files   -->

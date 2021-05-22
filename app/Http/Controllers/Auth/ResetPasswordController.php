@@ -28,9 +28,4 @@ class ResetPasswordController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
-    public function resetPass(Request $req)
-    {
-        $user = \App\Models\User::find($req->email);
-        dd($user);
-    }
 }
