@@ -36,23 +36,37 @@
                     <div class="clearfix"></div>
               </form>
               <?php } ?>
+              <?php if(Session::get('level')==1){ ?>
+              <form action="/update/{{ $user->user_id }}" method="post">
+                    @csrf
+                      <div class="row">
+                        <div class="col-md-4">
+                          <div class="form-group bmd-form-group">
+                            <label class="bmd-label-floating">Username</label>
+                            <input type="text" name="name"class="form-control" value="{{ $user->name }}">
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group bmd-form-group">
+                            <label class="bmd-label-floating">Email address</label>
+                            <input type="text" name="email" class="form-control" value="{{ $user->email }}">
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group bmd-form-group">
+                            <label class="bmd-label-floating">Email address</label>
+                            <input type="number" name="level" class="form-control" value="{{ $user->level }}">
+                          </div>
+                        </div>
+                      </div>
+                    <button type="submit" class="btn btn-primary pull-right">Update</button>
+                    <div class="clearfix"></div>
+              </form>
+              <?php } ?>
             </div>
           </div>
         </div>
       </div>
     </div>
     </div>
-
-  <?php if(Session::get('level')==1){ ?>
-  <form action="/update/{{ $user->user_id }}" method="post">
-        @csrf
-        Name
-        <input type="text" name="name" value="{{ $user->name }}">
-        Email
-        <input type="text" name="email" value="{{ $user->email }}">
-        Level
-        <input type="number" name="level" value="{{ $user->level }}">
-        <button type="submit">submit</button>
-  </form>
-  <?php } ?>
   @endsection
