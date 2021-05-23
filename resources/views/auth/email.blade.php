@@ -4,7 +4,6 @@
 @section('MainTitle', 'Forget Password')
 
 @section('content')
-
   <form method="POST" action="{{ route('password.email') }}" class="login100-form validate-form">
     @csrf
     @if (session('status'))
