@@ -32,7 +32,7 @@ Route::get('/verify', 'Auth\RegisterController@verifyUser')->name('verify.user')
 Route::get('generateQr', 'QrController@generateQrCode');
 
 //route Employee Login
-Route::get('/loginIN0', 'Auth\LoginController@loginIN0');
+Route::get('/loginIN', 'Auth\LoginController@loginIN');
 
 //route Admin Login
 Route::get('/loginIN1', 'Auth\LoginController@loginIN1');

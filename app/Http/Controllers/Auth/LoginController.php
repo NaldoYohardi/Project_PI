@@ -64,15 +64,7 @@ class LoginController extends Controller
           Session::put('LoggIN', 1);
 
           if($email_verified == 1){
-            if($level == 0){
-                return redirect('/loginIN0');
-            }
-            else if($level == 1){
-                return redirect('/loginIN1');
-            }
-            else if($level == 2){
-                return redirect('/loginIN2');
-            }
+            return redirect('/loginIN');
           } else {
               return redirect('/')->with('status','Email Not Verified');
           }
@@ -84,24 +76,14 @@ class LoginController extends Controller
       }
     }
 
-    public function loginIN0()
-    {
-      return view('/level0/home');
-    }
-
-    public function loginIN1()
-    {
-      return view('/level1/adminhome');
-    }
-
-    public function loginIN2()
-    {
-      return view('/level2/managerhome');
-    }
-
     public function logOUT()
     {
       Session::flush();
       return redirect('/');
+    }
+
+    public function LoginIN()
+    {
+      return view('auth.home');
     }
 }
