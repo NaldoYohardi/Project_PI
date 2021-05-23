@@ -48,7 +48,7 @@
                 </a>
               </li>
               <li class="nav-item ">
-                <a class="nav-link" href="{{ url('/home')}}">
+                <a class="nav-link" href="/profile/{{ Session::get('email') }}">
                   <i class="material-icons">person</i>
                   <p>User Profile</p>
                 </a>

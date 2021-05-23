@@ -62,7 +62,7 @@ if(Session::get('LoggIN')==0)
           <div class="wrap-input100 validate-input" data-validate = "Password is required">
             <input id="password-confirm" class="input100 form-control @error('password-confirm') is-invalid @enderror" type="password" name="password_confirmation" placeholder="{{ __('Password') }}" required autocomplete="new-password">
             @error('password')
-                <span class="invalid-feedback" role="alert">
+                <span class="invalid-feedback" role="alert" id="message">
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror
@@ -81,3 +81,14 @@ if(Session::get('LoggIN')==0)
   </div>
 </div>
 @endsection
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+  $('#password', '#password-confirm').on('keyup', function (){
+    if ($('#password').val() == $('#password-confirm').val()){
+      $('#message').html('Matching').css('color','green');
+    } else {
+      $('#message').html('Not Matching').css('color', 'red');
+    }
+  });
+</script>

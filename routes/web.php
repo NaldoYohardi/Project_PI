@@ -45,3 +45,15 @@ Route::get('/logOUT', 'Auth\LoginController@logOUT');
 
 //route forgotPass
 Route::get('/resetPass', 'Auth\ResetPasswordController@resetPass');
+
+//route profile
+Route::get('/profile/{name}', 'Controller@profile');
+
+//route edit
+Route::get('/edit/{id}', 'Controller@edit');
+
+//route update
+Route::post('/update/{user}', 'Controller@update');
+
+//route delete
+Route::get('/delete/{id}', 'Controller@delete');
