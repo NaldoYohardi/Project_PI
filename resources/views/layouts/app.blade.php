@@ -39,135 +39,137 @@
       <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- End Google Tag Manager (noscript) -->
       <div class="wrapper ">
-        <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
-          <!--
-            Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-
-            Tip 2: you can also add an image using data-image tag
-        -->
+        <?php if(Session::get('level')== 1){ ?>
+          <div class="sidebar" data-color="purple" data-background-color="white" data-image="/img/sidebar-1.jpg">
           <div class="logo"><a href="{{ url('/home')}}" class="simple-text logo-normal">
-              Laravel
-            </a></div>
-          <?php if(Session::get('level')== 1){ ?>
-            <div class="sidebar-wrapper ps-container ps-theme-default ps-active-y" data-ps-id="1c5a6287-a378-8251-7e07-368984553c09">
-              <ul class="nav">
-                <li class="nav-item active  ">
-                  <a class="nav-link" href="{{ url('/home')}}">
-                    <i class="material-icons">dashboard</i>
-                    <p>Dashboard</p>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="/profile/{{ Session::get('email') }}">
-                    <i class="material-icons">person</i>
-                    <p>User Profile</p>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="{{ url('/table')}}">
-                    <i class="material-icons">content_paste</i>
-                    <p>Table List</p>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="./typography.html">
-                    <i class="material-icons">library_books</i>
-                    <p>Typography</p>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="./icons.html">
-                    <i class="material-icons">bubble_chart</i>
-                    <p>Icons</p>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="./map.html">
-                    <i class="material-icons">location_ons</i>
-                    <p>Maps</p>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="./notifications.html">
-                    <i class="material-icons">notifications</i>
-                    <p>Notifications</p>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="./rtl.html">
-                    <i class="material-icons">language</i>
-                    <p>RTL Support</p>
-                  </a>
-                </li>
-                <li class="nav-item active-pro ">
-                  <a class="nav-link" href="./upgrade.html">
-                    <i class="material-icons">unarchive</i>
-                    <p>Upgrade to PRO</p>
-                  </a>
-                </li>
-              </ul>
-            <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; height: 425px; right: 0px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 368px;"></div></div></div>
-            <div class="sidebar-background" style="background-image: url(../assets/img/sidebar-1.jpg) "></div></div>
-            <div class="main-panel ps-container ps-theme-default" data-ps-id="4fa41c3b-b1d6-a77d-f257-2bd4c39acd82">
-          <?php } ?>
-          <?php if(Session::get('level')== 0){ ?>
-            <div class="sidebar-wrapper ps-container ps-theme-default ps-active-y" data-ps-id="1c5a6287-a378-8251-7e07-368984553c09">
-              <ul class="nav">
-                <li class="nav-item active  ">
-                  <a class="nav-link" href="{{ url('/home')}}">
-                    <i class="material-icons">dashboard</i>
-                    <p>Dashboard</p>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="/profile/{{ Session::get('email') }}">
-                    <i class="material-icons">person</i>
-                    <p>User Profile</p>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="{{ url('/table')}}">
-                    <i class="material-icons">content_paste</i>
-                    <p>Table List</p>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="./icons.html">
-                    <i class="material-icons">bubble_chart</i>
-                    <p>Icons</p>
-                  </a>
-                </li>
-              </ul>
-            <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; height: 425px; right: 0px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 368px;"></div></div></div>
-            <div class="sidebar-background" style="background-image: url(../assets/img/sidebar-1.jpg) "></div></div>
-            <div class="main-panel ps-container ps-theme-default" data-ps-id="4fa41c3b-b1d6-a77d-f257-2bd4c39acd82">
-          <?php } ?>
-          <?php if(Session::get('level') == 2){ ?>
-            <div class="sidebar-wrapper ps-container ps-theme-default ps-active-y" data-ps-id="1c5a6287-a378-8251-7e07-368984553c09">
-              <ul class="nav">
-                <li class="nav-item active  ">
-                  <a class="nav-link" href="{{ url('/home')}}">
-                    <i class="material-icons">dashboard</i>
-                    <p>Dashboard</p>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="/profile/{{ Session::get('email') }}">
-                    <i class="material-icons">person</i>
-                    <p>User Profile</p>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="{{ url('/table')}}">
-                    <i class="material-icons">content_paste</i>
-                    <p>Table List</p>
-                  </a>
-                </li>
-              </ul>
-            <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; height: 425px; right: 0px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 368px;"></div></div></div>
-            <div class="sidebar-background" style="background-image: url(../assets/img/sidebar-1.jpg) "></div></div>
-            <div class="main-panel ps-container ps-theme-default" data-ps-id="4fa41c3b-b1d6-a77d-f257-2bd4c39acd82">
-          <?php } ?>
+              Administrator
+          </a></div>
+        <?php } elseif(Session::get('level')== 0){ ?>
+          <div class="sidebar" data-color="purple" data-background-color="white" data-image="/img/sidebar-2.jpg">
+          <div class="logo"><a href="{{ url('/home')}}" class="simple-text logo-normal">
+              Employee
+          </a></div>
+        <?php } elseif(Session::get('level')== 2){ ?>
+          <div class="sidebar" data-color="purple" data-background-color="white" data-image="/img/sidebar-3.jpg">
+          <div class="logo"><a href="{{ url('/home')}}" class="simple-text logo-normal">
+              Manager
+          </a></div>
+        <?php } ?>
+        <?php if(Session::get('level')== 1){ ?>
+          <div class="sidebar-wrapper ps-container ps-theme-default ps-active-y">
+            <ul class="nav">
+              <li class="nav-item active  ">
+                <a class="nav-link" href="{{ url('/home')}}">
+                  <i class="material-icons">dashboard</i>
+                  <p>Dashboard</p>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/profile/{{ Session::get('email') }}">
+                  <i class="material-icons">person</i>
+                  <p>User Profile</p>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="{{ url('/table')}}">
+                  <i class="material-icons">content_paste</i>
+                  <p>Table List</p>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="./typography.html">
+                  <i class="material-icons">library_books</i>
+                  <p>Typography</p>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="./icons.html">
+                  <i class="material-icons">bubble_chart</i>
+                  <p>Icons</p>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="./map.html">
+                  <i class="material-icons">location_ons</i>
+                  <p>Maps</p>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="./notifications.html">
+                  <i class="material-icons">notifications</i>
+                  <p>Notifications</p>
+                </a>
+              </li>
+            </ul>
+            <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
+              <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div>
+            <div class="ps-scrollbar-y-rail" style="top: 0px; height: 425px; right: 0px;">
+              <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 368px;"></div></div>
+          </div></div>
+          <div class="main-panel ps-container ps-theme-default">
+        <?php } elseif(Session::get('level')== 0){ ?>
+          <div class="sidebar-wrapper ps-container ps-theme-default ps-active-y">
+            <ul class="nav">
+              <li class="nav-item active  ">
+                <a class="nav-link" href="{{ url('/home')}}">
+                  <i class="material-icons">dashboard</i>
+                  <p>Dashboard</p>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/profile/{{ Session::get('email') }}">
+                  <i class="material-icons">person</i>
+                  <p>User Profile</p>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="{{ url('/table')}}">
+                  <i class="material-icons">content_paste</i>
+                  <p>Table List</p>
+                </a>
+              </li>
+            </ul>
+            <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
+              <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div>
+            <div class="ps-scrollbar-y-rail" style="top: 0px; height: 425px; right: 0px;">
+              <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 368px;"></div></div>
+          </div></div>
+          <div class="main-panel ps-container ps-theme-default">
+        <?php } elseif(Session::get('level') == 2){ ?>
+          <div class="sidebar-wrapper ps-container ps-theme-default ps-active-y">
+            <ul class="nav">
+              <li class="nav-item active  ">
+                <a class="nav-link" href="{{ url('/home')}}">
+                  <i class="material-icons">dashboard</i>
+                  <p>Dashboard</p>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/profile/{{ Session::get('email') }}">
+                  <i class="material-icons">person</i>
+                  <p>User Profile</p>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="{{ url('/table')}}">
+                  <i class="material-icons">content_paste</i>
+                  <p>Table List</p>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="./typography.html">
+                  <i class="material-icons">library_books</i>
+                  <p>Typography</p>
+                </a>
+              </li>
+            </ul>
+            <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
+              <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div>
+            <div class="ps-scrollbar-y-rail" style="top: 0px; height: 425px; right: 0px;">
+              <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 368px;"></div></div>
+          </div></div>
+          <div class="main-panel ps-container ps-theme-default">
+        <?php } ?>
           <!-- Navbar -->
           <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
             <div class="container-fluid">
@@ -233,33 +235,33 @@
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->
-                    @guest
-                        <?php if ( Session::get('level') == 1){ ?>
-                          @if (Route::has('register'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                            </li>
-                          @endif
-                        <?php } ?>
-                    @else
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }}
+                  @guest
+                    <?php if ( Session::get('level') == 1){ ?>
+                      @if (Route::has('register'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        </li>
+                      @endif
+                    <?php } ?>
+                  @else
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{ Auth::user()->name }}
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li>
-                    @endguest
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                  @endguest
                 </ul>
               </div>
             </div>
@@ -275,39 +277,39 @@
           </div>
 
           <footer class="footer">
-          <div class="container-fluid">
-          <nav class="float-left">
-            <ul>
-              <li>
-                <a href="#">
-                  Testing Footer
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  Licences
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <div class="copyright float-right">
-            ©
-            <script>
-              document.write(new Date().getFullYear())
-            </script>2021, made with <i class="material-icons">favorite</i> by
-            <a href="#" target="_blank">Laravel</a> for a better web.
-          </div>
-          </div>
+            <div class="container-fluid">
+            <nav class="float-left">
+              <ul>
+                <li>
+                  <a href="#">
+                    Testing Footer
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    About Us
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    Blog
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    Licences
+                  </a>
+                </li>
+              </ul>
+            </nav>
+            <div class="copyright float-right">
+              ©
+              <script>
+                document.write(new Date().getFullYear())
+              </script>-2021, made with <i class="material-icons">favorite</i> by
+              <a href="#" target="_blank">Laravel</a> for a better web.
+            </div>
+            </div>
           </footer>
           <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; right: 0px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div>
         </div>
