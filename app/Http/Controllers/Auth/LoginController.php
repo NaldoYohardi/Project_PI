@@ -64,7 +64,7 @@ class LoginController extends Controller
           Session::put('LoggIN', 1);
 
           if($email_verified == 1){
-              return redirect('/loginIN');
+            return redirect('/loginIN');
           } else {
               return redirect('/')->with('status','Email Not Verified');
           }
@@ -76,14 +76,14 @@ class LoginController extends Controller
       }
     }
 
-    public function loginIN()
-    {
-      return view('home');
-    }
-
     public function logOUT()
     {
       Session::flush();
       return redirect('/');
+    }
+
+    public function LoginIN()
+    {
+      return view('auth.home');
     }
 }

@@ -24,8 +24,6 @@
     <!--===============================================================================================-->
   	<link rel="icon" type="image/png" href="/images/icons/favicon.ico"/>
     <!--===============================================================================================-->
-  	<link rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css">
-    <!--===============================================================================================-->
   	<link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <!--===============================================================================================-->
   	<link rel="stylesheet" type="text/css" href="/vendor/animate/animate.css">
@@ -38,10 +36,36 @@
 
   </head>
   <body>
-  <div id="app">
-    @yield('content_test')
+  <?php if(Session::get('LoggIN')==1)
+    Session::flush();
+  ?>
+  <div class="limiter">
+    <div class="container-login100">
+      <div class="wrap-login100">
+        @yield('content')
+
+        <div class="login100-pic js-tilt" data-tilt>
+          <img src="/laravel.PNG" alt="IMG">
+        </div>
+
+      </div>
+    </div>
+  </div>
   </div>
 
+  <script type="text/javascript">
+    var header = document.getElementById("tabs");
+    var btns = header.getElementsByClassName("bn");
+    var log = header.getElementsByClassName('fn');
+    function changelog(){
+      document.getElementById('forgot').style.display='none';
+      document.getElementById('login').style.display='block'
+    }
+    function changepass(){
+      document.getElementById('login').style.display='none';
+      document.getElementById('forgot').style.display='block'
+    }
+  </script>
 <!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->

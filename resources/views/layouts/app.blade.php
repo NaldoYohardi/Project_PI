@@ -24,6 +24,15 @@
 
   </head>
   <body>
+    <!-- biarin saja -->
+    <?php
+    if(Session::get('LoggIN')==0)
+    {?>
+      <script>
+        window.location.href='{{url('')}}';
+      </script>
+    <?php } ?>
+    <!-- sampai sne -->
     <body class="">
       <!-- Extra details for Live View on GitHub Pages -->
       <!-- Google Tag Manager (noscript) -->
@@ -39,66 +48,126 @@
           <div class="logo"><a href="{{ url('/home')}}" class="simple-text logo-normal">
               Laravel
             </a></div>
-          <div class="sidebar-wrapper ps-container ps-theme-default ps-active-y" data-ps-id="1c5a6287-a378-8251-7e07-368984553c09">
-            <ul class="nav">
-              <li class="nav-item active  ">
-                <a class="nav-link" href="{{ url('/home')}}">
-                  <i class="material-icons">dashboard</i>
-                  <p>Dashboard</p>
-                </a>
-              </li>
-              <li class="nav-item ">
-                <a class="nav-link" href="{{ url('/home')}}">
-                  <i class="material-icons">person</i>
-                  <p>User Profile</p>
-                </a>
-              </li>
-              <li class="nav-item ">
-                <a class="nav-link" href="{{ url('/table')}}">
-                  <i class="material-icons">content_paste</i>
-                  <p>Table List</p>
-                </a>
-              </li>
-              <li class="nav-item ">
-                <a class="nav-link" href="./typography.html">
-                  <i class="material-icons">library_books</i>
-                  <p>Typography</p>
-                </a>
-              </li>
-              <li class="nav-item ">
-                <a class="nav-link" href="./icons.html">
-                  <i class="material-icons">bubble_chart</i>
-                  <p>Icons</p>
-                </a>
-              </li>
-              <li class="nav-item ">
-                <a class="nav-link" href="./map.html">
-                  <i class="material-icons">location_ons</i>
-                  <p>Maps</p>
-                </a>
-              </li>
-              <li class="nav-item ">
-                <a class="nav-link" href="./notifications.html">
-                  <i class="material-icons">notifications</i>
-                  <p>Notifications</p>
-                </a>
-              </li>
-              <li class="nav-item ">
-                <a class="nav-link" href="./rtl.html">
-                  <i class="material-icons">language</i>
-                  <p>RTL Support</p>
-                </a>
-              </li>
-              <li class="nav-item active-pro ">
-                <a class="nav-link" href="./upgrade.html">
-                  <i class="material-icons">unarchive</i>
-                  <p>Upgrade to PRO</p>
-                </a>
-              </li>
-            </ul>
-          <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; height: 425px; right: 0px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 368px;"></div></div></div>
-        <div class="sidebar-background" style="background-image: url(../assets/img/sidebar-1.jpg) "></div></div>
-        <div class="main-panel ps-container ps-theme-default" data-ps-id="4fa41c3b-b1d6-a77d-f257-2bd4c39acd82">
+          <?php if(Session::get('level')== 1){ ?>
+            <div class="sidebar-wrapper ps-container ps-theme-default ps-active-y" data-ps-id="1c5a6287-a378-8251-7e07-368984553c09">
+              <ul class="nav">
+                <li class="nav-item active  ">
+                  <a class="nav-link" href="{{ url('/home')}}">
+                    <i class="material-icons">dashboard</i>
+                    <p>Dashboard</p>
+                  </a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link" href="/profile/{{ Session::get('email') }}">
+                    <i class="material-icons">person</i>
+                    <p>User Profile</p>
+                  </a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link" href="{{ url('/table')}}">
+                    <i class="material-icons">content_paste</i>
+                    <p>Table List</p>
+                  </a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link" href="./typography.html">
+                    <i class="material-icons">library_books</i>
+                    <p>Typography</p>
+                  </a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link" href="./icons.html">
+                    <i class="material-icons">bubble_chart</i>
+                    <p>Icons</p>
+                  </a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link" href="./map.html">
+                    <i class="material-icons">location_ons</i>
+                    <p>Maps</p>
+                  </a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link" href="./notifications.html">
+                    <i class="material-icons">notifications</i>
+                    <p>Notifications</p>
+                  </a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link" href="./rtl.html">
+                    <i class="material-icons">language</i>
+                    <p>RTL Support</p>
+                  </a>
+                </li>
+                <li class="nav-item active-pro ">
+                  <a class="nav-link" href="./upgrade.html">
+                    <i class="material-icons">unarchive</i>
+                    <p>Upgrade to PRO</p>
+                  </a>
+                </li>
+              </ul>
+            <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; height: 425px; right: 0px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 368px;"></div></div></div>
+            <div class="sidebar-background" style="background-image: url(../assets/img/sidebar-1.jpg) "></div></div>
+            <div class="main-panel ps-container ps-theme-default" data-ps-id="4fa41c3b-b1d6-a77d-f257-2bd4c39acd82">
+          <?php } ?>
+          <?php if(Session::get('level')== 0){ ?>
+            <div class="sidebar-wrapper ps-container ps-theme-default ps-active-y" data-ps-id="1c5a6287-a378-8251-7e07-368984553c09">
+              <ul class="nav">
+                <li class="nav-item active  ">
+                  <a class="nav-link" href="{{ url('/home')}}">
+                    <i class="material-icons">dashboard</i>
+                    <p>Dashboard</p>
+                  </a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link" href="/profile/{{ Session::get('email') }}">
+                    <i class="material-icons">person</i>
+                    <p>User Profile</p>
+                  </a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link" href="{{ url('/table')}}">
+                    <i class="material-icons">content_paste</i>
+                    <p>Table List</p>
+                  </a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link" href="./icons.html">
+                    <i class="material-icons">bubble_chart</i>
+                    <p>Icons</p>
+                  </a>
+                </li>
+              </ul>
+            <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; height: 425px; right: 0px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 368px;"></div></div></div>
+            <div class="sidebar-background" style="background-image: url(../assets/img/sidebar-1.jpg) "></div></div>
+            <div class="main-panel ps-container ps-theme-default" data-ps-id="4fa41c3b-b1d6-a77d-f257-2bd4c39acd82">
+          <?php } ?>
+          <?php if(Session::get('level') == 2){ ?>
+            <div class="sidebar-wrapper ps-container ps-theme-default ps-active-y" data-ps-id="1c5a6287-a378-8251-7e07-368984553c09">
+              <ul class="nav">
+                <li class="nav-item active  ">
+                  <a class="nav-link" href="{{ url('/home')}}">
+                    <i class="material-icons">dashboard</i>
+                    <p>Dashboard</p>
+                  </a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link" href="/profile/{{ Session::get('email') }}">
+                    <i class="material-icons">person</i>
+                    <p>User Profile</p>
+                  </a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link" href="{{ url('/table')}}">
+                    <i class="material-icons">content_paste</i>
+                    <p>Table List</p>
+                  </a>
+                </li>
+              </ul>
+            <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; height: 425px; right: 0px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 368px;"></div></div></div>
+            <div class="sidebar-background" style="background-image: url(../assets/img/sidebar-1.jpg) "></div></div>
+            <div class="main-panel ps-container ps-theme-default" data-ps-id="4fa41c3b-b1d6-a77d-f257-2bd4c39acd82">
+          <?php } ?>
           <!-- Navbar -->
           <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
             <div class="container-fluid">
@@ -112,24 +181,15 @@
                 <span class="navbar-toggler-icon icon-bar"></span>
               </button>
               <div class="collapse navbar-collapse justify-content-end">
-                <form class="navbar-form">
-                  <span class="bmd-form-group"><div class="input-group no-border">
-                    <input type="text" value="" class="form-control" placeholder="Search...">
-                    <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                      <i class="material-icons">search</i>
-                      <div class="ripple-container"></div>
-                    </button>
-                  </div></span>
-                </form>
                 <ul class="navbar-nav">
-                  <li class="nav-item">
+                  <!-- <li class="nav-item">
                     <a class="nav-link" href="javascript:;">
                       <i class="material-icons">dashboard</i>
                       <p class="d-lg-none d-md-block">
                         Stats
                       </p>
                     </a>
-                  </li>
+                  </li> -->
                   <li class="nav-item dropdown">
                     <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="material-icons">notifications</i>
@@ -161,10 +221,18 @@
                     </div>
                   </li>
                   <?php } ?>
+                  <form class="navbar-form">
+                    <span class="bmd-form-group"><div class="input-group no-border">
+                      <input type="text" value="" class="form-control" placeholder="Search...">
+                      <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                        <i class="material-icons">search</i>
+                        <div class="ripple-container"></div>
+                      </button>
+                    </div></span>
+                  </form>
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->
-
                     @guest
                         <?php if ( Session::get('level') == 1){ ?>
                           @if (Route::has('register'))
@@ -199,13 +267,50 @@
           <!-- End Navbar -->
           <div class="content">
             <div class="container-fluid">
-              <div class="alert alert-success" role="alert">
+              <!-- <div class="alert alert-success" role="alert">
                 @yield('content_data')
-              </div>
+              </div> -->
               @yield('content')
             </div>
           </div>
 
+          <footer class="footer">
+          <div class="container-fluid">
+          <nav class="float-left">
+            <ul>
+              <li>
+                <a href="#">
+                  Testing Footer
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  Blog
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  Licences
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <div class="copyright float-right">
+            ©
+            <script>
+              document.write(new Date().getFullYear())
+            </script>2021, made with <i class="material-icons">favorite</i> by
+            <a href="#" target="_blank">Laravel</a> for a better web.
+          </div>
+          </div>
+          </footer>
+          <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; right: 0px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div>
+        </div>
 
   <!--   Core JS Files   -->
   <script src="/js/core/jquery.min.js" type="text/javascript"></script>
