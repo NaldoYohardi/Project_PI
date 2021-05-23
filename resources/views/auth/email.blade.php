@@ -4,15 +4,14 @@
 @section('MainTitle', 'Forget Password')
 
 @section('content')
-  @if (session('status'))
-      <div class="alert alert-success" role="alert">
-          {{ session('status') }}
-      </div>
-  @endif
 
   <form method="POST" action="{{ route('password.email') }}" class="login100-form validate-form">
     @csrf
     @if (session('status'))
+      <div class="alert alert-success">
+        {{ session('status') }}
+      </div>
+    @else
       <div class="alert alert-danger">
         {{ session('status') }}
       </div>
