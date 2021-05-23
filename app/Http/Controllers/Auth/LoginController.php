@@ -57,23 +57,33 @@ class LoginController extends Controller
 
         if($user)
         {
-        if(password_verify($request->password,$pswd)){
-          Session::put('name',$name);
-          Session::put('email', $email);
-          Session::put('level', $level);
-          Session::put('LoggIN', 1);
+          if(password_verify($request->password,$pswd)){
+            Session::put('name',$name);
+            Session::put('email', $email);
+            Session::put('level', $level);
+            Session::put('LoggIN', 1);
 
-          if($email_verified == 1){
-            return redirect('/loginIN');
-          } else {
-              return redirect('/')->with('status','Email Not Verified');
+              if($email_verified == 1)
+              {
+                return redirect('/loginIN');
+              }
+              else
+              {
+                Session::put('status','Email Not Verified');
+                return redirect('/');
+              }
+          }
+          else
+          {
+            Session::put('status','Incorrect Email or Password');
+            return redirect('/');
           }
         }
         else
-          return redirect('/')->with('status','Incorrect Email or Password');
-      }else {
-        return redirect('/')->with('status','Email Not Found');
-      }
+        {
+          Session::put('status','Email not Found');
+          return redirect('/');
+        }
     }
 
     public function logOUT()

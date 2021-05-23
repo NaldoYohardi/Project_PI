@@ -12,15 +12,15 @@
 
   <form method="POST" action="/check" class="login100-form validate-form">
     @csrf
-    @if (session('status'))
-      <div class="alert alert-danger">
-        {{ session('status') }}
-      </div>
-    @endif
     <span class="login100-form-title">
       LOGIN
     </span>
-
+    <?php
+      if(Session::get('status')) { ?>
+      <div class="alert alert-danger">
+        <?php  echo(Session::get('status')) ?>
+      </div>
+    <?php }  ?>
     <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
       <input id="email" class="input100 form-control @error('email') is-invalid @enderror" type="email" name="email" placeholder="{{ __('E-Mail Address') }}" value="{{ old('email') }}">
       @error('email')
