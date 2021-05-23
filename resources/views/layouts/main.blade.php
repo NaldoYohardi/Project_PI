@@ -36,6 +36,9 @@
 
   </head>
   <body>
+  <?php if(Session::get('LoggIN')==1)
+    Session::flush();
+  ?>
   <div class="limiter">
     <div class="container-login100">
       <div class="wrap-login100">

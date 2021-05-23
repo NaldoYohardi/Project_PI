@@ -47,24 +47,24 @@ class Controller extends BaseController
       if (Session::get('level')== 1)
       {
       \App\Models\User::where('user_id', $user->user_id)
-                      ->update([
-                        'name'=>$req->name,
-                        'email'=>$req->email,
-                        'level'=>$req->level
-                      ]);
-                      if (Session::get('email')==$req->email)
-                      {
-                      Session::put('name',$req->name);
-                      Session::put('email',$req->email);
-                      Session::put('level',$req->level);
-                      }
+        ->update([
+          'name'=>$req->name,
+          'email'=>$req->email,
+          'level'=>$req->level
+        ]);
+        if (Session::get('email')==$req->email)
+        {
+        Session::put('name',$req->name);
+        Session::put('email',$req->email);
+        Session::put('level',$req->level);
+        }
       }
       else {
         \App\Models\User::where('user_id', $user->user_id)
-                        ->update([
-                          'name'=>$req->name,
-                          'email'=>$req->email
-                        ]);
+        ->update([
+          'name'=>$req->name,
+          'email'=>$req->email
+        ]);
 
         Session::put('name',$req->name);
         Session::put('email',$req->email);
