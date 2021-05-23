@@ -11,10 +11,6 @@
       <div class="alert alert-success">
         {{ session('status') }}
       </div>
-    @else
-      <div class="alert alert-danger">
-        {{ session('status') }}
-      </div>
     @endif
     <span class="login100-form-title">
       {{ __('RESET PASSWORD') }}
