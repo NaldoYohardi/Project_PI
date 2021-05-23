@@ -11,6 +11,11 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    public function forget()
+    {
+        return view('/auth/email');
+    }
+
     public function home()
     {
         return view('home');

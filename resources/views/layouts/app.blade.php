@@ -112,24 +112,15 @@
                 <span class="navbar-toggler-icon icon-bar"></span>
               </button>
               <div class="collapse navbar-collapse justify-content-end">
-                <form class="navbar-form">
-                  <span class="bmd-form-group"><div class="input-group no-border">
-                    <input type="text" value="" class="form-control" placeholder="Search...">
-                    <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                      <i class="material-icons">search</i>
-                      <div class="ripple-container"></div>
-                    </button>
-                  </div></span>
-                </form>
                 <ul class="navbar-nav">
-                  <li class="nav-item">
+                  <!-- <li class="nav-item">
                     <a class="nav-link" href="javascript:;">
                       <i class="material-icons">dashboard</i>
                       <p class="d-lg-none d-md-block">
                         Stats
                       </p>
                     </a>
-                  </li>
+                  </li> -->
                   <li class="nav-item dropdown">
                     <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="material-icons">notifications</i>
@@ -161,10 +152,18 @@
                     </div>
                   </li>
                   <?php } ?>
+                  <form class="navbar-form">
+                    <span class="bmd-form-group"><div class="input-group no-border">
+                      <input type="text" value="" class="form-control" placeholder="Search...">
+                      <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                        <i class="material-icons">search</i>
+                        <div class="ripple-container"></div>
+                      </button>
+                    </div></span>
+                  </form>
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->
-
                     @guest
                         <?php if ( Session::get('level') == 1){ ?>
                           @if (Route::has('register'))
@@ -199,13 +198,50 @@
           <!-- End Navbar -->
           <div class="content">
             <div class="container-fluid">
-              <div class="alert alert-success" role="alert">
+              <!-- <div class="alert alert-success" role="alert">
                 @yield('content_data')
-              </div>
+              </div> -->
               @yield('content')
             </div>
           </div>
 
+          <footer class="footer">
+          <div class="container-fluid">
+          <nav class="float-left">
+            <ul>
+              <li>
+                <a href="#">
+                  Testing Footer
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  Blog
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  Licences
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <div class="copyright float-right">
+            ©
+            <script>
+              document.write(new Date().getFullYear())
+            </script>2021, made with <i class="material-icons">favorite</i> by
+            <a href="#" target="_blank">Laravel</a> for a better web.
+          </div>
+          </div>
+          </footer>
+          <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; right: 0px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div>
+        </div>
 
   <!--   Core JS Files   -->
   <script src="/js/core/jquery.min.js" type="text/javascript"></script>

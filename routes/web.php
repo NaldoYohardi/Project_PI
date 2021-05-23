@@ -14,20 +14,34 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/','HomeController@index');
+<<<<<<< HEAD
+=======
+
+Route::get('/reset', 'Controller@forget');
+>>>>>>> 9d4bf2cb26199c4b52f85f18b1f8e000401bb887
 
 Route::get('/home', 'Controller@home');
+
 Route::get('/table', 'Controller@table');
 
 Auth::routes();
+
 Route::post('/check', 'Auth\LoginController@check');
+
 // route for verification email
 Route::get('/verify', 'Auth\RegisterController@verifyUser')->name('verify.user');
 
-
+// route for generateQr
 Route::get('generateQr', 'QrController@generateQrCode');
 
-//route loginIN
-Route::get('/loginIN', 'Auth\LoginController@loginIN');
+//route Employee Login
+Route::get('/loginIN0', 'Auth\LoginController@loginIN0');
+
+//route Admin Login
+Route::get('/loginIN1', 'Auth\LoginController@loginIN1');
+
+//route Manager Login
+Route::get('/loginIN2', 'Auth\LoginController@loginIN2');
 
 //route Logout
 Route::get('/logOUT', 'Auth\LoginController@logOUT');
