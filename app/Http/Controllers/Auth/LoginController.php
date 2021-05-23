@@ -94,6 +94,6 @@ class LoginController extends Controller
 
     public function LoginIN()
     {
-      return view('auth.home');
+      return view('home');
     }
 }
