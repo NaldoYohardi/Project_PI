@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-<?php
-if(Session::get('LoggIN')==1)
-  Session::flush();
-{?>
-<?php } ?>
-
-=======
->>>>>>> 1d4f7ee19d1f13b7a385765b6b9e195bb1921057
 @extends('layouts.main')
 
 @section('title', 'Login')
