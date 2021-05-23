@@ -1,3 +1,4 @@
+<!-- biarin saja -->
 <?php
 if(Session::get('LoggIN')==0)
 {?>
@@ -5,16 +6,28 @@ if(Session::get('LoggIN')==0)
     window.location.href='{{url('')}}';
   </script>
 <?php } ?>
+<!-- sampai sne -->
+
+
+<?php if(Session::get('level')== 1){ ?>
 <table>
   <tr>
     <td>No</td>
     <td>Nama</td>
     <td>Email</td>
-    <?php if(Session::get('level')== 1){ ?>
     <td>level</td>
-    <?php } ?>
     <td>aksi</td>
   </tr>
+<?php } ?>
+<?php if(Session::get('level')== 0 || Session::get('level') == 2){ ?>
+<table>
+  <tr>
+    <td>No</td>
+    <td>Nama</td>
+    <td>Email</td>
+    <td>aksi</td>
+  </tr>
+<?php } ?>
   <?php if(Session::get('level')== 0 || Session::get('level') == 2){ ?>
   @foreach ($user as $key)
   <tr>
