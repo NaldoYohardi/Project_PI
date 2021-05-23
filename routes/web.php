@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/','HomeController@index');
 
+Route::get('/reset', 'Controller@forget');
 
 Route::get('/home', 'Controller@home');
 
