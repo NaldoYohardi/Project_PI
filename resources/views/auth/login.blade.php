@@ -51,11 +51,12 @@
     </div>
 
     <div class="form-check">
+      <center>
         <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
         <label class="form-check-label" for="remember">
             {{ __('Remember Me') }}
         </label>
+      </center>
     </div>
 
     <div class="container-login100-form-btn">
