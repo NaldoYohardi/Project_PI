@@ -1,69 +1,67 @@
   @extends('layouts.app')
-
+  
   @section('title', 'Profile')
   @section('MainTitle', 'Profile')
 
   @section('content')
-  <div class="content" >
-  <div class="container-fluid">
-    <div class="row">
-      <?php if(Session::get('level')== 0 || Session::get('level') == 2){ ?>
-          <div class="col-md-6">
-            <div class="card card-profile">
-              <div class="card-avatar">
-                <a href="javascript:;">
-                  <img class="img" src="/laravel.PNG">
-                </a>
-              </div>
-              <div class="card-body">
-                @foreach ($user as $key)
-                <h6 class="card-category text-gray">{{ $key->name }}</h6>
-                <h4 class="card-title">{{ $key->email }}</h4>
-                <a href="/edit/{{$key->user_id}}" class="btn btn-primary btn-round">Update Data<div class="ripple-container"></div></a>
-                @endforeach
-              </div>
-            </div>
-          </div>
-      <?php } ?>
-
-      <?php if(Session::get('level')==1){ ?>
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-header card-header-primary">
-              <h4 class="card-title ">User Data</h4>
-              <p class="card-category"> List of User data Table</p>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table">
-                  <thead class=" text-primary">
-                    <tr>
-                      <th>No.</th>
-                      <th>Username</th>
-                      <th>Email</th>
-                      <th>Account Level</th>
-                      <th colspan="2">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @foreach ($user1 as $key)
-                    <tr>
-                      <td class="text-primary">{{ $loop->iteration }}</td>
-                      <td>{{ $key->name }}</td>
-                      <td>{{ $key->email }}</td>
-                      <td>{{ $key->level }}</td>
-                      <td> <a href="/edit/{{$key->user_id}}">Edit</a> </td>
-                      <td> <a href="/delete/{{$key->user_id}}">Delete</a> </td>
-                    </tr>
-                    @endforeach
-                  </tbody>
-                </table>
+    <?php if(Session::get('level')== 0 || Session::get('level') == 2){ ?>
+      <div class="container-scroller">
+        <div class="container-fluid full-page-wrapper">
+          <div class="content-wrapper d-flex align-items-center auth">
+            <div class="row flex-grow">
+              <div class="col-lg-4 mx-auto">
+                <div class="auth-form-light text-left p-5">
+                  <div class="brand-logo js-tilt" align="center" data-tilt>
+                    <img src="/laravel.PNG">
+                  </div>
+                  <div class="form-group">
+                    <div class="pt-3">
+                      @foreach ($user as $key)
+                        <h6 class="font-weight-light">{{ $key->name }}</h6>
+                        <h4>{{ $key->email }}</h4>
+                        <a href="/edit/{{$key->user_id}}" class="btn btn-primary btn-round">Update Data<div class="ripple-container"></div></a>
+                      @endforeach
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      <?php } ?>
-    </div>
-  </div>
-  </div>
+      </div>
+    <?php } elseif(Session::get('level')==1){ ?>
+      <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">User List</h4>
+            <p class="card-description">
+              List containing User accounts from Database
+            </p>
+            <table class="table table-bordered table-striped">
+              <thead align="center">
+                <tr>
+                  <th>No.</th>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th>Account Level</th>
+                  <th colspan="2">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach ($user1 as $key)
+                  <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $key->name }}</td>
+                    <td>{{ $key->email }}</td>
+                    <td>{{ $key->level }}</td>
+                    <td> <a href="/edit/{{$key->user_id}}" class="btn-sm btn-warning">Edit</a> </td>
+                    <td> <a href="/delete/{{$key->user_id}}" class="btn-sm btn-danger">Delete</a> </td>
+                  </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    <?php } ?>
   @endsection
