@@ -36,22 +36,9 @@
     </div>
 
     <!-- container-scroller -->
-
-    <script type="text/javascript">
-      var header = document.getElementById("tabs");
-      var btns = header.getElementsByClassName("bn");
-      var log = header.getElementsByClassName('fn');
-      function changelog(){
-        document.getElementById('forgot').style.display='none';
-        document.getElementById('login').style.display='block'
-      }
-      function changepass(){
-        document.getElementById('login').style.display='none';
-        document.getElementById('forgot').style.display='block'
-      }
-    </script>
     <!-- container-scroller -->
     <!-- plugins:js -->
+
     <script src="/vendors/js/vendor.bundle.base.js"></script>
   	<script src="/vendors/tilt/tilt.jquery.min.js"></script>
   	<script>
