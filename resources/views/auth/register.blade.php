@@ -4,6 +4,8 @@
 @section('MainTitle', 'Register')
 
 @section('content')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
 <div class="row justify-content-center">
     <div class="col-md-8">
         <div class="card">
@@ -42,7 +44,7 @@
                         </div>
 
                         <div class="wrap-input100 validate-input" data-validate = "Password is required">
-                          <input id="password" class="input100 form-control @error('password') is-invalid @enderror" type="password" name="password" placeholder="{{ __('Password') }}">
+                          <input id="password" class="input100 form-control @error('password') is-invalid @enderror" value="asd" type="text" name="password" placeholder="{{ __('Password') }}">
                           @error('password')
                               <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
@@ -55,7 +57,7 @@
                         </div>
 
                         <div class="wrap-input100 validate-input" data-validate = "Password is required">
-                          <input id="password-confirm" class="input100 form-control @error('password-confirm') is-invalid @enderror" type="password" name="password_confirmation" placeholder="{{ __('Password') }}">
+                          <input id="password-confirm" class="input100 form-control @error('password-confirm') is-invalid @enderror" value="" type="password" name="password_confirmation" placeholder="{{ __('Password') }}">
                           @error('password')
                               <span class="invalid-feedback" role="alert" id="message">
                                   <strong>{{ $message }}</strong>
@@ -66,16 +68,22 @@
                             <i class="fa fa-lock" aria-hidden="true"></i>
                           </span>
                         </div>
-
+                        <p class="alert alert-danger" style="visibility: hidden; text-align: center;" id="demo"></p>
                         <div class="container-login100-form-btn">
-                          <button type="submit" class="login100-form-btn">
-                            {{ __('Register') }}
+                          <button type="submit" class="login100-form-btn" onclick="return myFunction()">
+                            Register
                           </button>
                         </div>
                     </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+
+                    <script>
+                    function myFunction() {
+                      if(document.getElementById("password-confirm").value != document.getElementById("password").value){
+                        document.getElementById("demo").innerHTML = "Password Mismatch";
+                        document.getElementById("demo").style.visibility = "visible";
+                        return false;
+                      } else{
+                        document.getElementById("demo").style.visibility = "hidden";
+                      }
+                    }
+                    </script>
