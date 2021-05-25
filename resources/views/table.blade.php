@@ -24,11 +24,12 @@
           </thead>
           <tbody>
             <tr>
-              <td class="text-primary">{{ '1' }}</td>
+              <td>{{ '1' }}</td>
               <td>{{ 'Dummy' }}</td>
               <td>{{ '1' }}</td>
               <td>{{ 'Dummy Text Data' }}</td>
-              <td> <a href="/edit/{{''}}">Update</a> </td>
+              <td> <a href="/edit/{{''}}" class="btn-sm btn-warning">Edit</a> </td>
+              <td> <a href="/delete/{{''}}" class="btn-sm btn-danger">Delete</a> </td>
             </tr>
           </tbody>
         </table>
