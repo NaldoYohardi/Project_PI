@@ -12503,13 +12503,13 @@ dl {
         padding-left: 15px;
         padding-right: 15px; } }
     .navbar .navbar-brand-wrapper .navbar-brand {
-      color: #27367f;
+      color: #ffffff;
       font-size: 1.5rem;
       line-height: 48px;
       margin-right: 0;
       padding: .25rem 0; }
       .navbar .navbar-brand-wrapper .navbar-brand:active, .navbar .navbar-brand-wrapper .navbar-brand:focus, .navbar .navbar-brand-wrapper .navbar-brand:hover {
-        color: #1b2658; }
+        color: #ffffffad; }
       .navbar .navbar-brand-wrapper .navbar-brand img {
         width: calc(240px - 120px);
         max-width: 100%;
@@ -12537,7 +12537,6 @@ dl {
         .navbar .navbar-brand-wrapper .navbar-toggler {
           display: none; } }
       .sidebar-icon-only .navbar .navbar-brand-wrapper .navbar-toggler {
-        
         margin-right: auto;
         margin-left: auto; }
   .navbar .navbar-menu-wrapper {
@@ -12843,7 +12842,7 @@ dl {
       .sidebar .nav .nav-item.active:not(.navbar-brand-mini-wrapper) {
         background: #282828; }
         .sidebar .nav .nav-item.active:not(.navbar-brand-mini-wrapper) > .nav-link .menu-title {
-          color: #b3b3b3;
+          color: #c9c3c3;
           font-family: "Open Sans", sans-serif;
           font-weight: 600; }
         .sidebar .nav .nav-item.active:not(.navbar-brand-mini-wrapper) > .nav-link i {
