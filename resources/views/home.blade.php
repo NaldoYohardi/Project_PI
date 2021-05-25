@@ -23,6 +23,9 @@
 @endsection
 
 @section('content')
+<ul class="breadcrumb">
+  <li>Dashboard</li>
+</ul>
   <div class="row">
     <div class="col-md-4 grid-margin stretch-card">
       <div class="card">

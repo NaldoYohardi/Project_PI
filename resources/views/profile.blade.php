@@ -4,6 +4,10 @@
   @section('MainTitle', 'Profile')
 
   @section('content')
+  <ul class="breadcrumb">
+    <li><a href="{{ url('/home')}}">Dashboard</a></li>
+    <li>Profiles</li>
+  </ul>
     <?php if(Session::get('level')== 0 || Session::get('level') == 2){ ?>
       <div class="container-scroller">
         <div class="container-fluid full-page-wrapper">

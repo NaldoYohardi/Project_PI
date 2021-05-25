@@ -4,6 +4,10 @@
 @section('MainTitle', 'Table')
 
 @section('content')
+<ul class="breadcrumb">
+  <li><a href="{{ url('/home')}}">Dashboard</a></li>
+  <li>Inbox</li>
+</ul>
 <div class="col-lg-12 grid-margin stretch-card">
   <div class="card">
     <div class="card-body">

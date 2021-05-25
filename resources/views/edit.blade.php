@@ -4,6 +4,11 @@
   @section('MainTitle', 'Edit Profile')
 
   @section('content')
+  <ul class="breadcrumb">
+    <li><a href="{{ url('/home')}}">Dashboard</a></li>
+    <li><a href="/profile/{{ Session::get('email') }}">Profiles</a></li>
+    <li>Edit</li>
+  </ul>
     <div class="content">
     <div class="container-fluid">
       <div class="row">

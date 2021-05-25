@@ -10,6 +10,10 @@
       <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismis="alert" aria-label="close">&times;</a></p>
     @endif
   @endforeach
+  <ul class="breadcrumb">
+    <li><a href="{{ url('/home')}}">Dashboard</a></li>
+    <li>Register</li>
+  </ul>
   <div class="container-scroller">
     <div class="container-fluid full-page-wrapper">
       <div class="content-wrapper d-flex align-items-center auth">
