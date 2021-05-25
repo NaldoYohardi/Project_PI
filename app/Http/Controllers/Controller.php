@@ -29,6 +29,10 @@ class Controller extends BaseController
         return view('table');
     }
 
+    public function inbox()
+    {
+        return view('inbox');
+    }
     public function profile($name)
     {
         $user = DB::select("select * from users where email = '$name'");

@@ -21,6 +21,8 @@ Route::get('/home', 'Controller@home');
 
 Route::get('/table', 'Controller@table');
 
+Route::get('/inbox', 'Controller@inbox');
+
 Auth::routes();
 
 Route::post('/check', 'Auth\LoginController@check');

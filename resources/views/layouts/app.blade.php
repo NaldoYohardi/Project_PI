@@ -43,8 +43,19 @@
           </a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-center flex-grow-1">
-          <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Welcome dashboard!</h5>
-          <ul class="navbar-nav navbar-nav-right ml-auto">
+          <?php $host = parse_url($domain, PHP_URL_HOST);
+          if($host == 'http://127.0.0.1:8000/home'){ ?>
+            <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Welcome {{ Session::get('name') }}!</h5>
+          <?php } elseif($host == 'http://127.0.0.1:8000/register'){ ?>
+            <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Register</h5>
+          <?php } elseif($host == 'http://127.0.0.1:8000/table'){ ?>
+            <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Inventory</h5>
+          <?php } elseif($host == 'http://127.0.0.1:8000/inbox'){ ?>          
+            <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Inbox</h5>
+          <?php } ?>
+
+
+            <ul class="navbar-nav navbar-nav-right ml-auto">
             <li class="nav-item dropdown">
               <a class="nav-link count-indicator message-dropdown" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
                 <i class="icon-speech"></i>
@@ -88,10 +99,10 @@
             <li class="nav-item dropdown d-none d-xl-inline-flex user-dropdown">
               <?php if(Session::get('LoggIN')== 1){ ?>
                 <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-                  <img class="img-xs rounded-circle ml-2" src="/images/faces/face8.jpg" alt="Profile image"> <span class="font-weight-normal"> {{ Session::get('name') }} </span></a>
+                  <img class="img-xs rounded-circle ml-2" src="/images/faces/Usu.jpg" alt="Profile image"> <span class="font-weight-normal"> {{ Session::get('name') }} </span></a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
                     <div class="dropdown-header text-center">
-                      <img class="img-md rounded-circle" src="/images/faces/face8.jpg" alt="Profile image">
+                      <img class="img-md rounded-circle" src="/images/faces/Usu.jpg" alt="Profile image">
                       <p class="mb-1 mt-3">{{ Session::get('name') }}</p>
                       <p class="font-weight-light text-muted mb-0">{{ Session::get('email') }}</p>
                     </div>
@@ -115,8 +126,7 @@
               <?php if(Session::get('LoggIN')== 1){ ?>
               <a href="#" class="nav-link">
                 <div class="profile-image">
-                  <img class="img-xs rounded-circle" src="/images/faces/face8.jpg" alt="profile image">
-                  <div class="dot-indicator bg-success"></div>
+                  <img class="img-xs rounded-circle" src="/images/faces/Usu.jpg" alt="profile image">
                 </div>
                 <div class="text-wrapper">
                   <p class="profile-name">{{ Session::get('name') }}</p>
@@ -127,10 +137,6 @@
                   <?php } elseif(Session::get('level')== 2){ ?>
                     <p class="designation">Manager</p>
                   <?php } ?>
-                </div>
-                <div class="icon-container">
-                  <i class="icon-bubbles"></i>
-                  <div class="dot-indicator bg-danger"></div>
                 </div>
                 <?php } ?>
               </a>
@@ -166,6 +172,12 @@
                   <i class="icon-folder-alt menu-icon"></i>
                 </a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url('/inbox')}}">
+                  <span class="menu-title">Inbox</span>
+                  <i class="icon-envelope menu-icon"></i>
+                </a>
+              </li>
             <?php } elseif(Session::get('level')== 0){ ?>
               <li class="nav-item">
                 <a class="nav-link" href="{{ url('/home')}}">
@@ -183,6 +195,12 @@
                 <a class="nav-link" href="{{ url('/table')}}">
                   <span class="menu-title">Inventory</span>
                   <i class="icon-folder-alt menu-icon"></i>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url('/inbox')}}">
+                  <span class="menu-title">Inbox</span>
+                  <i class="icon-envelope menu-icon"></i>
                 </a>
               </li>
             <?php } elseif(Session::get('level')== 2){ ?>
