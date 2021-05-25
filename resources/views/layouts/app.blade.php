@@ -103,7 +103,7 @@
             </li>
             <li class="nav-item dropdown d-none d-xl-inline-flex user-dropdown">
               <?php if(Session::get('LoggIN')== 1){ ?>
-                <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" id="UserDropdown" href="/profile/{{ Session::get('email') }}" data-toggle="dropdown" aria-expanded="false">
                   <img class="img-xs rounded-circle ml-2" src="/images/faces/Usu.jpg" alt="Profile image"> <span class="font-weight-normal"> {{ Session::get('name') }} </span></a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
                     <div class="dropdown-header text-center">

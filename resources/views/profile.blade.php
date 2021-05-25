@@ -23,7 +23,11 @@
                       @foreach ($user as $key)
                         <h6 class="font-weight-light">{{ $key->name }}</h6>
                         <h4>{{ $key->email }}</h4>
+                        <center>
                         <a href="/edit/{{$key->user_id}}" class="btn btn-primary btn-round">Update Data<div class="ripple-container"></div></a>
+                        <br></br>
+                        <a href="/logOUT" onclick="return confirm('Are you sure?');" class="btn btn-danger btn-round">Logout<div class="ripple-container"></div></a>
+                        </center>
                       @endforeach
                     </div>
                   </div>
