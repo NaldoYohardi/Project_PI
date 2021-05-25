@@ -174,6 +174,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" href="/profile/{{ Session::get('email') }}">
+                  <span class="menu-title">Profile</span>
+                  <i class="icon-user menu-icon"></i>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="{{ url('/table')}}">
                   <span class="menu-title">Inventory</span>
                   <i class="icon-folder-alt menu-icon"></i>
