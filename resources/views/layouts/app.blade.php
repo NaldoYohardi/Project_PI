@@ -43,21 +43,21 @@
           </a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-center flex-grow-1">
-          <?php if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')   
-                  $url = "https://";   
-                else  
+          <?php if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
+                  $url = "https://";
+                else
                   $url = "http://";
-                $url.= $_SERVER['HTTP_HOST'];      
-                $url.= $_SERVER['REQUEST_URI'];     
+                $url.= $_SERVER['HTTP_HOST'];
+                $url.= $_SERVER['REQUEST_URI'];
           if($url == 'http://127.0.0.1:8000/home'){ ?>
             <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Welcome {{ Session::get('name') }}!</h5>
           <?php } elseif($url == 'http://127.0.0.1:8000/register'){ ?>
             <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Register</h5>
           <?php } elseif($url == 'http://127.0.0.1:8000/table'){ ?>
             <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Inventory</h5>
-          <?php } elseif($url == 'http://127.0.0.1:8000/inbox'){ ?>          
+          <?php } elseif($url == 'http://127.0.0.1:8000/inbox'){ ?>
             <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Inbox</h5>
-          <?php } else{ ?>          
+          <?php } else{ ?>
             <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Welcome {{ Session::get('name') }}!</h5>
           <?php } ?>
             <ul class="navbar-nav navbar-nav-right ml-auto">
@@ -210,24 +210,15 @@
               </li>
             <?php } elseif(Session::get('level')== 2){ ?>
               <li class="nav-item">
-                <a class="nav-link" href="/profile/{{ Session::get('email') }}">
-                  <span class="menu-title">Profile</span>
-                  <i class="icon-user menu-icon"></i>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ url('/table')}}">
-                  <span class="menu-title">Inventory</span>
-                  <i class="icon-folder-alt menu-icon"></i>
-                </a>
-              </li>
-              <li class="nav-item nav-category">
-                <span class="nav-link">Dashboard</span>
-              </li>
-              <li class="nav-item">
                 <a class="nav-link" href="{{ url('/home')}}">
                   <span class="menu-title">Dashboard</span>
                   <i class="icon-screen-desktop menu-icon"></i>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/profile/{{ Session::get('email') }}">
+                  <span class="menu-title">Profile</span>
+                  <i class="icon-user menu-icon"></i>
                 </a>
               </li>
               <li class="nav-item">
