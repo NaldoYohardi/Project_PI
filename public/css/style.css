@@ -12775,6 +12775,8 @@ dl {
 
 /* Sidebar */
 .sidebar {
+  position : fixed;
+  display : inline;
   min-height: calc(100vh - 70px);
   background: #181824;
   font-family: "Open Sans", sans-serif;
@@ -13008,6 +13010,7 @@ dl {
   padding-top: 70px; }
 
 .main-panel {
+  margin-left:240px;
   -webkit-transition: width 0.25s ease, margin 0.25s ease;
   transition: width 0.25s ease, margin 0.25s ease;
   width: calc(100% - 240px);

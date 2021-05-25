@@ -60,8 +60,6 @@
           <?php } else{ ?>          
             <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Welcome {{ Session::get('name') }}!</h5>
           <?php } ?>
-
-
             <ul class="navbar-nav navbar-nav-right ml-auto">
             <li class="nav-item dropdown">
               <a class="nav-link count-indicator message-dropdown" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
