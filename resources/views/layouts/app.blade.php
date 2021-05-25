@@ -45,10 +45,13 @@
         <div class="navbar-menu-wrapper d-flex align-items-center flex-grow-1">
           <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Welcome dashboard!</h5>
           <ul class="navbar-nav navbar-nav-right ml-auto">
+<<<<<<< HEAD
             <form class="search-form d-none d-md-block" action="#">
               <i class="icon-magnifier"></i>
               <input type="search" class="form-control" placeholder="Search Here" title="Search here">
             </form>
+=======
+>>>>>>> 9eca3432eca96fe8959329b157fc60458fed7c91
             <li class="nav-item dropdown">
               <a class="nav-link count-indicator message-dropdown" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
                 <i class="icon-speech"></i>
@@ -171,9 +174,6 @@
                 </a>
               </li>
             <?php } elseif(Session::get('level')== 0){ ?>
-              <li class="nav-item nav-category">
-                <span class="nav-link">Dashboard</span>
-              </li>
               <li class="nav-item">
                 <a class="nav-link" href="{{ url('/home')}}">
                   <span class="menu-title">Dashboard</span>
@@ -309,33 +309,3 @@
     <!-- End custom js for this page -->
   </body>
 </html>
-
-@section('Data')
-  @guest
-    <?php if ( Session::get('level') == 1){ ?>
-      @if (Route::has('register'))
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-        </li>
-      @endif
-    <?php } ?>
-  @else
-    <li class="nav-item dropdown">
-        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-            {{ Auth::user()->name }}
-        </a>
-
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{{ route('logout') }}"
-               onclick="event.preventDefault();
-                             document.getElementById('logout-form').submit();">
-                {{ __('Logout') }}
-            </a>
-
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                @csrf
-            </form>
-        </div>
-    </li>
-  @endguest
-@endsection
