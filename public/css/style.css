@@ -12537,6 +12537,7 @@ dl {
         .navbar .navbar-brand-wrapper .navbar-toggler {
           display: none; } }
       .sidebar-icon-only .navbar .navbar-brand-wrapper .navbar-toggler {
+        
         margin-right: auto;
         margin-left: auto; }
   .navbar .navbar-menu-wrapper {

@@ -36,22 +36,29 @@
       <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="navbar-brand-wrapper d-flex align-items-center">
           <a class="navbar-brand brand-logo" href="{{ url('/home')}}">
-            <img src="/images/logo.svg" alt="logo" />
+            <i class=icon-anchor menu-icon></i> TUBES PI 2021
           </a>
           <a class="navbar-brand brand-logo-mini" href="{{ url('/home')}}">
             <img src="laravel.png" alt="logo" />
           </a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-center flex-grow-1">
-          <?php $host = parse_url($domain, PHP_URL_HOST);
-          if($host == 'http://127.0.0.1:8000/home'){ ?>
+          <?php if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')   
+                  $url = "https://";   
+                else  
+                  $url = "http://";
+                $url.= $_SERVER['HTTP_HOST'];      
+                $url.= $_SERVER['REQUEST_URI'];     
+          if($url == 'http://127.0.0.1:8000/home'){ ?>
             <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Welcome {{ Session::get('name') }}!</h5>
-          <?php } elseif($host == 'http://127.0.0.1:8000/register'){ ?>
+          <?php } elseif($url == 'http://127.0.0.1:8000/register'){ ?>
             <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Register</h5>
-          <?php } elseif($host == 'http://127.0.0.1:8000/table'){ ?>
+          <?php } elseif($url == 'http://127.0.0.1:8000/table'){ ?>
             <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Inventory</h5>
-          <?php } elseif($host == 'http://127.0.0.1:8000/inbox'){ ?>          
+          <?php } elseif($url == 'http://127.0.0.1:8000/inbox'){ ?>          
             <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Inbox</h5>
+          <?php } else{ ?>          
+            <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Welcome {{ Session::get('name') }}!</h5>
           <?php } ?>
 
 
@@ -296,7 +303,7 @@
           <!-- partial:partials/_footer.html -->
           <footer class="footer">
             <div class="d-sm-flex justify-content-center justify-content-sm-between">
-              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © TUBES_PI.com 2020</span>
+              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © TUBES_PI.com 2021</span>
               <!-- <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="" target="_blank">Bootstrap admin templates</a> from Bootstrapdash.com</span> -->
             </div>
           </footer>

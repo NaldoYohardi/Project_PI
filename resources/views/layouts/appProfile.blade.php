@@ -36,7 +36,7 @@
       <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="navbar-brand-wrapper d-flex align-items-center">
           <a class="navbar-brand brand-logo" href="{{ url('/home')}}">
-            <img src="/images/logo.svg" alt="logo" />
+            <i class=icon-anchor menu-icon></i> TUBES PI 2021
           </a>
           <a class="navbar-brand brand-logo-mini" href="{{ url('/home')}}">
             <img src="laravel.png" alt="logo" />
@@ -237,7 +237,7 @@
           <!-- partial:partials/_footer.html -->
           <footer class="footer">
             <div class="d-sm-flex justify-content-center justify-content-sm-between">
-              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © TUBES_PI.com 2020</span>
+              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © TUBES_PI.com 2021</span>
               <!-- <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="" target="_blank">Bootstrap admin templates</a> from Bootstrapdash.com</span> -->
             </div>
           </footer>
