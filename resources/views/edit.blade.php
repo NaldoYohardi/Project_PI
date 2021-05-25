@@ -54,7 +54,7 @@
                         </div>
                         <div class="col-md-4">
                           <div class="form-group bmd-form-group">
-                            <label class="bmd-label-floating">Email address</label>
+                            <label class="bmd-label-floating">Level</label>
                             <input type="number" name="level" class="form-control" value="{{ $user->level }}">
                           </div>
                         </div>
