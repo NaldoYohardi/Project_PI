@@ -45,12 +45,6 @@
         <div class="navbar-menu-wrapper d-flex align-items-center flex-grow-1">
           <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Welcome dashboard!</h5>
           <ul class="navbar-nav navbar-nav-right ml-auto">
-            <form class="search-form d-none d-md-block" action="#">
-              <i class="icon-magnifier"></i>
-              <input type="search" class="form-control" placeholder="Search Here" title="Search here">
-            </form>
-            <li class="nav-item"><a href="#" class="nav-link"><i class="icon-basket-loaded"></i></a></li>
-            <li class="nav-item"><a href="#" class="nav-link"><i class="icon-chart"></i></a></li>
             <li class="nav-item dropdown">
               <a class="nav-link count-indicator message-dropdown" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
                 <i class="icon-speech"></i>
@@ -91,24 +85,6 @@
                 </a>
               </div>
             </li>
-            <li class="nav-item dropdown language-dropdown d-none d-sm-flex align-items-center">
-              <a class="nav-link d-flex align-items-center dropdown-toggle" id="LanguageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-                <div class="d-inline-flex mr-3">
-                  <i class="flag-icon flag-icon-us"></i>
-                </div>
-                <span class="profile-text font-weight-normal">English</span>
-              </a>
-              <div class="dropdown-menu dropdown-menu-left navbar-dropdown py-2" aria-labelledby="LanguageDropdown">
-                <a class="dropdown-item">
-                  <i class="flag-icon flag-icon-us"></i> English </a>
-                <a class="dropdown-item">
-                  <i class="flag-icon flag-icon-fr"></i> French </a>
-                <a class="dropdown-item">
-                  <i class="flag-icon flag-icon-ae"></i> Arabic </a>
-                <a class="dropdown-item">
-                  <i class="flag-icon flag-icon-ru"></i> Russian </a>
-              </div>
-            </li>
             <li class="nav-item dropdown d-none d-xl-inline-flex user-dropdown">
               <?php if(Session::get('LoggIN')== 1){ ?>
                 <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
@@ -119,10 +95,7 @@
                       <p class="mb-1 mt-3">{{ Session::get('name') }}</p>
                       <p class="font-weight-light text-muted mb-0">{{ Session::get('email') }}</p>
                     </div>
-                    <a class="dropdown-item"><i class="dropdown-item-icon icon-user text-primary"></i> My Profile <span class="badge badge-pill badge-danger">1</span></a>
-                    <a class="dropdown-item"><i class="dropdown-item-icon icon-speech text-primary"></i> Messages</a>
-                    <a class="dropdown-item"><i class="dropdown-item-icon icon-energy text-primary"></i> Activity</a>
-                    <a class="dropdown-item"><i class="dropdown-item-icon icon-question text-primary"></i> FAQ</a>
+                    <a class="dropdown-item" href="/profile/{{ Session::get('email') }}"><i class="dropdown-item-icon icon-user text-primary"></i> My Profile <span class="badge badge-pill badge-danger">1</span></a>
                     <a class="dropdown-item" href="/logOUT" onclick="return confirm('Are you sure?');"><i class="dropdown-item-icon icon-power text-primary"></i>Sign Out</a>
                 </div>
               <?php } ?>
@@ -194,13 +167,16 @@
                 </a>
               </li>
             <?php } elseif(Session::get('level')== 0){ ?>
-              <li class="nav-item nav-category">
-                <span class="nav-link">Dashboard</span>
-              </li>
               <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="{{ url('/home')}}">
                   <span class="menu-title">Dashboard</span>
                   <i class="icon-screen-desktop menu-icon"></i>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url('/table')}}">
+                  <span class="menu-title">Inventory</span>
+                  <i class="icon-folder-alt menu-icon"></i>
                 </a>
               </li>
             <?php } elseif(Session::get('level')== 2){ ?>
@@ -220,9 +196,15 @@
                 <span class="nav-link">Dashboard</span>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="{{ url('/home')}}">
                   <span class="menu-title">Dashboard</span>
                   <i class="icon-screen-desktop menu-icon"></i>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url('/table')}}">
+                  <span class="menu-title">Inventory</span>
+                  <i class="icon-folder-alt menu-icon"></i>
                 </a>
               </li>
               <li class="nav-item nav-category"><span class="nav-link">UI Elements</span></li>
@@ -291,7 +273,7 @@
           <footer class="footer">
             <div class="d-sm-flex justify-content-center justify-content-sm-between">
               <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © TUBES_PI.com 2020</span>
-              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="" target="_blank">Bootstrap admin templates</a> from Bootstrapdash.com</span>
+              <!-- <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="" target="_blank">Bootstrap admin templates</a> from Bootstrapdash.com</span> -->
             </div>
           </footer>
           <!-- partial -->
@@ -320,33 +302,3 @@
     <!-- End custom js for this page -->
   </body>
 </html>
-
-@section('Data')
-  @guest
-    <?php if ( Session::get('level') == 1){ ?>
-      @if (Route::has('register'))
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-        </li>
-      @endif
-    <?php } ?>
-  @else
-    <li class="nav-item dropdown">
-        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-            {{ Auth::user()->name }}
-        </a>
-
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{{ route('logout') }}"
-               onclick="event.preventDefault();
-                             document.getElementById('logout-form').submit();">
-                {{ __('Logout') }}
-            </a>
-
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                @csrf
-            </form>
-        </div>
-    </li>
-  @endguest
-@endsection
