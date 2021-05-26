@@ -1,353 +1,324 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
   <head>
     <title>@yield('title')</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
-
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <!--     Fonts and icons     -->
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="/css/bootstrap.css"/>
-    <link rel="stylesheet" href="/css/material-dashboard.css"/>
-
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="/vendors/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="/vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="/vendors/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="/vendors/chartist/chartist.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="/laravel.png" />
   </head>
   <body>
-    <?php
-    if(Session::get('LoggIN')==0)
-    {?>
-      <script>
-        window.location.href='{{url('')}}';
-      </script>
+    <?php if(Session::get('LoggIN')==0) {?>
+        <script>
+          window.location.href='{{url('')}}';
+        </script>
     <?php } ?>
-
-    <div class="wrapper ">
-      <?php if(Session::get('level')== 1){ ?>
-        <div class="sidebar" data-color="purple" data-background-color="white" data-image="/img/sidebar-1.jpg">
-        <div class="logo"><a href="{{ url('/home')}}" class="simple-text logo-normal">
-            Administrator
-        </a></div>
-      <?php } elseif(Session::get('level')== 0){ ?>
-        <div class="sidebar" data-color="purple" data-background-color="white" data-image="/img/sidebar-2.jpg">
-        <div class="logo"><a href="{{ url('/home')}}" class="simple-text logo-normal">
-            Employee
-        </a></div>
-      <?php } elseif(Session::get('level')== 2){ ?>
-        <div class="sidebar" data-color="purple" data-background-color="white" data-image="/img/sidebar-3.jpg">
-        <div class="logo"><a href="{{ url('/home')}}" class="simple-text logo-normal">
-            Manager
-        </a></div>
-      <?php } ?>
-      <?php if(Session::get('level')== 1){ ?>
-        <div class="sidebar-wrapper ps-container ps-theme-default ps-active-y">
-          <ul class="nav">
-            <li class="nav-item active  ">
-              <a class="nav-link" href="{{ url('/home')}}">
-                <i class="material-icons">dashboard</i>
-                <p>Dashboard</p>
+    <div class="container-scroller">
+      <!-- partial:partials/_navbar.html -->
+      <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <div class="navbar-brand-wrapper d-flex align-items-center">
+          <a class="navbar-brand brand-logo" href="{{ url('/home')}}">
+            <i class=icon-anchor menu-icon></i> TUBES PI 2021
+          </a>
+          <a class="navbar-brand brand-logo-mini" href="{{ url('/home')}}">
+            <img src="laravel.png" alt="logo" />
+          </a>
+        </div>
+        <div class="navbar-menu-wrapper d-flex align-items-center flex-grow-1">
+          <?php if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
+                  $url = "https://";
+                else
+                  $url = "http://";
+                $url.= $_SERVER['HTTP_HOST'];
+                $url.= $_SERVER['REQUEST_URI'];
+          if($url == 'http://127.0.0.1:8000/home'){ ?>
+            <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Welcome {{ Session::get('name') }}!</h5>
+          <?php } elseif($url == 'http://127.0.0.1:8000/register'){ ?>
+            <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Register</h5>
+          <?php } elseif($url == 'http://127.0.0.1:8000/table'){ ?>
+            <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Inventory</h5>
+          <?php } elseif($url == 'http://127.0.0.1:8000/inbox'){ ?>
+            <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Inbox</h5>
+          <?php } else{ ?>
+            <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Welcome {{ Session::get('name') }}!</h5>
+          <?php } ?>
+            <ul class="navbar-nav navbar-nav-right ml-auto">
+            <li class="nav-item dropdown">
+              <a class="nav-link count-indicator message-dropdown" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                <i class="icon-speech"></i>
+                <span class="count">7</span>
               </a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link" href="/profile/{{ Session::get('email') }}">
-                <i class="material-icons">person</i>
-                <p>User Profile</p>
-              </a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link" href="{{ url('/table')}}">
-                <i class="material-icons">content_paste</i>
-                <p>Table List</p>
-              </a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link" href="./typography.html">
-                <i class="material-icons">library_books</i>
-                <p>Typography</p>
-              </a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link" href="./icons.html">
-                <i class="material-icons">bubble_chart</i>
-                <p>Icons</p>
-              </a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link" href="./map.html">
-                <i class="material-icons">location_ons</i>
-                <p>Maps</p>
-              </a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link" href="./notifications.html">
-                <i class="material-icons">notifications</i>
-                <p>Notifications</p>
-              </a>
-            </li>
-          </ul>
-          <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
-            <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div>
-          <div class="ps-scrollbar-y-rail" style="top: 0px; height: 425px; right: 0px;">
-            <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 368px;"></div></div>
-        </div></div>
-        <div class="main-panel ps-container ps-theme-default">
-      <?php } elseif(Session::get('level')== 0){ ?>
-        <div class="sidebar-wrapper ps-container ps-theme-default ps-active-y">
-          <ul class="nav">
-            <li class="nav-item active  ">
-              <a class="nav-link" href="{{ url('/home')}}">
-                <i class="material-icons">dashboard</i>
-                <p>Dashboard</p>
-              </a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link" href="/profile/{{ Session::get('email') }}">
-                <i class="material-icons">person</i>
-                <p>User Profile</p>
-              </a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link" href="{{ url('/table')}}">
-                <i class="material-icons">content_paste</i>
-                <p>Table List</p>
-              </a>
-            </li>
-          </ul>
-          <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
-            <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div>
-          <div class="ps-scrollbar-y-rail" style="top: 0px; height: 425px; right: 0px;">
-            <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 368px;"></div></div>
-        </div></div>
-        <div class="main-panel ps-container ps-theme-default">
-      <?php } elseif(Session::get('level') == 2){ ?>
-        <div class="sidebar-wrapper ps-container ps-theme-default ps-active-y">
-          <ul class="nav">
-            <li class="nav-item active  ">
-              <a class="nav-link" href="{{ url('/home')}}">
-                <i class="material-icons">dashboard</i>
-                <p>Dashboard</p>
-              </a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link" href="/profile/{{ Session::get('email') }}">
-                <i class="material-icons">person</i>
-                <p>User Profile</p>
-              </a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link" href="{{ url('/table')}}">
-                <i class="material-icons">content_paste</i>
-                <p>Table List</p>
-              </a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link" href="./typography.html">
-                <i class="material-icons">library_books</i>
-                <p>Typography</p>
-              </a>
-            </li>
-          </ul>
-          <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
-            <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div>
-          <div class="ps-scrollbar-y-rail" style="top: 0px; height: 425px; right: 0px;">
-            <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 368px;"></div></div>
-        </div></div>
-        <div class="main-panel ps-container ps-theme-default">
-      <?php } ?>
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
-          <div class="container-fluid">
-            <div class="navbar-wrapper">
-              <a class="navbar-brand" href="javascript:;">Dashboard<div class="ripple-container"></div></a>
-            </div>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="navbar-toggler-icon icon-bar"></span>
-              <span class="navbar-toggler-icon icon-bar"></span>
-              <span class="navbar-toggler-icon icon-bar"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end">
-              <ul class="navbar-nav">
-                <!-- <li class="nav-item">
-                  <a class="nav-link" href="javascript:;">
-                    <i class="material-icons">dashboard</i>
-                    <p class="d-lg-none d-md-block">
-                      Stats
-                    </p>
-                  </a>
-                </li> -->
-                <li class="nav-item dropdown">
-                  <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="material-icons">notifications</i>
-                    <span class="notification">5</span>
-                    <p class="d-lg-none d-md-block">
-                      Some Actions
-                    </p>
-                  </a>
-                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Mike John responded to your email</a>
-                    <a class="dropdown-item" href="#">You have 5 new tasks</a>
-                    <a class="dropdown-item" href="#">You're now friend with Andrew</a>
-                    <a class="dropdown-item" href="#">Another Notification</a>
-                    <a class="dropdown-item" href="#">Another One</a>
+              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="messageDropdown">
+                <a class="dropdown-item py-3">
+                  <p class="mb-0 font-weight-medium float-left">You have 7 unread mails </p>
+                  <span class="badge badge-pill badge-primary float-right">View all</span>
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <img src="/images/faces/face10.jpg" alt="image" class="img-sm profile-pic">
                   </div>
-                </li>
-                <?php if(Session::get('LoggIN')== 1){ ?>
-                <li class="nav-item dropdown">
-                  <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="material-icons">person</i>
-                    <p class="d-lg-none d-md-block">
-                      Account
-                    </p>
-                  </a>
-                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                    <a class="dropdown-item" href="#">{{ Session::get('name') }}</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/logOUT">Log out</a>
+                  <div class="preview-item-content flex-grow py-2">
+                    <p class="preview-subject ellipsis font-weight-medium text-dark">Marian Garner </p>
+                    <p class="font-weight-light small-text"> The meeting is cancelled </p>
                   </div>
-                </li>
-                <?php } ?>
-                <form class="navbar-form">
-                  <span class="bmd-form-group"><div class="input-group no-border">
-                    <input type="text" value="" class="form-control" placeholder="Search...">
-                    <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                      <i class="material-icons">search</i>
-                      <div class="ripple-container"></div>
-                    </button>
-                  </div></span>
-                </form>
-              </ul>
-              <ul class="navbar-nav ml-auto">
-                  <!-- Authentication Links -->
-                @guest
-                  <?php if ( Session::get('level') == 1){ ?>
-                    @if (Route::has('register'))
-                      <li class="nav-item">
-                          <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                      </li>
-                    @endif
+                </a>
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <img src="/images/faces/face12.jpg" alt="image" class="img-sm profile-pic">
+                  </div>
+                  <div class="preview-item-content flex-grow py-2">
+                    <p class="preview-subject ellipsis font-weight-medium text-dark">David Grey </p>
+                    <p class="font-weight-light small-text"> The meeting is cancelled </p>
+                  </div>
+                </a>
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <img src="/images/faces/face1.jpg" alt="image" class="img-sm profile-pic">
+                  </div>
+                  <div class="preview-item-content flex-grow py-2">
+                    <p class="preview-subject ellipsis font-weight-medium text-dark">Travis Jenkins </p>
+                    <p class="font-weight-light small-text"> The meeting is cancelled </p>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="nav-item dropdown d-none d-xl-inline-flex user-dropdown">
+              <?php if(Session::get('LoggIN')== 1){ ?>
+                <a class="nav-link dropdown-toggle" id="UserDropdown" href="/profile/{{ Session::get('email') }}" data-toggle="dropdown" aria-expanded="false">
+                  <img class="img-xs rounded-circle ml-2" src="/images/faces/Usu.jpg" alt="Profile image"> <span class="font-weight-normal"> {{ Session::get('name') }} </span></a>
+                <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+                    <div class="dropdown-header text-center">
+                      <img class="img-md rounded-circle" src="/images/faces/Usu.jpg" alt="Profile image">
+                      <p class="mb-1 mt-3">{{ Session::get('name') }}</p>
+                      <p class="font-weight-light text-muted mb-0">{{ Session::get('email') }}</p>
+                    </div>
+                    <a class="dropdown-item" href="/profile/{{ Session::get('email') }}"><i class="dropdown-item-icon icon-user text-primary"></i> My Profile <span class="badge badge-pill badge-danger">1</span></a>
+                    <a class="dropdown-item" href="/logOUT" onclick="return confirm('Are you sure?');"><i class="dropdown-item-icon icon-power text-primary"></i>Sign Out</a>
+                </div>
+              <?php } ?>
+            </li>
+          </ul>
+          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+            <span class="icon-menu"></span>
+          </button>
+        </div>
+      </nav>
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_sidebar.html -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+          <ul class="nav">
+            <li class="nav-item nav-profile">
+              <?php if(Session::get('LoggIN')== 1){ ?>
+              <a href="#" class="nav-link">
+                <div class="profile-image">
+                  <img class="img-xs rounded-circle" src="/images/faces/Usu.jpg" alt="profile image">
+                </div>
+                <div class="text-wrapper">
+                  <p class="profile-name">{{ Session::get('name') }}</p>
+                  <?php if(Session::get('level')== 1){ ?>
+                    <p class="designation">Administrator</p>
+                  <?php } elseif(Session::get('level')== 0){ ?>
+                    <p class="designation">Employee</p>
+                  <?php } elseif(Session::get('level')== 2){ ?>
+                    <p class="designation">Manager</p>
                   <?php } ?>
-                @else
-                  <li class="nav-item dropdown">
-                      <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                          {{ Auth::user()->name }}
-                      </a>
-
-                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="{{ route('logout') }}"
-                             onclick="event.preventDefault();
-                                           document.getElementById('logout-form').submit();">
-                              {{ __('Logout') }}
-                          </a>
-
-                          <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                              @csrf
-                          </form>
-                      </div>
-                  </li>
-                @endguest
-              </ul>
-            </div>
-          </div>
+                </div>
+                <?php } ?>
+              </a>
+            </li>
+            <?php if(Session::get('level')== 1){ ?>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url('/home')}}">
+                  <span class="menu-title">Dashboard</span>
+                  <i class="icon-screen-desktop menu-icon"></i>
+                </a>
+              </li>
+              @guest
+                <?php if ( Session::get('level') == 1){ ?>
+                  @if (Route::has('register'))
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('register') }}">
+                          <span class="menu-title">{{ __('Register') }}</span>
+                          <i class="icon-plus menu-icon"></i>
+                        </a>
+                    </li>
+                  @endif
+                <?php } ?>
+              @endguest
+              <li class="nav-item">
+                <a class="nav-link" href="/profile/{{ Session::get('email') }}">
+                  <span class="menu-title">Profile</span>
+                  <i class="icon-user menu-icon"></i>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url('/table')}}">
+                  <span class="menu-title">Inventory</span>
+                  <i class="icon-folder-alt menu-icon"></i>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url('/inbox')}}">
+                  <span class="menu-title">Inbox</span>
+                  <i class="icon-envelope menu-icon"></i>
+                </a>
+              </li>
+            <?php } elseif(Session::get('level')== 0){ ?>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url('/home')}}">
+                  <span class="menu-title">Dashboard</span>
+                  <i class="icon-screen-desktop menu-icon"></i>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/profile/{{ Session::get('email') }}">
+                  <span class="menu-title">Profile</span>
+                  <i class="icon-user menu-icon"></i>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url('/table')}}">
+                  <span class="menu-title">Inventory</span>
+                  <i class="icon-folder-alt menu-icon"></i>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url('/inbox')}}">
+                  <span class="menu-title">Inbox</span>
+                  <i class="icon-envelope menu-icon"></i>
+                </a>
+              </li>
+            <?php } elseif(Session::get('level')== 2){ ?>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url('/home')}}">
+                  <span class="menu-title">Dashboard</span>
+                  <i class="icon-screen-desktop menu-icon"></i>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/profile/{{ Session::get('email') }}">
+                  <span class="menu-title">Profile</span>
+                  <i class="icon-user menu-icon"></i>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url('/table')}}">
+                  <span class="menu-title">Inventory</span>
+                  <i class="icon-folder-alt menu-icon"></i>
+                </a>
+              </li>
+              <li class="nav-item nav-category"><span class="nav-link">UI Elements</span></li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                  <span class="menu-title">Basic UI Elements</span>
+                  <i class="icon-layers menu-icon"></i>
+                </a>
+                <div class="collapse" id="ui-basic">
+                  <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="pages/icons/simple-line-icons.html">
+                  <span class="menu-title">Icons</span>
+                  <i class="icon-globe menu-icon"></i>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="pages/forms/basic_elements.html">
+                  <span class="menu-title">Form Elements</span>
+                  <i class="icon-book-open menu-icon"></i>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="pages/charts/chartist.html">
+                  <span class="menu-title">Charts</span>
+                  <i class="icon-chart menu-icon"></i>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="pages/tables/basic-table.html">
+                  <span class="menu-title">Tables</span>
+                  <i class="icon-grid menu-icon"></i>
+                </a>
+              </li>
+              <li class="nav-item nav-category"><span class="nav-link">Sample Pages</span></li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+                  <span class="menu-title">General Pages</span>
+                  <i class="icon-doc menu-icon"></i>
+                </a>
+                <div class="collapse" id="auth">
+                  <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> 404 </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html"> Blank Page </a></li>
+                  </ul>
+                </div>
+              </li>
+            <?php } ?>
+          </ul>
         </nav>
-        <!-- End Navbar -->
-        <div class="content">
-          <div class="container-fluid">
-            <!-- <div class="alert alert-success" role="alert">
-              @yield('content_data')
-            </div> -->
+        <!-- partial -->
+        <div class="main-panel">
+          <div class="content-wrapper">
             @yield('content')
           </div>
+          <!-- content-wrapper ends -->
+          <!-- partial:partials/_footer.html -->
+          <footer class="footer">
+            <div class="d-sm-flex justify-content-center justify-content-sm-between">
+              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © TUBES_PI.com 2021</span>
+              <!-- <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="" target="_blank">Bootstrap admin templates</a> from Bootstrapdash.com</span> -->
+            </div>
+          </footer>
+          <!-- partial -->
         </div>
-
-        <footer class="footer">
-          <div class="container-fluid">
-          <nav class="float-left">
-            <ul>
-              <li>
-                <a href="#">
-                  Testing Footer
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  Licences
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <div class="copyright float-right">
-            ©
-            <script>
-              document.write(new Date().getFullYear())
-            </script>-2021, made with <i class="material-icons">favorite</i> by
-            <a href="#" target="_blank">Laravel</a> for a better web.
-          </div>
-          </div>
-        </footer>
-        <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; right: 0px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div>
+        <!-- main-panel ends -->
       </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
 
-  <!--   Core JS Files   -->
-  <script src="/js/core/jquery.min.js" type="text/javascript"></script>
-  <script src="/js/core/popper.min.js" type="text/javascript"></script>
-  <script src="/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
-  <!-- Plugin for the Perfect Scrollbar -->
-  <script src="/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-  <!-- Plugin for the momentJs  -->
-  <script src="/js/plugins/moment.min.js"></script>
-  <!--  Plugin for Sweet Alert -->
-  <script src="/js/plugins/sweetalert2.js"></script>
-  <!-- Forms Validations Plugin -->
-  <script src="/js/plugins/jquery.validate.min.js"></script>
-  <!--  Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
-  <script src="/js/plugins/jquery.bootstrap-wizard.js"></script>
-  <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
-  <script src="/js/plugins/bootstrap-selectpicker.js" ></script>
-  <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
-  <script src="/js/plugins/bootstrap-datetimepicker.min.js"></script>
-  <!--  DataTables.net Plugin, full documentation here: https://datatables.net/    -->
-  <script src="/js/plugins/jquery.datatables.min.js"></script>
-  <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
-  <script src="/js/plugins/bootstrap-tagsinput.js"></script>
-  <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
-  <script src="/js/plugins/jasny-bootstrap.min.js"></script>
-  <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
-  <script src="/js/plugins/fullcalendar.min.js"></script>
-  <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
-  <script src="/js/plugins/jquery-jvectormap.js"></script>
-  <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-  <script src="/js/plugins/nouislider.min.js" ></script>
-  <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
-  <!-- Library for adding dinamically elements -->
-  <script src="/js/plugins/arrive.min.js"></script>
-  <!--  Google Maps Plugin    -->
-  <script  src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-  <!-- Chartist JS -->
-  <script src="/js/plugins/chartist.min.js"></script>
-  <!--  Notifications Plugin    -->
-  <script src="/js/plugins/bootstrap-notify.js"></script>
-  <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="/js/material-dashboard.min.js?v=2.1.2" type="text/javascript"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-	<script src="js/main.js"></script>
+    <!-- plugins:js -->
+    <script src="vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="./vendors/chart.js/Chart.min.js"></script>
+    <script src="./vendors/moment/moment.min.js"></script>
+    <script src="./vendors/daterangepicker/daterangepicker.js"></script>
+    <script src="./vendors/chartist/chartist.min.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="js/off-canvas.js"></script>
+    <script src="js/misc.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="./js/dashboard.js"></script>
+    <!-- End custom js for this page -->
   </body>
 </html>

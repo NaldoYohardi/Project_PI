@@ -4,81 +4,85 @@
 @section('MainTitle', 'Table')
 
 @section('content')
-<div class="content" >
-<div class="container-fluid">
-  <div class="row">
-    <?php if(Session::get('level')== 0 || Session::get('level') == 2){ ?>
-      <div class="col-md-12">
-        <div class="card">
-          <div class="card-header card-header-primary">
-            <h4 class="card-title ">Inventory List </h4>
-            <p class="card-category"> Lists Company Inventory Data</p>
-          </div>
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table">
-                <thead class=" text-primary">
-                  <tr>
-                    <th>No.</th>
-                    <th>Item</th>
-                    <th>Amount</th>
-                    <th>Comment</th>
-                    <th colspan="2">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="text-primary">{{ '1' }}</td>
-                    <td>{{ 'Dummy' }}</td>
-                    <td>{{ '1' }}</td>
-                    <td>{{ 'Dummy Text Data' }}</td>
-                    <td> <a href="/edit/{{''}}">Edit</a> </td>
-                    <td> <a href="/delete/{{''}}">Delete</a> </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    <?php } ?>
-
-    <?php if(Session::get('level')==1){ ?>
-      <div class="col-md-12">
-        <div class="card">
-          <div class="card-header card-header-primary">
-            <h4 class="card-title ">Inventory List </h4>
-            <p class="card-category"> Lists Company Inventory Data</p>
-          </div>
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table">
-                <thead class=" text-primary">
-                  <tr>
-                    <th>No.</th>
-                    <th>Item</th>
-                    <th>Amount</th>
-                    <th>Comment</th>
-                    <th colspan="2">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="text-primary">{{ '' }}</td>
-                    <td>{{ '' }}</td>
-                    <td>{{ '' }}</td>
-                    <td>{{ '' }}</td>
-                    <td> <a href="/edit/{{''}}">Edit</a> </td>
-                    <td> <a href="/delete/{{''}}">Delete</a> </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    <?php } ?>
+<ul class="breadcrumb">
+  <li><a href="{{ url('/home')}}">Dashboard</a></li>
+  <li>Table</li>
+</ul>
+<div class="col-lg-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Inventory List</h4>
+      <p class="card-description">
+        List containing Inventories from Database
+      </p>
+      <?php if(Session::get('level')== 0){ ?>
+        <table class="table table-bordered table-striped">
+          <thead align="center">
+            <tr>
+              <th>No.</th>
+              <th>Item</th>
+              <th>Amount</th>
+              <th>Comment</th>
+              <th colspan="2">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ '1' }}</td>
+              <td>{{ 'Dummy' }}</td>
+              <td>{{ '1' }}</td>
+              <td>{{ 'Dummy Text Data' }}</td>
+              <td> <a href="/edit/{{''}}" class="btn-sm btn-warning">Edit</a> </td>
+              <td> <a href="/delete/{{''}}" class="btn-sm btn-danger">Delete</a> </td>
+            </tr>
+          </tbody>
+        </table>
+      <?php } elseif(Session::get('level')==1){ ?>
+        <table class="table table-bordered table-striped">
+          <thead align="center">
+            <tr>
+              <th>No.</th>
+              <th>Item</th>
+              <th>Amount</th>
+              <th>Comment</th>
+              <th colspan="2">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ '1' }}</td>
+              <td>{{ 'Dummy' }}</td>
+              <td>{{ '1' }}</td>
+              <td>{{ 'Dummy Text Data' }}</td>
+              <td> <a href="/edit/{{''}}" class="btn-sm btn-warning">Edit</a> </td>
+              <td> <a href="/delete/{{''}}" class="btn-sm btn-danger">Delete</a> </td>
+            </tr>
+          </tbody>
+        </table>
+      <?php } elseif(Session::get('level')==2){ ?>
+        <table class="table table-bordered table-striped">
+          <thead align="center">
+            <tr>
+              <th>No.</th>
+              <th>Item</th>
+              <th>Amount</th>
+              <th>Comment</th>
+              <th colspan="2">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ '1' }}</td>
+              <td>{{ 'Dummy' }}</td>
+              <td>{{ '1' }}</td>
+              <td>{{ 'Dummy Text Data' }}</td>
+              <td> <a href="/edit/{{''}}" class="btn-sm btn-warning">Edit</a> </td>
+              <td> <a href="/delete/{{''}}" class="btn-sm btn-danger">Delete</a> </td>
+            </tr>
+          </tbody>
+        </table>
+      <?php } ?>
+    </div>
   </div>
-</div>
 </div>
 @endsection

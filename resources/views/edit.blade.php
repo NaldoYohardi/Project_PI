@@ -1,9 +1,14 @@
-  @extends('layouts.app')
+  @extends('layouts.appProfile')
 
   @section('title', 'Edit Profile')
   @section('MainTitle', 'Edit Profile')
 
   @section('content')
+  <ul class="breadcrumb">
+    <li><a href="{{ url('/home')}}">Dashboard</a></li>
+    <li><a href="/profile/{{ Session::get('email') }}">Profiles</a></li>
+    <li>Edit</li>
+  </ul>
     <div class="content">
     <div class="container-fluid">
       <div class="row">
@@ -54,8 +59,8 @@
                         </div>
                         <div class="col-md-4">
                           <div class="form-group bmd-form-group">
-                            <label class="bmd-label-floating">Email address</label>
-                            <input type="number" name="level" class="form-control" value="{{ $user->level }}">
+                            <label class="bmd-label-floating">Level</label>
+                            <input type="number" name="level" min="0" max="2" class="form-control" value="{{ $user->level }}">
                           </div>
                         </div>
                       </div>

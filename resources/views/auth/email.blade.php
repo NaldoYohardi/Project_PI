@@ -1,44 +1,53 @@
 @extends('layouts.main')
 
-@section('title', 'Forget Password')
-@section('MainTitle', 'Forget Password')
+@section('title', 'Send Password Reset')
+@section('MainTitle', 'Send Password Reset')
 
 @section('content')
-  <form method="POST" action="{{ route('password.email') }}" class="login100-form validate-form">
-    @csrf
-    @if (session('status'))
-      <div class="alert alert-success">
-        {{ session('status') }}
-      </div>
+  @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+    @if(Session::has('alert-' . $msg))
+      <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismis="alert" aria-label="close">&times;</a></p>
     @endif
-    <span class="login100-form-title">
-      {{ __('RESET PASSWORD') }}
-    </span>
-
-    <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-      <input id="email" class="input100 form-control @error('email') is-invalid @enderror" type="email" name="email" placeholder="{{ __('E-Mail Address') }}" value="{{ old('email') }}" required autocomplete="email" autofocus>
-      @error('email')
-          <span class="invalid-feedback" role="alert">
-              <strong>{{ $message }}</strong>
-          </span>
-      @enderror
-      <span class="focus-input100"></span>
-      <span class="symbol-input100">
-        <i class="fa fa-envelope" aria-hidden="true"></i>
-      </span>
+  @endforeach
+  <div class="row flex-grow">
+    <div class="col-lg-6 mx-auto">
+      <div class="auth-form-light text-left p-5">
+        <div class="brand-logo js-tilt" align="center" data-tilt>
+          <img src="laravel.PNG">
+        </div>
+        <h4>Reset Password</h4>
+        <h6 class="font-weight-light">Send Password Reset Link</h6>
+        <form method="POST" action="{{ route('password.email') }}" class="pt-3">
+          @csrf
+          <?php
+            if(Session::get('status')) { ?>
+            <div class="alert alert-info">
+              <?php  echo(Session::get('status')) ?>
+            </div>
+          <?php }  ?>
+          <!-- @if (session('status'))
+            <div class="alert alert-success">
+              {{ session('status') }}
+            </div>
+          @endif -->
+          <div class="form-group">
+            <input id="email" class="form-control @error('email') is-invalid @enderror" type="email" name="email" placeholder="{{ __('E-Mail Address') }}" value="{{ old('email') }}" required>
+            @error('email')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+          </div>
+          <div class="mt-3">
+            <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">
+              {{ __('SEND LINK') }}
+            </button>
+          </div>
+          <div class="my-2 justify-content-between align-items-center" align="center">
+            <a href="{{ url('/') }}" class="auth-link text-black">Go Back?</a>
+          </div>
+        </form>
+      </div>
     </div>
-
-    <div class="container-login100-form-btn">
-      <button type="submit" class="login100-form-btn">
-        {{ __('Send Password Reset Link') }}
-      </button>
-    </div>
-
-    <div class="text-center p-t-136">
-      <a class="txt2 btn-link" href="{{ url('/') }}">
-        {{ __('Go Back?') }}
-      </a>
-    </div>
-
-  </form>
+  </div>
 @endsection
