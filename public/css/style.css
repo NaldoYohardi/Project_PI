@@ -13358,7 +13358,7 @@ dl {
 ul.breadcrumb {
   padding: 10px 16px;
   list-style: none;
-  background-color: #eee;
+  background-color: rgba(238, 238, 238, 0);
 }
 
 /* Display list items side by side */
