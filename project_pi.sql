@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 20, 2021 at 05:55 AM
--- Server version: 10.4.8-MariaDB
--- PHP Version: 7.3.11
+-- Generation Time: May 26, 2021 at 05:07 AM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -82,15 +81,24 @@ CREATE TABLE `failed_jobs` (
 --
 
 CREATE TABLE `import_data` (
+  `id` int(11) NOT NULL,
   `import_id` int(10) NOT NULL,
   `approval_id` int(10) NOT NULL,
   `name` text NOT NULL,
   `amount` text NOT NULL,
-  `category_id` int(3) NOT NULL,
-  `brand_id` int(3) NOT NULL,
-  `edisi` int(4) NOT NULL,
-  `harga` int(10) NOT NULL
+  `category_id` text NOT NULL,
+  `brand_id` text NOT NULL,
+  `edisi` text NOT NULL,
+  `harga` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `import_data`
+--
+
+INSERT INTO `import_data` (`id`, `import_id`, `approval_id`, `name`, `amount`, `category_id`, `brand_id`, `edisi`, `harga`) VALUES
+(2, 1, 1, '{\r\n    \"data\": [\r\n        \"Lampu LED\",\r\n        \"Pensil 2B\",\r\n        \"Pen Standard\"\r\n    ]\r\n}', '{\r\n    \"data\": [\r\n        \"2\",\r\n        \"1\",\r\n        \"3\"\r\n    ]\r\n}', '{\r\n    \"data\": [\r\n        \"1\",\r\n        \"2\",\r\n        \"2\"\r\n    ]\r\n}', '{\r\n    \"data\": [\r\n        \"1\",\r\n        \"2\",\r\n        \"3\"\r\n    ]\r\n}', '{\r\n    \"data\": [\r\n        \"2001\",\r\n        \"2002\",\r\n        \"2014\"\r\n    ]\r\n}', '{\r\n    \"data\": [\r\n        \"15000\",\r\n        \"3000\",\r\n        \"2500\"\r\n    ]\r\n}'),
+(3, 2, 2, '{\r\n    \"data\": [\r\n        \"LED\",\r\n        \"Pensil 2B\",\r\n        \"Pen Standard\"\r\n    ]\r\n}', '{\r\n    \"data\": [\r\n        \"2\",\r\n        \"1\",\r\n        \"3\"\r\n    ]\r\n}', '{\r\n    \"data\": [\r\n        \"1\",\r\n        \"2\",\r\n        \"2\"\r\n    ]\r\n}', '{\r\n    \"data\": [\r\n        \"1\",\r\n        \"2\",\r\n        \"3\"\r\n    ]\r\n}', '{\r\n    \"data\": [\r\n        \"2001\",\r\n        \"2002\",\r\n        \"2014\"\r\n    ]\r\n}', '{\r\n    \"data\": [\r\n        \"15000\",\r\n        \"3000\",\r\n        \"2500\"\r\n    ]\r\n}');
 
 -- --------------------------------------------------------
 
@@ -188,6 +196,15 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `name`, `email`, `email_verified`, `password`, `verification_code`, `level`, `remember_token`, `created_at`, `updated_at`) VALUES
+(3, 'aldrich', 'aldrich@gmail.com', 0, '$2y$10$vadIvj69BqhAHVXGFWhzsOlzWY4KhMTwRKU4RYMG6YUKX3PUzYM9y', 'e7850ca2d5b8fb08206b46dfb8ec34fd7e3dcc98', 0, NULL, '2021-05-19 19:54:05', '2021-05-19 19:54:05'),
+(4, 'naldo', 'naldo@gmail.com', 1, '$2y$10$bbe1C/UtxqERj6XIjvYkRexq4mSeUmZmlzkTPbmV96fyhUwKo5z56', '1d8a38060d237bc12e2307782741bed6ce214d95', 1, NULL, '2021-05-21 21:27:57', '2021-05-21 21:27:57'),
+(9, 'endity', 'ndtblank@gmail.com', 0, '$2y$10$WCD/EzDtk1eYIsqoBlimo.TkH4YciYNm3W6BFA9444m1ZKE3jntbO', 'f283a622389ef0f50ccdea1a011d12d5001da3b6', 0, NULL, '2021-05-21 22:54:14', '2021-05-21 22:54:14');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -210,6 +227,12 @@ ALTER TABLE `brand_details`
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indexes for table `import_data`
+--
+ALTER TABLE `import_data`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `import_history`
@@ -268,6 +291,12 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `import_data`
+--
+ALTER TABLE `import_data`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
@@ -277,7 +306,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- Constraints for dumped tables
