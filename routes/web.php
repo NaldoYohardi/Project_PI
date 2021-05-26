@@ -57,3 +57,5 @@ Route::post('/update/{user}', 'Controller@update');
 
 //route delete
 Route::get('/delete/{id}', 'Controller@delete');
+
+Route::get('/test', 'QrController@get');
