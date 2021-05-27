@@ -41,7 +41,6 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
     }
 
     public function check(Request $request)
@@ -54,7 +53,6 @@ class LoginController extends Controller
           $email_verified = $key->email_verified;
           $level = $key->level;
         }
-
         if($user)
         {
           if(password_verify($request->password,$pswd)){
@@ -95,5 +93,9 @@ class LoginController extends Controller
     public function LoginIN()
     {
       return view('home');
+    }
+    public function test()
+    {
+      return "Hello";
     }
 }

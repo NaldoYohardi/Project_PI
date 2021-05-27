@@ -153,7 +153,6 @@
                   <i class="icon-screen-desktop menu-icon"></i>
                 </a>
               </li>
-              @guest
                 <?php if ( Session::get('level') == 1){ ?>
                   @if (Route::has('register'))
                     <li class="nav-item">
@@ -164,7 +163,6 @@
                     </li>
                   @endif
                 <?php } ?>
-              @endguest
               <li class="nav-item">
                 <a class="nav-link" href="/profile/{{ Session::get('email') }}">
                   <span class="menu-title">Profile</span>
