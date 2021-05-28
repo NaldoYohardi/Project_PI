@@ -94,8 +94,4 @@ class LoginController extends Controller
     {
       return view('home');
     }
-    public function test()
-    {
-      return "Hello";
-    }
 }
