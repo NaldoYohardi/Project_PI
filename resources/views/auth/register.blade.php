@@ -51,7 +51,7 @@
                       @enderror
                     </div>
                     <div class="form-group">
-                      <input id="password-confirm" class="form-control @error('password-confirm') is-invalid @enderror" type="password" name="password_confirmation" placeholder="{{ __('Password') }}" required value="">
+                      <input id="password-confirm" class="form-control @error('password-confirm') is-invalid @enderror" type="password" name="password_confirmation" placeholder="{{ __('Password Confirmation') }}" required value="">
                       @error('password')
                           <span class="invalid-feedback" role="alert" id="message">
                               <strong>{{ $message }}</strong>

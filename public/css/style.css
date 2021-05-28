@@ -3307,6 +3307,8 @@ pre {
   padding: 0.3rem; }
 
 .table-bordered {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 500;
   border: 1px solid #e8ecf1; }
   .table-bordered th,
   .table-bordered td {
@@ -12046,16 +12048,16 @@ dl {
   margin-bottom: 0; }
   .table thead th {
     border-top: 0;
-    border-bottom-width: 1px;
+    border-bottom-width: 2px;
     font-family: "Open Sans", sans-serif;
-    font-weight: 600;
+    font-weight: 500;
     font-weight: initial; }
     .table thead th i {
       margin-left: 0.325rem; }
   .table th,
   .table td {
     vertical-align: middle;
-    font-size: 0.875rem;
+    font-size: 0.9rem;
     line-height: 1;
     white-space: nowrap; }
     .table th img,
