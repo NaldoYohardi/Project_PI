@@ -8569,7 +8569,13 @@ button.bg-dark:focus {
   -webkit-box-shadow: none !important;
   box-shadow: none !important; }
 
-.w-25 {
+.w-5 {
+  width: 5% !important; }    
+
+.w-10 {
+  width: 10% !important; }  
+
+  .w-25 {
   width: 25% !important; }
 
 .w-50 {
