@@ -45,8 +45,8 @@
             <p class="card-description">
               List containing User accounts from Database
             </p>
-            <table class="table table-bordered table-striped">
-              <thead align="center">
+            <table class="table table-rounded border table-striped">
+              <thead class="thead-dark font-weight-bold text-center">
                 <tr>
                   <th>No.</th>
                   <th>Username</th>
@@ -55,15 +55,15 @@
                   <th colspan="2">Action</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody class="table-bordered text-center">
                 @foreach ($user1 as $key)
                   <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $key->name }}</td>
                     <td>{{ $key->email }}</td>
                     <td>{{ $key->level }}</td>
-                    <td align="center"> <a href="/edit/{{$key->user_id}}" class="btn-sm font-weight-bold btn-warning">Edit</a> </td>
-                    <td align="center"> <a href="/delete/{{$key->user_id}}" class="btn-sm font-weight-bold btn-danger">Delete</a> </td>
+                    <td> <a href="/edit/{{$key->user_id}}" class="btn-sm font-weight-bold btn-warning">Edit</a> </td>
+                    <td> <a href="/delete/{{$key->user_id}}" class="btn-sm font-weight-bold btn-danger">Delete</a> </td>
                   </tr>
                 @endforeach
               </tbody>
