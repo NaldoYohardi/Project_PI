@@ -4498,7 +4498,7 @@ fieldset:disabled a.btn {
     pointer-events: none; }
 
 .btn-lg, .btn-group-lg > .btn {
-  padding: 1rem 3rem;
+  padding: 0rem 3rem;
   font-size: 0.875rem;
   line-height: 1.5;
   border-radius: 0.1875rem; }
@@ -4510,8 +4510,8 @@ fieldset:disabled a.btn {
   border-radius: 0.1875rem; }
 
 .btn-block {
-  display: block;
-  width: 100%; }
+  display: inline-block;
+  width: 50%; }
   .btn-block + .btn-block {
     margin-top: 0.5rem; }
 
@@ -8681,6 +8681,7 @@ button.bg-dark:focus {
 
 .mt-3, .template-demo > .btn, .template-demo > .btn-toolbar,
 .my-3 {
+  text-align: center;
   margin-top: 1rem !important; }
 
 .mr-3, .template-demo > .btn, .template-demo > .btn-toolbar,
@@ -10851,7 +10852,7 @@ code {
   .btn.btn-sm, .btn-group-sm > .btn {
     font-size: 0.875rem; }
   .btn.btn-lg, .btn-group-lg > .btn {
-    font-size: 0.875rem; }
+    font-size: 0.9rem; }
   .btn.btn-xs {
     padding: 0.5rem 0.75rem;
     font-size: 0.625rem; }

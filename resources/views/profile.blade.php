@@ -62,8 +62,8 @@
                     <td>{{ $key->name }}</td>
                     <td>{{ $key->email }}</td>
                     <td>{{ $key->level }}</td>
-                    <td align="center"> <a href="/edit/{{$key->user_id}}" class="btn-sm btn-warning">Edit</a> </td>
-                    <td align="center"> <a href="/delete/{{$key->user_id}}" class="btn-sm btn-danger">Delete</a> </td>
+                    <td align="center"> <a href="/edit/{{$key->user_id}}" class="btn-sm font-weight-bold btn-warning">Edit</a> </td>
+                    <td align="center"> <a href="/delete/{{$key->user_id}}" class="btn-sm font-weight-bold btn-danger">Delete</a> </td>
                   </tr>
                 @endforeach
               </tbody>

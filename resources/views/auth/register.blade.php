@@ -59,7 +59,7 @@
                       @enderror
                     </div>
                     <div class="mt-3">
-                      <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-bold auth-form-btn" onclick="return myFunction()">
+                      <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-semi-bold auth-form-btn" onclick="return myFunction()">
                         {{ __('REGISTER') }}
                       </button>
                     </div>
