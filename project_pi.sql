@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 26, 2021 at 05:07 AM
+-- Generation Time: May 29, 2021 at 05:44 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -31,18 +31,6 @@ CREATE TABLE `approval` (
   `approval_id` int(10) NOT NULL,
   `request_id` int(20) NOT NULL,
   `user_id` int(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `brand_details`
---
-
-CREATE TABLE `brand_details` (
-  `brand_id` int(10) NOT NULL,
-  `name` varchar(225) NOT NULL,
-  `year_release` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -85,20 +73,19 @@ CREATE TABLE `import_data` (
   `import_id` int(10) NOT NULL,
   `approval_id` int(10) NOT NULL,
   `name` text NOT NULL,
-  `amount` text NOT NULL,
-  `category_id` text NOT NULL,
-  `brand_id` text NOT NULL,
-  `edisi` text NOT NULL,
-  `harga` text NOT NULL
+  `amount` text DEFAULT NULL,
+  `category_id` text DEFAULT NULL,
+  `harga` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `import_data`
 --
 
-INSERT INTO `import_data` (`id`, `import_id`, `approval_id`, `name`, `amount`, `category_id`, `brand_id`, `edisi`, `harga`) VALUES
-(2, 1, 1, '{\r\n    \"data\": [\r\n        \"Lampu LED\",\r\n        \"Pensil 2B\",\r\n        \"Pen Standard\"\r\n    ]\r\n}', '{\r\n    \"data\": [\r\n        \"2\",\r\n        \"1\",\r\n        \"3\"\r\n    ]\r\n}', '{\r\n    \"data\": [\r\n        \"1\",\r\n        \"2\",\r\n        \"2\"\r\n    ]\r\n}', '{\r\n    \"data\": [\r\n        \"1\",\r\n        \"2\",\r\n        \"3\"\r\n    ]\r\n}', '{\r\n    \"data\": [\r\n        \"2001\",\r\n        \"2002\",\r\n        \"2014\"\r\n    ]\r\n}', '{\r\n    \"data\": [\r\n        \"15000\",\r\n        \"3000\",\r\n        \"2500\"\r\n    ]\r\n}'),
-(3, 2, 2, '{\r\n    \"data\": [\r\n        \"LED\",\r\n        \"Pensil 2B\",\r\n        \"Pen Standard\"\r\n    ]\r\n}', '{\r\n    \"data\": [\r\n        \"2\",\r\n        \"1\",\r\n        \"3\"\r\n    ]\r\n}', '{\r\n    \"data\": [\r\n        \"1\",\r\n        \"2\",\r\n        \"2\"\r\n    ]\r\n}', '{\r\n    \"data\": [\r\n        \"1\",\r\n        \"2\",\r\n        \"3\"\r\n    ]\r\n}', '{\r\n    \"data\": [\r\n        \"2001\",\r\n        \"2002\",\r\n        \"2014\"\r\n    ]\r\n}', '{\r\n    \"data\": [\r\n        \"15000\",\r\n        \"3000\",\r\n        \"2500\"\r\n    ]\r\n}');
+INSERT INTO `import_data` (`id`, `import_id`, `approval_id`, `name`, `amount`, `category_id`, `harga`) VALUES
+(2, 1, 1, '{\r\n    \"data\": [\r\n        \"Lampu LED\",\r\n        \"Pensil 2B\",\r\n        \"Pen Standard\"\r\n    ]\r\n}', '{\r\n    \"data\": [\r\n        \"2\",\r\n        \"1\",\r\n        \"3\"\r\n    ]\r\n}', '{\r\n    \"data\": [\r\n        \"1\",\r\n        \"2\",\r\n        \"2\"\r\n    ]\r\n}', '{\r\n    \"data\": [\r\n        \"15000\",\r\n        \"3000\",\r\n        \"2500\"\r\n    ]\r\n}'),
+(3, 2, 2, '{\r\n    \"data\": [\r\n        \"LED\",\r\n        \"Pensil 2B\",\r\n        \"Pen Standard\"\r\n    ]\r\n}', '{\r\n    \"data\": [\r\n        \"2\",\r\n        \"1\",\r\n        \"3\"\r\n    ]\r\n}', '{\r\n    \"data\": [\r\n        \"1\",\r\n        \"2\",\r\n        \"2\"\r\n    ]\r\n}', '{\r\n    \"data\": [\r\n        \"15000\",\r\n        \"3000\",\r\n        \"2500\"\r\n    ]\r\n}'),
+(4, 10, 10, '[\"Lampu\",\"Pen\",\"Pensil\"]', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -125,9 +112,7 @@ CREATE TABLE `inventory` (
   `qr_code` varchar(200) NOT NULL,
   `status` int(1) NOT NULL,
   `category_id` int(3) NOT NULL,
-  `brand_id` int(3) NOT NULL,
   `date_imported` timestamp NOT NULL DEFAULT current_timestamp(),
-  `edisi` int(4) NOT NULL,
   `harga_unit` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -216,12 +201,6 @@ ALTER TABLE `approval`
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `brand_details`
---
-ALTER TABLE `brand_details`
-  ADD PRIMARY KEY (`brand_id`);
-
---
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -245,7 +224,6 @@ ALTER TABLE `import_history`
 --
 ALTER TABLE `inventory`
   ADD PRIMARY KEY (`item_id`),
-  ADD KEY `brand_id` (`brand_id`),
   ADD KEY `category_id` (`category_id`);
 
 --
@@ -279,12 +257,6 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `brand_details`
---
-ALTER TABLE `brand_details`
-  MODIFY `brand_id` int(10) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -294,7 +266,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `import_data`
 --
 ALTER TABLE `import_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -307,29 +279,6 @@ ALTER TABLE `migrations`
 --
 ALTER TABLE `users`
   MODIFY `user_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `approval`
---
-ALTER TABLE `approval`
-  ADD CONSTRAINT `approval_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
-  ADD CONSTRAINT `approval_ibfk_2` FOREIGN KEY (`request_id`) REFERENCES `request` (`request_id`);
-
---
--- Constraints for table `inventory`
---
-ALTER TABLE `inventory`
-  ADD CONSTRAINT `inventory_ibfk_1` FOREIGN KEY (`brand_id`) REFERENCES `brand_details` (`brand_id`);
-
---
--- Constraints for table `request`
---
-ALTER TABLE `request`
-  ADD CONSTRAINT `request_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
