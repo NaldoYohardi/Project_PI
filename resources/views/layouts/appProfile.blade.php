@@ -47,18 +47,6 @@
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-center flex-grow-1">
           <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Profiles</h5>
-          <ul class="navbar-nav navbar-nav-right ml-auto">
-            <li class="nav-item dropdown d-none d-xl-inline-flex user-dropdown">
-              <?php if(Session::get('LoggIN')== 1){ ?>
-                <a class="nav-link" href="/profile/{{ Session::get('email') }}" data-toggle="dropdown" aria-expanded="false">
-                  <img class="img-xs rounded-circle ml-2" src="/images/faces/Usu.jpg" alt="Profile image"> <span class="font-weight-normal"> {{ Session::get('name') }} </span>
-                </a>
-              <?php } ?>
-            </li>
-          </ul>
-          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-            <span class="icon-menu"></span>
-          </button>
         </div>
       </nav>
       <!-- partial -->
@@ -218,6 +206,12 @@
                 </div>
               </li>
             <?php } ?>
+              <li class="nav-item">
+                <a class="nav-link" href="/logOUT" onclick="return confirm('Are you sure?');">
+                  <span class="menu-title">Logout</span>
+                  <i class="icon-logout menu-icon"></i>
+                </a>
+              </li>
           </ul>
         </nav>
         <!-- partial -->

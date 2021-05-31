@@ -45,7 +45,7 @@
             <p class="card-description">
               List containing User accounts from Database
             </p>
-            <table id="example" class="hover">
+            <table id="example" class="hover table table-bordered">
               <thead class="thead-dark font-weight-bold text-center">
                 <tr>
                   <th>No.</th>
@@ -56,7 +56,7 @@
                   <th></th>
                 </tr>
               </thead>
-              <tbody class="table-borderless text-center">
+              <tbody class="table-bordered text-center">
                 @foreach ($user1 as $key)
                   <tr>
                     <td>{{ $loop->iteration }}</td>
