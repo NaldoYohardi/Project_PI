@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 29, 2021 at 05:44 AM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.11
+-- Generation Time: May 31, 2021 at 11:01 AM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -32,6 +33,29 @@ CREATE TABLE `approval` (
   `request_id` int(20) NOT NULL,
   `user_id` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `category`
+--
+
+CREATE TABLE `category` (
+  `id` int(11) NOT NULL,
+  `category` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`id`, `category`) VALUES
+(1, 'Elektronik'),
+(2, 'Alat perlengkapan'),
+(3, 'Obat-obatan'),
+(4, 'Alat pemadam kebakaran'),
+(5, 'Perabotan'),
+(6, 'Alat bantu peraga');
 
 -- --------------------------------------------------------
 
@@ -70,22 +94,20 @@ CREATE TABLE `failed_jobs` (
 
 CREATE TABLE `import_data` (
   `id` int(11) NOT NULL,
-  `import_id` int(10) NOT NULL,
-  `approval_id` int(10) NOT NULL,
+  `user_id` int(3) NOT NULL,
   `name` text NOT NULL,
-  `amount` text DEFAULT NULL,
+  `stok` text DEFAULT NULL,
+  `status` int(1) NOT NULL DEFAULT 0,
   `category_id` text DEFAULT NULL,
-  `harga` text DEFAULT NULL
+  `harga_unit` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `import_data`
 --
 
-INSERT INTO `import_data` (`id`, `import_id`, `approval_id`, `name`, `amount`, `category_id`, `harga`) VALUES
-(2, 1, 1, '{\r\n    \"data\": [\r\n        \"Lampu LED\",\r\n        \"Pensil 2B\",\r\n        \"Pen Standard\"\r\n    ]\r\n}', '{\r\n    \"data\": [\r\n        \"2\",\r\n        \"1\",\r\n        \"3\"\r\n    ]\r\n}', '{\r\n    \"data\": [\r\n        \"1\",\r\n        \"2\",\r\n        \"2\"\r\n    ]\r\n}', '{\r\n    \"data\": [\r\n        \"15000\",\r\n        \"3000\",\r\n        \"2500\"\r\n    ]\r\n}'),
-(3, 2, 2, '{\r\n    \"data\": [\r\n        \"LED\",\r\n        \"Pensil 2B\",\r\n        \"Pen Standard\"\r\n    ]\r\n}', '{\r\n    \"data\": [\r\n        \"2\",\r\n        \"1\",\r\n        \"3\"\r\n    ]\r\n}', '{\r\n    \"data\": [\r\n        \"1\",\r\n        \"2\",\r\n        \"2\"\r\n    ]\r\n}', '{\r\n    \"data\": [\r\n        \"15000\",\r\n        \"3000\",\r\n        \"2500\"\r\n    ]\r\n}'),
-(4, 10, 10, '[\"Lampu\",\"Pen\",\"Pensil\"]', NULL, NULL, NULL);
+INSERT INTO `import_data` (`id`, `user_id`, `name`, `stok`, `status`, `category_id`, `harga_unit`) VALUES
+(1, 28, '[\"aaa\",\"gbbb\"]', '[\"10\",\"5\"]', 0, '[\"1\",\"1\"]', '[\"8000\",\"10000\"]');
 
 -- --------------------------------------------------------
 
@@ -107,10 +129,11 @@ CREATE TABLE `import_history` (
 
 CREATE TABLE `inventory` (
   `item_id` int(10) NOT NULL,
+  `approval_id` int(3) NOT NULL,
   `name` varchar(225) NOT NULL,
   `stock` int(10) NOT NULL,
   `qr_code` varchar(200) NOT NULL,
-  `status` int(1) NOT NULL,
+  `status` int(1) NOT NULL DEFAULT 0,
   `category_id` int(3) NOT NULL,
   `date_imported` timestamp NOT NULL DEFAULT current_timestamp(),
   `harga_unit` int(10) NOT NULL
@@ -187,7 +210,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`user_id`, `name`, `email`, `email_verified`, `password`, `verification_code`, `level`, `remember_token`, `created_at`, `updated_at`) VALUES
 (3, 'aldrich', 'aldrich@gmail.com', 0, '$2y$10$vadIvj69BqhAHVXGFWhzsOlzWY4KhMTwRKU4RYMG6YUKX3PUzYM9y', 'e7850ca2d5b8fb08206b46dfb8ec34fd7e3dcc98', 0, NULL, '2021-05-19 19:54:05', '2021-05-19 19:54:05'),
 (4, 'naldo', 'naldo@gmail.com', 1, '$2y$10$bbe1C/UtxqERj6XIjvYkRexq4mSeUmZmlzkTPbmV96fyhUwKo5z56', '1d8a38060d237bc12e2307782741bed6ce214d95', 1, NULL, '2021-05-21 21:27:57', '2021-05-21 21:27:57'),
-(9, 'endity', 'ndtblank@gmail.com', 0, '$2y$10$WCD/EzDtk1eYIsqoBlimo.TkH4YciYNm3W6BFA9444m1ZKE3jntbO', 'f283a622389ef0f50ccdea1a011d12d5001da3b6', 0, NULL, '2021-05-21 22:54:14', '2021-05-21 22:54:14');
+(28, 'endity', 'enditywasita@gmail.com', 1, '$2y$10$qn5pMWixsnfzALjeCkC/4uCz6XV4OBrt94PHUTbTkzACI1TU4EiKK', 'bea48591d186dbe878889ce2aa2f16fe49ce53df', 1, 'bfkA3sWnVXyjv0qOJDAQgnYvCUVAeKm2ie3HcoEUkqMjNmX7UqSScclfu1vU', '2021-05-30 09:19:43', '2021-05-30 09:23:12');
 
 --
 -- Indexes for dumped tables
@@ -197,8 +220,15 @@ INSERT INTO `users` (`user_id`, `name`, `email`, `email_verified`, `password`, `
 -- Indexes for table `approval`
 --
 ALTER TABLE `approval`
+  ADD PRIMARY KEY (`approval_id`),
   ADD KEY `request_id` (`request_id`),
   ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `failed_jobs`
@@ -211,7 +241,8 @@ ALTER TABLE `failed_jobs`
 -- Indexes for table `import_data`
 --
 ALTER TABLE `import_data`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `import_history`
@@ -224,6 +255,7 @@ ALTER TABLE `import_history`
 --
 ALTER TABLE `inventory`
   ADD PRIMARY KEY (`item_id`),
+  ADD UNIQUE KEY `approval_id` (`approval_id`),
   ADD KEY `category_id` (`category_id`);
 
 --
@@ -257,6 +289,18 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `approval`
+--
+ALTER TABLE `approval`
+  MODIFY `approval_id` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `category`
+--
+ALTER TABLE `category`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -266,7 +310,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `import_data`
 --
 ALTER TABLE `import_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -275,10 +319,16 @@ ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `request`
+--
+ALTER TABLE `request`
+  MODIFY `request_id` int(20) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `user_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
