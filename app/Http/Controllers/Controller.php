@@ -34,8 +34,8 @@ class Controller extends BaseController
     public function inbox()
     {
       $category = DB::select("SELECT * FROM category");
-      $inbox = DB::select("SELECT * FROM inbox where status = 0");
-      $inbox1 = DB::select("SELECT * FROM inbox where status = 2");
+      $inbox = DB::select("SELECT * FROM import_data where status = 0");
+      $inbox1 = DB::select("SELECT * FROM import_data where status = 2");
       if (Session::get('level') == 0)
       {
         return view('inbox', compact('inbox1'), compact('category'));
@@ -110,13 +110,19 @@ class Controller extends BaseController
         $stok[$i] = $req->$b;
         $category[$i] = $req->$c;
         $harga[$i] = $req->$d;
+        $status[$i] = "0";
       }
       $JSON1 = json_encode($name);
       $JSON2 = json_encode($stok);
+      $JSONS = json_encode($status);
       $JSON3 = json_encode($category);
       $JSON4 = json_encode($harga);
-      DB::insert("INSERT INTO import_data (user_id, name, stok, category_id, harga_unit) VALUES ($req->user_id,
-        '$JSON1','$JSON2','$JSON3','$JSON4')");
+      DB::insert("INSERT INTO import_data (user_id, name, stok, status, category_id, harga_unit) VALUES ($req->user_id,
+        '$JSON1','$JSON2','$JSONS','$JSON3','$JSON4')");
       return redirect('/table');
+    }
+    public function accpt($id,$index){
+      $status = DB::select("SELECT status FROM import_data where id = $id");
+      dd($status);
     }
 }

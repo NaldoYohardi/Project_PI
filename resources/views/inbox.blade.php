@@ -15,7 +15,7 @@
       <p class="card-description">
         Message inbox
       </p>
-      <?php if(Session::get('level')== 0){ ?>
+      <?php if(Session::get('level')== 2){ ?>
         <a href="/add">Request Tambah data</a>
         <table id="example" class="hover table table-bordered table-striped">
           <thead class="thead-dark font-weight-bold text-center">
@@ -30,9 +30,10 @@
             </tr>
           </thead>
           <tbody>
-            @if($inbox1 != NULL)
             <?php
-              foreach ($inbox1 as $key) {
+              $number = 0;
+              foreach ($inbox as $key) {
+                $id = $key->id;
               for ($i=0, $j=0; $i<strlen($key->name) ; $i++) {
                 if($key->name[$i] == ',')
                 {
@@ -40,6 +41,10 @@
                 }
                 if ($key->name[$i] >= 'a' && $key->name[$i] <= 'z' || $key->name[$i] >= 'A' && $key->name[$i] <= 'Z' || ord($key->name[$i]) >= 48 && ord($key->name[$i]) <= 57)
                 {
+                  if($number!=0)
+                  {
+                    unset($names[$j]);
+                  }
                   $names[$j][$i] = $key->name[$i];
                 }
               }
@@ -51,6 +56,11 @@
                 }
                 if (ord($key->stok[$i]) >= 48 && ord($key->stok[$i]) <= 57)
                 {
+                  if($number!=0)
+                  {
+                    unset($stoks[$j]);
+                  }
+                  $stoks[$j][$i] = NULL;
                   $stoks[$j][$i] = $key->stok[$i];
                 }
               }
@@ -62,6 +72,10 @@
                 }
                 if (ord($key->category_id[$i]) >= 48 && ord($key->category_id[$i]) <= 57)
                 {
+                  if($number!=0)
+                  {
+                    unset($categorys[$j]);
+                  }
                   $categorys[$j][$i] = $key->category_id[$i];
                 }
               }
@@ -73,62 +87,29 @@
                 }
                 if (ord($key->harga_unit[$i]) >= 48 && ord($key->harga_unit[$i]) <= 57)
                 {
+                  if($number!=0)
+                  {
+                    unset($hargas[$j]);
+                  }
                   $hargas[$j][$i] = $key->harga_unit[$i];
                 }
               }
-
-              }
-              for ($i=0; $i <=$j ; $i++) {
-                echo implode("",$names[$i]);
-                echo implode("",$stoks[$i]);
-                echo implode("",$categorys[$i]);
-                echo implode("",$hargas[$i]);?>
+              for ($i=0; $i <=$j ; $i++) {?>
                 <tr>
-                  <td>{{ $loop->iteration }}</td>
-                  <td>{{ $names[$i] }}</td>
-                  <td>{{ $stoks[$i] }}</td>
-                  @foreach ($category as $key)
-                  @if ($key->id == $categorys[$i])
-                  <td>{{ $key->category }}</td>
-                  @endif
-                  @endforeach
-                  <td>{{ $hargas[$i] }}</td>
-                  <td> <a href="#" class="btn-sm font-weight-bold btn-warning w-50">Edit</a> </td>
-                  <td> <a href="#" class="btn-sm font-weight-bold btn-danger w-50">Delete</a> </td>
+                  <td align="center"><?php echo $number+1; ?></td>
+                  <?php $number+=1; ?>
+                  <td align="center"><?php echo implode("",$names[$i]); ?></td>
+                  <td align="center"><?php echo implode("",$stoks[$i]); ?></td>
+                  <?php foreach ($category as $key ) {
+                    if ($key->id == implode("",$categorys[$i])){?>
+                      <td align="center"><?php echo $key->category; ?></td>
+                  <?php  }
+                  } ?>
+                  <td align="center"><?php echo implode("",$hargas[$i]); ?></td>
+                  <td><a href="/accpt/<?php echo $id ?>,<?php echo $i; ?>">accpt</a></td>
+                  <td>decline</td>
                 </tr>
-            <?php }    ?>
-            @endforeach
-            @endif
-          </tbody>
-        </table>
-      <?php } elseif(Session::get('level')==2){ ?>
-        <a href="/add">Tambah data</a>
-        <table id="example" class="hover table table-bordered table-striped">
-          <thead class="thead-dark font-weight-bold text-center">
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Stok</th>
-              <th>Qr Code</th>
-              <th>Harga_unit</th>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            @if($inventory != NULL)
-            @foreach($inventory as $key)
-            <tr>
-              <td>{{ $loop->iteration }}</td>
-              <td>{{ $key->name }}</td>
-              <td>{{ $key->stok }}</td>
-              <td>{{ $key->qr_code }}</td>
-              <td>{{ $key->harga_unit }}</td>
-              <td> <a href="#" class="btn-sm font-weight-bold btn-warning w-50">Edit</a> </td>
-              <td> <a href="#" class="btn-sm font-weight-bold btn-danger w-50">Delete</a> </td>
-            </tr>
-            @endforeach
-            @endif
+          <?php }} ?>
           </tbody>
         </table>
       <?php } ?>

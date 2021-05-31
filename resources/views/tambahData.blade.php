@@ -37,6 +37,6 @@
               </div>
             </div>
             <?php  }?>
+            <input type="submit" class="btn-sm font-weight-bold btn-primary" value="submit">
           </form>
-          <input type="submit" class="btn-sm font-weight-bold btn-primary" value="submit">
 @endsection

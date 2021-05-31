@@ -63,3 +63,5 @@ Route::post('/addData', function(Request $req){
 });
 
 Route::post('/tambahData', 'Controller@tambahData');
+
+Route::get('/accpt/{id},{i}', 'Controller@accpt');
