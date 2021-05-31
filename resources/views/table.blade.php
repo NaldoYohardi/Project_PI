@@ -16,30 +16,7 @@
         List containing Inventories from Database
       </p>
       <?php if(Session::get('level')== 0){ ?>
-        <table id="example" class="hover">
-          <thead>
-            <tr>
-              <th>NIM</th>
-              <th>Nama</th>
-              <th>Jenis Kelamin</th>
-              <th>Alamat</th>
-              <th>Fakultas</th>
-              <th>Prodi</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>a</td>
-              <td>v</td>
-              <td>c</td>
-              <td>d</td>
-              <td>e</td>
-            </tr>
-          </tbody>
-        </table>
-      <?php } elseif(Session::get('level')==1){ ?>
-        <a href="/add">Tambah data</a>
+        <a href="/add">Request Tambah data</a>
         <table id="example" class="hover table table-bordered table-striped">
           <thead class="thead-dark font-weight-bold text-center">
             <tr>
@@ -69,26 +46,33 @@
           </tbody>
         </table>
       <?php } elseif(Session::get('level')==2){ ?>
-        <table id="example" class="hover">
-          <thead>
+        <a href="/add">Tambah data</a>
+        <table id="example" class="hover table table-bordered table-striped">
+          <thead class="thead-dark font-weight-bold text-center">
             <tr>
-              <th>NIM</th>
-              <th>Nama</th>
-              <th>Jenis Kelamin</th>
-              <th>Alamat</th>
-              <th>Fakultas</th>
-              <th>Prodi</th>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Stok</th>
+              <th>Qr Code</th>
+              <th>Harga_unit</th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
+            @if($inventory != NULL)
+            @foreach($inventory as $key)
             <tr>
-              <td>1</td>
-              <td>a</td>
-              <td>v</td>
-              <td>c</td>
-              <td>d</td>
-              <td>e</td>
+              <td>{{ $loop->iteration }}</td>
+              <td>{{ $key->name }}</td>
+              <td>{{ $key->stok }}</td>
+              <td>{{ $key->qr_code }}</td>
+              <td>{{ $key->harga_unit }}</td>
+              <td> <a href="#" class="btn-sm font-weight-bold btn-warning w-50">Edit</a> </td>
+              <td> <a href="#" class="btn-sm font-weight-bold btn-danger w-50">Delete</a> </td>
             </tr>
+            @endforeach
+            @endif
           </tbody>
         </table>
       <?php } ?>
