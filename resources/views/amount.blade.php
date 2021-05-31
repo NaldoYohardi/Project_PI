@@ -4,6 +4,11 @@
 @section('MainTitle', 'Add Amount')
 
 @section('content')
+  <ul class="breadcrumb">
+    <li><a href="{{ url('/home')}}">Dashboard</a></li>
+    <li><a href="{{ url('/table')}}">Inventory</a></li>
+    <li>Request Amount</li>
+  </ul>
   <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
@@ -17,7 +22,7 @@
               <?php } ?>
             </select>
             <br>
-            <input type="submit" name="submit" value="submit">
+            <input type="submit" class="btn-sm font-weight-bold btn-primary" name="submit" value="submit">
           </div>
         </form>
       </div>
