@@ -45,10 +45,34 @@
             <p class="card-description">
               List containing User accounts from Database
             </p>
-            <table class="table table-rounded table-striped">
+            <table id="example" class="hover">
               <thead class="thead-dark font-weight-bold text-center">
                 <tr>
-                  <th class="w-10">No.</th>
+                  <th>No.</th>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th>Account Level</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody class="table-borderless text-center">
+                @foreach ($user1 as $key)
+                  <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $key->name }}</td>
+                    <td>{{ $key->email }}</td>
+                    <td>{{ $key->level }}</td>
+                    <td> <a href="/edit/{{$key->user_id}}" class="btn-sm font-weight-bold btn-warning w-50">Edit</a> </td>
+                    <td> <a href="/delete/{{$key->user_id}}" class="btn-sm font-weight-bold btn-danger w-50">Delete</a> </td>
+                  </tr>
+                @endforeach
+              </tbody>
+            </table>
+            <!-- <table class="hover" id="datatables">
+              <thead class="thead-dark font-weight-bold text-center">
+                <tr>
+                  <th>No.</th>
                   <th>Username</th>
                   <th>Email</th>
                   <th class="w-10">Account Level</th>
@@ -67,9 +91,14 @@
                   </tr>
                 @endforeach
               </tbody>
-            </table>
+            </table> -->
           </div>
         </div>
       </div>
     <?php } ?>
+    <script>
+      $(document).ready(function() {
+        $('#example').DataTable();
+      } );
+    </script>
   @endsection

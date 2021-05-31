@@ -16,68 +16,71 @@
         List containing Inventories from Database
       </p>
       <?php if(Session::get('level')== 0){ ?>
-        <table class="table table-bordered table-striped">
-          <thead align="center">
+        <table id="example" class="hover">
+          <thead>
             <tr>
-              <th>No.</th>
-              <th>Item</th>
-              <th>Amount</th>
-              <th>Comment</th>
-              <th colspan="2">Action</th>
+              <th>NIM</th>
+              <th>Nama</th>
+              <th>Jenis Kelamin</th>
+              <th>Alamat</th>
+              <th>Fakultas</th>
+              <th>Prodi</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>{{ '1' }}</td>
-              <td>{{ 'Dummy' }}</td>
-              <td>{{ '1' }}</td>
-              <td>{{ 'Dummy Text Data' }}</td>
-              <td> <a href="/edit/{{''}}" class="btn-sm btn-warning">Edit</a> </td>
-              <td> <a href="/delete/{{''}}" class="btn-sm btn-danger">Delete</a> </td>
+              <td>1</td>
+              <td>a</td>
+              <td>v</td>
+              <td>c</td>
+              <td>d</td>
+              <td>e</td>
             </tr>
           </tbody>
         </table>
       <?php } elseif(Session::get('level')==1){ ?>
-        <table class="table table-bordered table-striped">
-          <thead align="center">
+        <table id="example" class="hover">
+          <thead>
             <tr>
-              <th>No.</th>
-              <th>Item</th>
-              <th>Amount</th>
-              <th>Comment</th>
-              <th colspan="2">Action</th>
+              <th>NIM</th>
+              <th>Nama</th>
+              <th>Jenis Kelamin</th>
+              <th>Alamat</th>
+              <th>Fakultas</th>
+              <th>Prodi</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>{{ '1' }}</td>
-              <td>{{ 'Dummy' }}</td>
-              <td>{{ '1' }}</td>
-              <td>{{ 'Dummy Text Data' }}</td>
-              <td> <a href="/edit/{{''}}" class="btn-sm btn-warning">Edit</a> </td>
-              <td> <a href="/delete/{{''}}" class="btn-sm btn-danger">Delete</a> </td>
+              <td>1</td>
+              <td>a</td>
+              <td>v</td>
+              <td>c</td>
+              <td>d</td>
+              <td>e</td>
             </tr>
           </tbody>
         </table>
       <?php } elseif(Session::get('level')==2){ ?>
-        <table class="table table-bordered table-striped">
-          <thead align="center">
+        <table id="example" class="hover">
+          <thead>
             <tr>
-              <th>No.</th>
-              <th>Item</th>
-              <th>Amount</th>
-              <th>Comment</th>
-              <th colspan="2">Action</th>
+              <th>NIM</th>
+              <th>Nama</th>
+              <th>Jenis Kelamin</th>
+              <th>Alamat</th>
+              <th>Fakultas</th>
+              <th>Prodi</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>{{ '1' }}</td>
-              <td>{{ 'Dummy' }}</td>
-              <td>{{ '1' }}</td>
-              <td>{{ 'Dummy Text Data' }}</td>
-              <td> <a href="/edit/{{''}}" class="btn-sm btn-warning">Edit</a> </td>
-              <td> <a href="/delete/{{''}}" class="btn-sm btn-danger">Delete</a> </td>
+              <td>1</td>
+              <td>a</td>
+              <td>v</td>
+              <td>c</td>
+              <td>d</td>
+              <td>e</td>
             </tr>
           </tbody>
         </table>
@@ -85,4 +88,9 @@
     </div>
   </div>
 </div>
+<script>
+  $(document).ready(function() {
+    $('#example').DataTable();
+  } );
+</script>
 @endsection
