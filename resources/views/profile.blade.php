@@ -45,7 +45,7 @@
             <p class="card-description">
               List containing User accounts from Database
             </p>
-            <table id="example" class="hover table table-bordered">
+            <table id="example" class="hover table table-bordered table-striped">
               <thead class="thead-dark font-weight-bold text-center">
                 <tr>
                   <th>No.</th>
