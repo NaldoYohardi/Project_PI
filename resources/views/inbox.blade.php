@@ -34,6 +34,15 @@
               $number = 0;
               foreach ($inbox as $key) {
                 $id = $key->id;
+                if($number!=0)
+                {
+                  for ($i=0; $i<=$n; $i++) {
+                    unset($names[$i]);
+                    unset($stoks[$i]);
+                    unset($hargas[$i]);
+                    unset($categorys[$i]);
+                  }
+                }
               for ($i=0, $j=0; $i<strlen($key->name) ; $i++) {
                 if($key->name[$i] == ',')
                 {
@@ -41,10 +50,6 @@
                 }
                 if ($key->name[$i] >= 'a' && $key->name[$i] <= 'z' || $key->name[$i] >= 'A' && $key->name[$i] <= 'Z' || ord($key->name[$i]) >= 48 && ord($key->name[$i]) <= 57)
                 {
-                  if($number!=0)
-                  {
-                    unset($names[$j]);
-                  }
                   $names[$j][$i] = $key->name[$i];
                 }
               }
@@ -56,11 +61,6 @@
                 }
                 if (ord($key->stok[$i]) >= 48 && ord($key->stok[$i]) <= 57)
                 {
-                  if($number!=0)
-                  {
-                    unset($stoks[$j]);
-                  }
-                  $stoks[$j][$i] = NULL;
                   $stoks[$j][$i] = $key->stok[$i];
                 }
               }
@@ -72,10 +72,6 @@
                 }
                 if (ord($key->category_id[$i]) >= 48 && ord($key->category_id[$i]) <= 57)
                 {
-                  if($number!=0)
-                  {
-                    unset($categorys[$j]);
-                  }
                   $categorys[$j][$i] = $key->category_id[$i];
                 }
               }
@@ -87,13 +83,10 @@
                 }
                 if (ord($key->harga_unit[$i]) >= 48 && ord($key->harga_unit[$i]) <= 57)
                 {
-                  if($number!=0)
-                  {
-                    unset($hargas[$j]);
-                  }
                   $hargas[$j][$i] = $key->harga_unit[$i];
                 }
               }
+              $n = $j;
               for ($i=0; $i <=$j ; $i++) {?>
                 <tr>
                   <td align="center"><?php echo $number+1; ?></td>

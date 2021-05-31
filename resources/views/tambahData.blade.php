@@ -33,7 +33,6 @@
                   </select><br><br>
                   <h4>Harga per Unit</h4>
                   <input class="form-control" type="number" min="0" step="1000" name="harga<?php echo $i; ?>"><br>
-                  <div class="ripple-container"><input type="submit" class="btn-sm font-weight-bold btn-primary" value="Submit"></div>
                 </div>
               </div>
             </div>
