@@ -33,7 +33,17 @@ class Controller extends BaseController
 
     public function inbox()
     {
-        return view('inbox');
+      $category = DB::select("SELECT * FROM category");
+      $inbox = DB::select("SELECT * FROM inbox where status = 0");
+      $inbox1 = DB::select("SELECT * FROM inbox where status = 2");
+      if (Session::get('level') == 0)
+      {
+        return view('inbox', compact('inbox1'), compact('category'));
+      }
+      elseif(Session::get('level') == 2)
+      {
+        return view('inbox', compact('inbox'), compact('category'));
+      }
     }
     public function profile($name)
     {

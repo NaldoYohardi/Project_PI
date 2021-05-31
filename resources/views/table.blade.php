@@ -24,6 +24,7 @@
               <th>Name</th>
               <th>Stok</th>
               <th>Qr Code</th>
+              <th>Category</th>
               <th>Harga_unit</th>
               <th></th>
               <th></th>
@@ -54,6 +55,7 @@
               <th>Name</th>
               <th>Stok</th>
               <th>Qr Code</th>
+              <th>Category</th>
               <th>Harga_unit</th>
               <th></th>
               <th></th>
