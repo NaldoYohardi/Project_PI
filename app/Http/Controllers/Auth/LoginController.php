@@ -47,6 +47,7 @@ class LoginController extends Controller
     {
         $user = DB::select("select * from users where email = '$request->email'");
         foreach ($user as $key){
+          $user_id = $key->user_id;
           $name = $key->name;
           $pswd = $key->password;
           $email = $key->email;
@@ -56,6 +57,7 @@ class LoginController extends Controller
         if($user)
         {
           if(password_verify($request->password,$pswd)){
+            Session::put('user_id',$user_id);
             Session::put('name',$name);
             Session::put('email', $email);
             Session::put('level', $level);

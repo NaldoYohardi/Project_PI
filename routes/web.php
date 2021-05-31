@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,3 +53,13 @@ Route::post('/update/{user}', 'Controller@update');
 Route::get('/delete/{id}', 'Controller@delete');
 
 Route::get('/test', 'QrController@get');
+
+Route::get('/add', 'Controller@add');
+
+Route::post('/addData', function(Request $req){
+    $n = $req->amount;
+    $category = DB::select("SELECT * FROM category");
+    return view('tambahData', compact('category'), compact('n'));
+});
+
+Route::post('/tambahData', 'Controller@tambahData');

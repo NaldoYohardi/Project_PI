@@ -27,7 +27,8 @@ class Controller extends BaseController
 
     public function table()
     {
-        return view('table');
+      $inventory = DB::select("SELECT * FROM inventory");
+      return view('table', compact('inventory'));
     }
 
     public function inbox()
@@ -81,5 +82,31 @@ class Controller extends BaseController
     {
       \App\Models\User::where('user_id',$id)->delete();
       return redirect('/profile/'.Session::get('email'))->with('status','deleted');
+    }
+
+    public function add()
+    {
+      return view('amount');
+    }
+
+    public function tambahData(Request $req)
+    {
+      for ($i=0; $i <$req->n ; $i++) {
+        $a = "name".$i;
+        $b = "stok".$i;
+        $c = "category".$i;
+        $d = "harga".$i;
+        $name[$i] = $req->$a;
+        $stok[$i] = $req->$b;
+        $category[$i] = $req->$c;
+        $harga[$i] = $req->$d;
+      }
+      $JSON1 = json_encode($name);
+      $JSON2 = json_encode($stok);
+      $JSON3 = json_encode($category);
+      $JSON4 = json_encode($harga);
+      DB::insert("INSERT INTO import_data (user_id, name, stok, category_id, harga_unit) VALUES ($req->user_id,
+        '$JSON1','$JSON2','$JSON3','$JSON4')");
+      return redirect('/table');
     }
 }
