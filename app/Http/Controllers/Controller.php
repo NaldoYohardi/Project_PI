@@ -104,14 +104,24 @@ class Controller extends BaseController
         $category[$i] = $req->$c;
         $harga[$i] = $req->$d;
         $status[$i] = "0";
+        $status1[$i] = "3";
       }
       $JSON1 = json_encode($name);
       $JSON2 = json_encode($stok);
       $JSONS = json_encode($status);
+      $JSONM = json_encode($status1);
       $JSON3 = json_encode($category);
       $JSON4 = json_encode($harga);
-      DB::insert("INSERT INTO import_data (user_id, name, stok, status, category_id, harga_unit) VALUES ($req->user_id,
+      if (Session::get('level')==0)
+      {
+        DB::insert("INSERT INTO import_data (user_id, name, stok, status, category_id, harga_unit) VALUES ($req->user_id,
         '$JSON1','$JSON2','$JSONS','$JSON3','$JSON4')");
+      }
+      elseif (Session::get('level') == 1)
+      {
+        DB::insert("INSERT INTO import_data (user_id, name, stok, status, category_id, harga_unit) VALUES ($req->user_id,
+          '$JSON1','$JSON2','$JSONM','$JSON3','$JSON4')");
+      }
       return redirect('/table');
     }
     public function accpt($id,$index){
