@@ -53,15 +53,9 @@
                 $url.= $_SERVER['HTTP_HOST'];
                 $url.= $_SERVER['REQUEST_URI'];
           if($url == 'http://127.0.0.1:8000/home'){ ?>
-            <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Welcome {{ Session::get('name') }}!</h5>
-          <?php } elseif($url == 'http://127.0.0.1:8000/register'){ ?>
-            <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Register</h5>
-          <?php } elseif($url == 'http://127.0.0.1:8000/table'){ ?>
-            <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Inventory</h5>
-          <?php } elseif($url == 'http://127.0.0.1:8000/inbox'){ ?>
-            <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Inbox</h5>
-          <?php } else{ ?>
-            <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Welcome {{ Session::get('name') }}!</h5>
+            <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Hello, {{ Session::get('name') }}!</h5>
+          <?php } else { ?>
+            <h5 class="mb-0 font-weight-medium d-none d-lg-flex">@yield('MainTitle')</h5>
           <?php } ?>
           <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
             <span class="icon-menu"></span>
