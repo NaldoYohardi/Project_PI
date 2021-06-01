@@ -27,8 +27,9 @@ class Controller extends BaseController
 
     public function table()
     {
-      $inventory = DB::select("SELECT * FROM inventory");
-      return view('table', compact('inventory'));
+      $category = DB::select("SELECT * FROM category");
+      $inbox = DB::select("SELECT * FROM import_data");
+      return view('table', compact('inbox'), compact('category'));
     }
 
     public function inbox()
