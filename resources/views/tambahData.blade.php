@@ -11,6 +11,7 @@
     <li>Add Item</li>
   </ul>
         &nbsp; <?php echo Session::get('email'); ?>
+        <br><br>
         <form action="/tambahData" method="post">
           @csrf
             <?php for ($i=0; $i <$n ; $i++) {?>
@@ -21,23 +22,25 @@
                   <input type="hidden" name="user_id" value="<?php echo Session::get('user_id'); ?>">
                   <input type="hidden" name="n" value="<?php echo $n; ?>">
                   <br>
-                  <h4>Nama</h4>
-                  <input class="form-control" type="text" name="name<?php echo $i; ?>"><br>
-                  <h4>Stock</h4>
-                  <input class="form-control" type="number" min="1" value="1" name="stok<?php echo $i; ?>"><br>
-                  <h4>Category</h4>
-                  <select name="category<?php echo $i; ?>">
-                    @foreach($category as $key)
-                    <option value="{{$key->id}}">{{$key->category}}</option>
-                    @endforeach
-                  </select><br><br>
-                  <h4>Harga per Unit</h4>
-                  <input class="form-control" type="number" min="0" step="1000" name="harga<?php echo $i; ?>"><br>
+                  <ul>
+                    <p style="font-size:140%; font-family:Helvetica;">Nama</p>
+                    <input class="form-control" type="text" name="name<?php echo $i; ?>"><br>
+                    <p style="font-size:140%; font-family:Helvetica;">Stock</p>
+                    <input class="form-control" type="number" min="1" value="1" name="stok<?php echo $i; ?>"><br>
+                    <p style="font-size:140%; font-family:Helvetica;">Category</p>
+                    <select style="font-size:130%; font-family:Helvetica;" name="category<?php echo $i; ?>">
+                      @foreach($category as $key)
+                      <option value="{{$key->id}}">{{$key->category}}</option>
+                      @endforeach
+                    </select><br><br>
+                    <p style="font-size:140%; font-family:Helvetica;">Harga per Unit</p>
+                    <input class="form-control" type="number" min="0" step="1000" name="harga<?php echo $i; ?>">
+                  </ul>
                 </div>
               </div>
             </div>
             <?php  }?>
-            &nbsp; &nbsp;<div class="ripple-container"><input type="submit" class="btn-sm font-weight-bold btn-success" value="Submit"></div>
+            <div class="ripple-container">&nbsp; &nbsp; &nbsp;<input type="submit" class="btn-sm font-weight-bold btn-success" value="Submit"></div>
             <br>
           </form>
 @endsection

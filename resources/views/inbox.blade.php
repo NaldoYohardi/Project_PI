@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Table')
-@section('MainTitle', 'Table')
+@section('title', 'Inbox')
+@section('MainTitle', 'Inbox')
 
 @section('content')
 <ul class="breadcrumb">
