@@ -126,7 +126,7 @@
                     ">
                   </center></td>
                   <td align="center"><?php echo implode("",$hargas[$i]); ?></td>
-                  <td><center><a onclick="return confirm('Are you sure?');" href="#" class="btn btn-success">Add</a></center></td>
+                  <td><center><a href="/addstok/<?php echo $id ?>,<?php echo $i; ?>" class="btn btn-success">Add</a></center></td>
                 </tr>
           <?php }}$number+=1;} ?>
           </tbody>
@@ -243,7 +243,7 @@
                     ">
                   </center></td>
                   <td align="center"><?php echo implode("",$hargas[$i]); ?></td>
-                  <td><center><a onclick="return confirm('Are you sure?');" href="#" class="btn btn-success">Add</a></center></td>
+                  <td><center><a href="/addstok/<?php echo $id ?>,<?php echo $i; ?>" class="btn btn-success">Add</a></center></td>
                 </tr>
           <?php }}$number+=1;} ?>
           </tbody>

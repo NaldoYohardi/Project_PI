@@ -229,4 +229,9 @@ class Controller extends BaseController
     return redirect('/inbox');
     }
 
+    public function addstok($id,$i)
+    {
+      return view('addstok', compact('id'), compact('i'));
+    }
+
 }
