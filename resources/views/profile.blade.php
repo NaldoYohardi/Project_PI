@@ -53,6 +53,8 @@
             <p class="card-description">
               List containing User accounts from Database
             </p>
+            <a href="/register" class="btn-sm font-weight-bold btn-success w-50">Register New User</a>
+            <br></br>
             <table id="example" class="hover table table-bordered table-striped">
               <thead class="thead-dark font-weight-bold text-center">
                 <tr>
