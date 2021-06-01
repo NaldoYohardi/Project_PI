@@ -21,7 +21,7 @@
             <tr>
               <th>ID</th>
               <th>Name</th>
-              <th>Stok</th>
+              <th>Stock</th>
               <th>Category</th>
               <th>Harga_unit</th>
               <th>Action</th>
@@ -128,7 +128,7 @@
             <tr>
               <th>ID</th>
               <th>Name</th>
-              <th>Stok</th>
+              <th>Stock</th>
               <th>Category</th>
               <th>Harga_unit</th>
               <th>Action</th>

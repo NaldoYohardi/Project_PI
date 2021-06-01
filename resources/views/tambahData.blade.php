@@ -24,7 +24,7 @@
                   <h4>Nama</h4>
                   <input class="form-control" type="text" name="name<?php echo $i; ?>"><br>
                   <h4>Stock</h4>
-                  <input class="form-control" type="number" name="stok<?php echo $i; ?>"><br>
+                  <input class="form-control" type="number" min="0" name="stok<?php echo $i; ?>"><br>
                   <h4>Category</h4>
                   <select name="category<?php echo $i; ?>">
                     @foreach($category as $key)
@@ -33,10 +33,10 @@
                   </select><br><br>
                   <h4>Harga per Unit</h4>
                   <input class="form-control" type="number" min="0" step="1000" name="harga<?php echo $i; ?>"><br>
+                  <div class="ripple-container"><input type="submit" class="btn-sm font-weight-bold btn-success" value="Submit"></div>
                 </div>
               </div>
             </div>
             <?php  }?>
-            <input type="submit" class="btn-sm font-weight-bold btn-primary" value="submit">
           </form>
 @endsection

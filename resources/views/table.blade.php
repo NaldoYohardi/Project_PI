@@ -21,7 +21,7 @@
             <tr>
               <th>ID</th>
               <th>Name</th>
-              <th>Stok</th>
+              <th>Stock</th>
               <th>Category</th>
               <th>Qr Code</th>
               <th>Harga_unit</th>
@@ -131,12 +131,14 @@
         </table>
       <?php } ?>
       <?php if(Session::get('level')== 0){ ?>
+        <a href="/add" class="btn-sm font-weight-bold btn-success w-50">Request Tambah data</a>
+        <br></br>
         <table id="example" class="hover table table-bordered table-striped">
           <thead class="thead-dark font-weight-bold text-center">
             <tr>
               <th>ID</th>
               <th>Name</th>
-              <th>Stok</th>
+              <th>Stock</th>
               <th>Category</th>
               <th>Qr Code</th>
               <th>Harga_unit</th>
