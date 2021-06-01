@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,7 +53,9 @@ Route::post('/update/{user}', 'Controller@update');
 //route delete
 Route::get('/delete/{id}', 'Controller@delete');
 
-Route::get('/test', 'QrController@get');
+Route::get('/test',function(){
+  return view('test');
+});
 
 Route::get('/add', 'Controller@add');
 

@@ -37,8 +37,17 @@
               <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $key->name }}</td>
-                <td>{{ $key->stok }}</td>
-                <td>{{ $key->qr_code }}</td>
+                <td>{{ $key->stock }}</td>
+                <td><img src="data:image/png;base64,
+                              {!! base64_encode(
+                                  QrCode::format('png')
+                                  ->merge(public_path('laravel.PNG'), 0.3, true)
+                                  ->size(100)
+                                  ->generate("'{{ $key->name }}'")
+                                )
+                              !!}
+                    ">
+                </td>
                 <td>{{ $key->harga_unit }}</td>
                 <td> <a href="#" class="btn-sm font-weight-bold btn-warning w-50">Edit</a> </td>
                 <td> <a href="#" class="btn-sm font-weight-bold btn-danger w-50">Delete</a> </td>
@@ -69,8 +78,17 @@
               <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $key->name }}</td>
-                <td>{{ $key->stok }}</td>
-                <td>{{ $key->qr_code }}</td>
+                <td>{{ $key->stock }}</td>
+                <td><img src="data:image/png;base64,
+                              {!! base64_encode(
+                                  QrCode::format('png')
+                                  ->merge(public_path('laravel.PNG'), 0.3, true)
+                                  ->size(100)
+                                  ->generate("'{{ $key->name }}'")
+                                )
+                              !!}
+                    ">
+                </td>
                 <td>{{ $key->harga_unit }}</td>
                 <td> <a href="#" class="btn-sm font-weight-bold btn-warning w-50">Edit</a> </td>
                 <td> <a href="#" class="btn-sm font-weight-bold btn-danger w-50">Delete</a> </td>
