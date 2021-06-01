@@ -12,11 +12,11 @@
   <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
-        <form action="/addData" method="post">
+        <form action="/addstoks" method="post">
           @csrf
           <div class="form-group">
-            <input type="text" name="i" value="<?php echo $i; ?>">
-            <input type="text" name="id" value="<?php echo $id; ?>">
+            <input type="hidden" name="i" value="<?php echo $i; ?>">
+            <input type="hidden" name="id" value="<?php echo $id; ?>">
             <input type="number" name="amount">
             <br>
             <input type="submit" class="btn-sm font-weight-bold btn-success" name="submit" value="Submit">

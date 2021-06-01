@@ -74,3 +74,5 @@ Route::get('/decline/{id},{i}', 'Controller@decline');
 Route::get('/done/{id},{i}', 'Controller@done');
 
 Route::get('/addstok/{id},{i}', 'Controller@addstok');
+
+Route::post('/addstoks', 'Controller@addstoks');
