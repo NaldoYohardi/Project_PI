@@ -24,8 +24,7 @@
               <th>Stok</th>
               <th>Category</th>
               <th>Harga_unit</th>
-              <th></th>
-              <th></th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -113,8 +112,10 @@
                   <?php  }
                   } ?>
                   <td align="center"><?php echo implode("",$hargas[$i]); ?></td>
-                  <td><a onclick="return confirm('Are you sure?');" href="/accpt/<?php echo $id ?>,<?php echo $i; ?>">accpt</a></td>
-                  <td><a onclick="return confirm('Are you sure?');" href="/decline/<?php echo $id ?>,<?php echo $i; ?>">decline</a></td>
+                  <td><center>
+                    <a onclick="return confirm('Are you sure?');" href="/accpt/<?php echo $id ?>,<?php echo $i; ?>" class="btn btn-success">&#10003;</a>
+                    <a onclick="return confirm('Are you sure?');" href="/decline/<?php echo $id ?>,<?php echo $i; ?>" class="btn btn-danger">&#10006;</a>
+                  </center></td>
                 </tr>
           <?php }}$number+=1;} ?>
           </tbody>
@@ -130,7 +131,7 @@
               <th>Stok</th>
               <th>Category</th>
               <th>Harga_unit</th>
-              <th></th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -218,7 +219,7 @@
                   <?php  }
                   } ?>
                   <td align="center"><?php echo implode("",$hargas[$i]); ?></td>
-                  <td><a onclick="return confirm('Are you sure?');" href="/done/<?php echo $id ?>,<?php echo $i; ?>">Done</a></td>
+                  <td><center><a onclick="return confirm('Are you sure?');" href="/done/<?php echo $id ?>,<?php echo $i; ?>" class="btn btn-success">&#10003;</a></center></td>
                 </tr>
           <?php }}$number+=1;} ?>
           </tbody>

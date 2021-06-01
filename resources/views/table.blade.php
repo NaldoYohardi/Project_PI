@@ -27,8 +27,7 @@
                 <th>Qr Code</th>
                 <th>Category</th>
                 <th>Harga_unit</th>
-                <th></th>
-                <th></th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -49,8 +48,10 @@
                     ">
                 </td>
                 <td>{{ $key->harga_unit }}</td>
-                <td> <a href="#" class="btn-sm font-weight-bold btn-warning w-50">Edit</a> </td>
-                <td> <a href="#" class="btn-sm font-weight-bold btn-danger w-50">Delete</a> </td>
+                <td><center>
+                  <a href="#" class="btn-sm font-weight-bold btn-warning w-50">Edit</a>
+                  <a href="#" class="btn-sm font-weight-bold btn-danger w-50">Delete</a>
+                </center></td>
               </tr>
               @endforeach
               @endif
@@ -68,8 +69,7 @@
                 <th>Stok</th>
                 <th>Qr Code</th>
                 <th>Harga_unit</th>
-                <th></th>
-                <th></th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -90,8 +90,10 @@
                     ">
                 </td>
                 <td>{{ $key->harga_unit }}</td>
-                <td> <a href="#" class="btn-sm font-weight-bold btn-warning w-50">Edit</a> </td>
-                <td> <a href="#" class="btn-sm font-weight-bold btn-danger w-50">Delete</a> </td>
+                <td><center>
+                  <a href="#" class="btn-sm font-weight-bold btn-warning w-50">Edit</a>
+                  <a href="#" class="btn-sm font-weight-bold btn-danger w-50">Delete</a>
+                </center></td>
               </tr>
               @endforeach
               @endif

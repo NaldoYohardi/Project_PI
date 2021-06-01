@@ -60,8 +60,7 @@
                   <th>Username</th>
                   <th>Email</th>
                   <th>Account Level</th>
-                  <th></th>
-                  <th></th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody class="table-bordered text-center">
@@ -71,8 +70,11 @@
                     <td>{{ $key->name }}</td>
                     <td>{{ $key->email }}</td>
                     <td>{{ $key->level }}</td>
-                    <td> <a href="/edit/{{$key->user_id}}" class="btn-sm font-weight-bold btn-warning w-50">Edit</a> </td>
-                    <td> <a href="/delete/{{$key->user_id}}" class="btn-sm font-weight-bold btn-danger w-50">Delete</a> </td>
+                    <td><center>
+                      <a href="/edit/{{$key->user_id}}" class="btn-sm font-weight-bold btn-warning w-50">Edit</a>
+                      &nbsp; &nbsp;
+                      <a href="/delete/{{$key->user_id}}" class="btn-sm font-weight-bold btn-danger w-50">Delete</a>
+                    </center></td>
                   </tr>
                 @endforeach
               </tbody>
