@@ -32,9 +32,9 @@
                         <?php } ?>
                         <center>
                         <br>
-                        <a href="/edit/{{$key->user_id}}" class="btn btn-primary btn-round">Update Data<div class="ripple-container"></div></a>
+                        <a href="/edit/{{$key->user_id}}" class="btn btn-primary btn-round"><div class="ripple-container">Update Data</div></a>
                         <br></br>
-                        <a href="/logOUT" onclick="return confirm('Are you sure?');" class="btn btn-danger btn-round">Logout<div class="ripple-container"></div></a>
+                        <a href="/logOUT" onclick="return confirm('Are you sure you want to Sign Out?');" class="btn btn-danger btn-round"><div class="ripple-container">Logout</div></a>
                         </center>
                       @endforeach
                     </div>

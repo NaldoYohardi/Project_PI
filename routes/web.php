@@ -27,6 +27,8 @@ Route::get('/table', 'Controller@table');
 
 Route::get('/inbox', 'Controller@inbox');
 
+Route::get('/history', 'Controller@history');
+
 Route::post('/check', 'Auth\LoginController@check');
 
 // route for verification email

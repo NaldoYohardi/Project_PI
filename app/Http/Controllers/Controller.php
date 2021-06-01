@@ -38,6 +38,15 @@ class Controller extends BaseController
       $inbox = DB::select("SELECT * FROM import_data");
       return view('inbox', compact('inbox'), compact('category'));
     }
+
+    public function history()
+    {
+      // $category = DB::select("SELECT * FROM category");
+      // $inbox = DB::select("SELECT * FROM import_data");
+      // return view('inbox', compact('inbox'), compact('category'));
+        return view('history');
+    }
+
     public function profile($name)
     {
         $user = DB::select("select * from users where email = '$name'");

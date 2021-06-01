@@ -140,6 +140,12 @@
                   <i class="icon-envelope menu-icon"></i>
                 </a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url('/history')}}">
+                  <span class="menu-title">History</span>
+                  <i class="icon-refresh menu-icon"></i>
+                </a>
+              </li>
             <?php } elseif(Session::get('level')== 2){ ?>
               <li class="nav-item">
                 <a class="nav-link" href="{{ url('/home')}}">
@@ -165,9 +171,15 @@
                   <i class="icon-envelope menu-icon"></i>
                 </a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url('/history')}}">
+                  <span class="menu-title">History</span>
+                  <i class="icon-refresh menu-icon"></i>
+                </a>
+              </li>
             <?php } ?>
               <li class="nav-item">
-                <a class="nav-link" href="/logOUT" onclick="return confirm('Are you sure?');">
+                <a class="nav-link" href="{{ url('/logOUT')}}" onclick="return confirm('Are you sure?');">
                   <span class="menu-title">Logout</span>
                   <i class="icon-logout menu-icon"></i>
                 </a>
