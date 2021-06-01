@@ -16,7 +16,6 @@
         Message inbox
       </p>
       <?php if(Session::get('level')== 2){ ?>
-        <a href="/add">Request Tambah data</a>
         <table id="example" class="hover table table-bordered table-striped">
           <thead class="thead-dark font-weight-bold text-center">
             <tr>

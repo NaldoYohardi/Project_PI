@@ -123,6 +123,8 @@ class Controller extends BaseController
     }
     public function accpt($id,$index){
       $status = DB::select("SELECT status FROM import_data where id = $id");
-      dd($status);
+      foreach ($status as $key) {
+        echo($key->status);
+      }
     }
 }
