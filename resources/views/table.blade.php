@@ -16,6 +16,8 @@
         List containing Inventories from Database
       </p>
       <?php if(Session::get('level')== 2){ ?>
+        <a href="/add" class="btn-sm font-weight-bold btn-success w-50">Request Tambah data</a>
+        <br></br>
         <table id="example" class="hover table table-bordered table-striped">
           <thead class="thead-dark font-weight-bold text-center">
             <tr>

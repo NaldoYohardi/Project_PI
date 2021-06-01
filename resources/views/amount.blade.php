@@ -22,7 +22,7 @@
               <?php } ?>
             </select>
             <br>
-            <input type="submit" class="btn-sm font-weight-bold btn-primary" name="submit" value="Submit">
+            <input type="submit" class="btn-sm font-weight-bold btn-success" name="submit" value="Submit">
           </div>
         </form>
       </div>

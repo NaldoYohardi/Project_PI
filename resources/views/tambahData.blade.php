@@ -24,7 +24,7 @@
                   <h4>Nama</h4>
                   <input class="form-control" type="text" name="name<?php echo $i; ?>"><br>
                   <h4>Stock</h4>
-                  <input class="form-control" type="number" min="0" name="stok<?php echo $i; ?>"><br>
+                  <input class="form-control" type="number" min="1" value="1" name="stok<?php echo $i; ?>"><br>
                   <h4>Category</h4>
                   <select name="category<?php echo $i; ?>">
                     @foreach($category as $key)
