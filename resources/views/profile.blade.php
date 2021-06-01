@@ -32,9 +32,9 @@
                         <?php } ?>
                         <center>
                         <br>
-                        <a href="/edit/{{$key->user_id}}" class="btn btn-primary btn-round">Update Data<div class="ripple-container"></div></a>
+                        <a href="/edit/{{$key->user_id}}" class="btn btn-primary btn-round"><div class="ripple-container">Update Data</div></a>
                         <br></br>
-                        <a href="/logOUT" onclick="return confirm('Are you sure?');" class="btn btn-danger btn-round">Logout<div class="ripple-container"></div></a>
+                        <a href="/logOUT" onclick="return confirm('Are you sure you want to Sign Out?');" class="btn btn-danger btn-round"><div class="ripple-container">Logout</div></a>
                         </center>
                       @endforeach
                     </div>
@@ -53,6 +53,8 @@
             <p class="card-description">
               List containing User accounts from Database
             </p>
+            <a href="/register" class="btn-sm font-weight-bold btn-success w-50">Register New User</a>
+            <br></br>
             <table id="example" class="hover table table-bordered table-striped">
               <thead class="thead-dark font-weight-bold text-center">
                 <tr>
