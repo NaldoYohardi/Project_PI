@@ -34,16 +34,8 @@ class Controller extends BaseController
     public function inbox()
     {
       $category = DB::select("SELECT * FROM category");
-      $inbox = DB::select("SELECT * FROM import_data where status = 0");
-      $inbox1 = DB::select("SELECT * FROM import_data where status = 2");
-      if (Session::get('level') == 0)
-      {
-        return view('inbox', compact('inbox1'), compact('category'));
-      }
-      elseif(Session::get('level') == 2)
-      {
-        return view('inbox', compact('inbox'), compact('category'));
-      }
+      $inbox = DB::select("SELECT * FROM import_data");
+      return view('inbox', compact('inbox'), compact('category'));
     }
     public function profile($name)
     {
@@ -124,7 +116,106 @@ class Controller extends BaseController
     public function accpt($id,$index){
       $status = DB::select("SELECT status FROM import_data where id = $id");
       foreach ($status as $key) {
-        echo($key->status);
+      for ($i=0, $j=0; $i<strlen($key->status) ; $i++) {
+        if($key->status[$i] == ',')
+        {
+          $j+=1;
+        }
+        if (ord($key->status[$i]) >= 48 && ord($key->status[$i]) <= 57)
+        {
+          $status2[$j][$i] = $key->status[$i];
+        }
       }
     }
+    for ($i=0; $i <=$j ; $i++) {
+      if($i != $index)
+      {
+        if(implode("",$status2[$i]) == "0")
+          $status1[$i] = "0";
+        elseif(implode("",$status2[$i]) == "2")
+          $status1[$i] = "2";
+        elseif(implode("",$status2[$i]) == "1")
+          $status1[$i] = "1";
+        elseif(implode("",$status2[$i]) == "3")
+          $status1[$i] = "3";
+      }
+      else {
+        $status1[$i] = "2";
+      }
+    }
+    $JSON = json_encode($status1);
+    DB::update("UPDATE import_data SET status = '$JSON' WHERE ID = $id");
+    return redirect('/inbox');
+    }
+
+    public function decline($id,$index){
+      $status = DB::select("SELECT status FROM import_data where id = $id");
+      foreach ($status as $key) {
+      for ($i=0, $j=0; $i<strlen($key->status) ; $i++) {
+        if($key->status[$i] == ',')
+        {
+          $j+=1;
+        }
+        if (ord($key->status[$i]) >= 48 && ord($key->status[$i]) <= 57)
+        {
+          $status2[$j][$i] = $key->status[$i];
+        }
+      }
+    }
+    for ($i=0; $i <=$j ; $i++) {
+      if($i != $index)
+      {
+        if(implode("",$status2[$i]) == "0")
+          $status1[$i] = "0";
+        elseif(implode("",$status2[$i]) == "2")
+          $status1[$i] = "2";
+        elseif(implode("",$status2[$i]) == "1")
+          $status1[$i] = "1";
+        elseif(implode("",$status2[$i]) == "3")
+          $status1[$i] = "3";
+      }
+      else {
+        $status1[$i] = "1";
+      }
+    }
+    $JSON = json_encode($status1);
+    DB::update("UPDATE import_data SET status = '$JSON' WHERE ID = $id");
+    return redirect('/inbox');
+    }
+
+    public function done($id,$index){
+      $status = DB::select("SELECT status FROM import_data where id = $id");
+      foreach ($status as $key) {
+      for ($i=0, $j=0; $i<strlen($key->status) ; $i++) {
+        if($key->status[$i] == ',')
+        {
+          $j+=1;
+        }
+        if (ord($key->status[$i]) >= 48 && ord($key->status[$i]) <= 57)
+        {
+          $status2[$j][$i] = $key->status[$i];
+        }
+      }
+    }
+    for ($i=0; $i <=$j ; $i++) {
+      if($i != $index)
+      {
+        if(implode("",$status2[$i]) == "0")
+          $status1[$i] = "0";
+        elseif(implode("",$status2[$i]) == "2")
+          $status1[$i] = "2";
+        elseif(implode("",$status2[$i]) == "1")
+          $status1[$i] = "1";
+        elseif(implode("",$status2[$i]) == "3")
+          $status1[$i] = "3";
+      }
+      else {
+        $status1[$i] = "3";
+      }
+    }
+    $JSON = json_encode($status1);
+    DB::update("UPDATE import_data SET status = '$JSON' WHERE ID = $id");
+    return redirect('/inbox');
+    }
+
 }
