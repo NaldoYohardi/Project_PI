@@ -117,7 +117,7 @@ class Controller extends BaseController
         DB::insert("INSERT INTO import_data (user_id, name, stok, status, category_id, harga_unit) VALUES ($req->user_id,
         '$JSON1','$JSON2','$JSONS','$JSON3','$JSON4')");
       }
-      elseif (Session::get('level') == 1)
+      elseif (Session::get('level') == 2)
       {
         DB::insert("INSERT INTO import_data (user_id, name, stok, status, category_id, harga_unit) VALUES ($req->user_id,
           '$JSON1','$JSON2','$JSONM','$JSON3','$JSON4')");
