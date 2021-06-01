@@ -25,7 +25,7 @@
               <th>Category</th>
               <th>Qr Code</th>
               <th>Harga_unit</th>
-              <th></th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -112,7 +112,8 @@
                       <td align="center"><?php echo $key->category; ?></td>
                   <?php  }
                   } ?>
-                  <td><img src="data:image/png;base64,
+                  <td><center>
+                    <img src="data:image/png;base64,
                               {!! base64_encode(
                                   QrCode::format('png')
                                   ->merge(public_path('laravel.PNG'), 0.3, true)
@@ -121,9 +122,9 @@
                                 )
                               !!}
                     ">
-                  </td>
+                  </center></td>
                   <td align="center"><?php echo implode("",$hargas[$i]); ?></td>
-                  <td><a onclick="return confirm('Are you sure?');" href="#">add</a></td>
+                  <td><center><a onclick="return confirm('Are you sure?');" href="#" class="btn btn-success">Add</a></center></td>
                 </tr>
           <?php }}$number+=1;} ?>
           </tbody>
@@ -139,7 +140,7 @@
               <th>Category</th>
               <th>Qr Code</th>
               <th>Harga_unit</th>
-              <th></th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -226,7 +227,8 @@
                       <td align="center"><?php echo $key->category; ?></td>
                   <?php  }
                   } ?>
-                  <td><img src="data:image/png;base64,
+                  <td><center>
+                    <img src="data:image/png;base64,
                               {!! base64_encode(
                                   QrCode::format('png')
                                   ->merge(public_path('laravel.PNG'), 0.3, true)
@@ -235,9 +237,9 @@
                                 )
                               !!}
                     ">
-                  </td>
+                  </center></td>
                   <td align="center"><?php echo implode("",$hargas[$i]); ?></td>
-                  <td><a onclick="return confirm('Are you sure?');" href="#">add</a></td>
+                  <td><center><a onclick="return confirm('Are you sure?');" href="#" class="btn btn-success">Add</a></center></td>
                 </tr>
           <?php }}$number+=1;} ?>
           </tbody>
