@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 01, 2021 at 04:51 AM
+-- Generation Time: Jun 02, 2021 at 12:29 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -21,18 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `project_pi`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `approval`
---
-
-CREATE TABLE `approval` (
-  `approval_id` int(10) NOT NULL,
-  `request_id` int(20) NOT NULL,
-  `user_id` int(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -94,35 +82,28 @@ CREATE TABLE `failed_jobs` (
 
 CREATE TABLE `import_data` (
   `id` int(11) NOT NULL,
-  `user_id` int(3) NOT NULL,
+  `req_id` int(3) NOT NULL,
+  `approval_id` int(3) DEFAULT NULL,
   `name` text NOT NULL,
   `stok` text DEFAULT NULL,
   `status` text DEFAULT NULL,
   `category_id` text DEFAULT NULL,
-  `harga_unit` text DEFAULT NULL
+  `harga_unit` text DEFAULT NULL,
+  `keterangan` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `import_data`
 --
 
-INSERT INTO `import_data` (`id`, `user_id`, `name`, `stok`, `status`, `category_id`, `harga_unit`) VALUES
-(1, 28, '[\"aaa\",\"gbbb\"]', '[\"10\",\"5\"]', '[\"0\",\"0\"]', '[\"1\",\"1\"]', '[\"8000\",\"10000\"]'),
-(22, 28, '[\"a\",\"b\",\"c\"]', '[\"1\",\"2\",\"3\"]', '[\"0\",\"0\",\"0\"]', '[\"1\",\"2\",\"3\"]', '[\"2\",\"3\",\"4\"]'),
-(23, 28, '[\"endity\",\"wasita\",\"angkasa\"]', '[\"10\",\"20\",\"30\"]', '[\"0\",\"0\",\"0\"]', '[\"1\",\"2\",\"3\"]', '[\"10000\",\"9000\",\"4000\"]'),
-(24, 28, '[\"endity1\",\"endity2\",\"endity3\",\"endity4\",\"endity5\",\"endity6\",\"endity7\",\"endity8\",\"endity9\",\"endity10\"]', '[\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"7\",\"8\",\"9\",\"10\"]', '[\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\"]', '[\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"1\",\"2\",\"3\",\"4\"]', '[\"1000\",\"2000\",\"3000\",\"4000\",\"5000\",\"6000\",\"7000\",\"8000\",\"9000\",\"10000\"]');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `import_history`
---
-
-CREATE TABLE `import_history` (
-  `import_id` int(10) NOT NULL,
-  `status` int(1) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+INSERT INTO `import_data` (`id`, `req_id`, `approval_id`, `name`, `stok`, `status`, `category_id`, `harga_unit`, `keterangan`) VALUES
+(1, 28, NULL, '[\"endity\",\"wasita\"]', '[\"1\",\"2\"]', '[\"3\",\"3\"]', '[\"1\",\"2\"]', '[\"10000\",\"1000\"]', 0),
+(6, 28, NULL, '\"wasita\"', '\"2\"', '\"3\"', '\"2\"', '\"1000\"', 1),
+(7, 28, 4, '[\"aaa\",\"bbb\"]', '[\"3\",\"4\"]', '[\"1\",\"3\"]', '[\"3\",\"4\"]', '[\"30000\",\"3000\"]', 0),
+(9, 28, 28, '\"endity\"', '\"2\"', '[\"3\"]', '\"1\"', '\"10000\"', 1),
+(11, 28, 28, '\"endity\"', '\"8\"', '[\"3\"]', '\"1\"', '\"10000\"', 2),
+(12, 28, NULL, '\"wasita\"', '\"5\"', '\"3\"', '\"2\"', '\"1000\"', 2),
+(13, 28, NULL, '\"endity\"', '\"2\"', '[\"3\"]', '\"1\"', '\"10000\"', 2);
 
 -- --------------------------------------------------------
 
@@ -131,16 +112,21 @@ CREATE TABLE `import_history` (
 --
 
 CREATE TABLE `inventory` (
-  `item_id` int(10) NOT NULL,
-  `approval_id` int(3) NOT NULL,
-  `name` varchar(225) NOT NULL,
-  `stock` int(10) NOT NULL,
-  `qr_code` varchar(200) NOT NULL,
-  `status` int(1) NOT NULL DEFAULT 0,
-  `category_id` int(3) NOT NULL,
-  `date_imported` timestamp NOT NULL DEFAULT current_timestamp(),
-  `harga_unit` int(10) NOT NULL
+  `id` int(11) NOT NULL,
+  `req_id` int(3) NOT NULL,
+  `approval_id` int(3) DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `stok` int(7) NOT NULL,
+  `category_id` int(2) NOT NULL,
+  `harga_unit` int(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `inventory`
+--
+
+INSERT INTO `inventory` (`id`, `req_id`, `approval_id`, `name`, `stok`, `category_id`, `harga_unit`) VALUES
+(4, 28, 4, 'bbb', 4, 4, 3000);
 
 -- --------------------------------------------------------
 
@@ -220,14 +206,6 @@ INSERT INTO `users` (`user_id`, `name`, `email`, `email_verified`, `password`, `
 --
 
 --
--- Indexes for table `approval`
---
-ALTER TABLE `approval`
-  ADD PRIMARY KEY (`approval_id`),
-  ADD KEY `request_id` (`request_id`),
-  ADD KEY `user_id` (`user_id`);
-
---
 -- Indexes for table `category`
 --
 ALTER TABLE `category`
@@ -252,21 +230,15 @@ ALTER TABLE `failed_jobs`
 --
 ALTER TABLE `import_data`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
-
---
--- Indexes for table `import_history`
---
-ALTER TABLE `import_history`
-  ADD KEY `import_id` (`import_id`);
+  ADD KEY `user_id` (`req_id`),
+  ADD KEY `approval_id` (`approval_id`);
 
 --
 -- Indexes for table `inventory`
 --
 ALTER TABLE `inventory`
-  ADD PRIMARY KEY (`item_id`),
-  ADD UNIQUE KEY `approval_id` (`approval_id`),
-  ADD KEY `category_id` (`category_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `req_id` (`req_id`,`approval_id`);
 
 --
 -- Indexes for table `migrations`
@@ -299,12 +271,6 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `approval`
---
-ALTER TABLE `approval`
-  MODIFY `approval_id` int(10) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
@@ -326,13 +292,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `import_data`
 --
 ALTER TABLE `import_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `inventory`
 --
 ALTER TABLE `inventory`
-  MODIFY `item_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `migrations`
