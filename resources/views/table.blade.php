@@ -38,7 +38,7 @@
               <td align="center">{{ $loop->iteration }}</td>
               @foreach($user as $key1)
               @if($key1->user_id == $key->req_id)
-              <td align="center">{{ $key1->email }}</td>
+              <td align="center">{{ $key1->name }}</td>
               @endif
               @endforeach
               <td align="center">{{ $key->name }}</td>
@@ -61,11 +61,11 @@
                           </center></td>
               <td align="center">{{ $key->harga_unit }}</td>
               @if ($key->approval_id == NULL)
-              <td align="center">enditywasita@gmail.com</td>
+              <td align="center">-</td>
               @else
                 @foreach($user as $key1)
                 @if($key1->user_id == $key->approval_id)
-                <td align="center">{{ $key1->email }}</td>
+                <td align="center">{{ $key1->name }}</td>
                 @endif
                 @endforeach
               @endif
@@ -103,7 +103,7 @@
               <td align="center">{{ $loop->iteration }}</td>
               @foreach($user as $key1)
               @if($key1->user_id == $key->req_id)
-              <td align="center">{{ $key1->email }}</td>
+              <td align="center">{{ $key1->name }}</td>
               @endif
               @endforeach
               <td align="center">{{ $key->name }}</td>
@@ -128,7 +128,11 @@
               @if ($key->approval_id == NULL)
               <td align="center">-</td>
               @else
-              <td align="center">{{ $key-> approval_id }}</td>
+              @foreach($user as $key1)
+              @if($key1->user_id == $key->approval_id)
+              <td align="center">{{ $key1->name }}</td>
+              @endif
+              @endforeach
               @endif
               <td><center>
                 <a href="/addstok/<?php echo $key->id; ?>" class="btn btn-success">Add</a><br>

@@ -45,9 +45,10 @@ class Controller extends BaseController
 
     public function history()
     {
+      $user = DB::select("SELECT * FROM users");
       $category = DB::select("SELECT * FROM category");
       $inbox = DB::select("SELECT * FROM import_data");
-      return view('history', compact('inbox'), compact('category'));
+      return view('history')->with(compact('inbox'))->with(compact('category'))->with(compact('user'));
     }
 
     public function profile($name)

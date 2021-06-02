@@ -20,11 +20,13 @@
           <thead class="thead-dark font-weight-bold text-center">
             <tr>
               <th>ID</th>
+              <th>Req By</th>
               <th>Name</th>
               <th>Stock</th>
               <th>Category</th>
               <th>Harga unit</th>
               <th>Keterangan</th>
+              <th>Approve By</th>
             </tr>
           </thead>
           <tbody>
@@ -33,6 +35,8 @@
               $number1 = 0;
               foreach ($inbox as $key) {
                 $keterangan = $key->keterangan;
+                $approval_id = $key->approval_id;
+                $req_id = $key->req_id;
                 $id = $key->id;
                 if($number!=0)
                 {
@@ -104,6 +108,11 @@
                 <tr>
                   <td align="center"><?php echo $number1+1; ?></td>
                   <?php $number1+=1; ?>
+                  @foreach($user as $key10)
+                  @if($key10->user_id == $req_id)
+                  <td align="center">{{$key10->name}}</td>
+                  @endif
+                  @endforeach
                   <td align="center"><?php echo implode("",$names[$i]); ?></td>
                   <td align="center"><?php echo implode("",$stoks[$i]); ?></td>
                   <?php foreach ($category as $key ) {
@@ -119,6 +128,14 @@
                   @elseif($keterangan == 2)
                   <td align="center">Pengeluaran barang</td>
                   @endif
+                  @if($approval_id==NULL)
+                  <td align="center">-</td>
+                  @endif
+                  @foreach($user as $key10)
+                  @if($key10->user_id == $approval_id)
+                  <td align="center">{{$key10->name}}</td>
+                  @endif
+                  @endforeach
                 </tr>
           <?php }$number+=1;} ?>
           </tbody>
@@ -129,11 +146,13 @@
           <thead class="thead-dark font-weight-bold text-center">
             <tr>
               <th>ID</th>
+              <th>Req By</th>
               <th>Name</th>
               <th>Stock</th>
               <th>Category</th>
               <th>Harga unit</th>
               <th>Keterangan</th>
+              <th>Approve By</th>
             </tr>
           </thead>
           <tbody>
@@ -142,6 +161,8 @@
               $number1 = 0;
               foreach ($inbox as $key) {
                 $keterangan = $key->keterangan;
+                $approval_id = $key->approval_id;
+                $req_id = $key->req_id;
                 $id = $key->id;
                 if($number!=0)
                 {
@@ -213,6 +234,11 @@
                 <tr>
                   <td align="center"><?php echo $number1+1; ?></td>
                   <?php $number1+=1; ?>
+                  @foreach($user as $key10)
+                  @if($key10->user_id == $req_id)
+                  <td align="center">{{$key10->name}}</td>
+                  @endif
+                  @endforeach
                   <td align="center"><?php echo implode("",$names[$i]); ?></td>
                   <td align="center"><?php echo implode("",$stoks[$i]); ?></td>
                   <?php foreach ($category as $key ) {
@@ -228,6 +254,14 @@
                   @elseif($keterangan == 2)
                   <td align="center">Pengeluaran barang</td>
                   @endif
+                  @if($approval_id==NULL)
+                  <td align="center">-</td>
+                  @endif
+                  @foreach($user as $key10)
+                  @if($key10->user_id == $approval_id)
+                  <td align="center">{{$key10->name}}</td>
+                  @endif
+                  @endforeach
                 </tr>
           <?php }$number+=1;} ?>
           </tbody>
