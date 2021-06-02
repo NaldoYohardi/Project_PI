@@ -27,9 +27,13 @@ class Controller extends BaseController
 
     public function table()
     {
+      $user = DB::select("SELECT * FROM users");
       $category = DB::select("SELECT * FROM category");
-      $inbox = DB::select("SELECT * FROM import_data");
-      return view('table', compact('inbox'), compact('category'));
+      $inbox = DB::select("SELECT * FROM inventory");
+      return view('table')
+      ->with(compact('inbox'))
+      ->with(compact('category'))
+      ->with(compact('user'));
     }
 
     public function inbox()
@@ -41,10 +45,9 @@ class Controller extends BaseController
 
     public function history()
     {
-      // $category = DB::select("SELECT * FROM category");
-      // $inbox = DB::select("SELECT * FROM import_data");
-      // return view('inbox', compact('inbox'), compact('category'));
-        return view('history');
+      $category = DB::select("SELECT * FROM category");
+      $inbox = DB::select("SELECT * FROM import_data");
+      return view('history', compact('inbox'), compact('category'));
     }
 
     public function profile($name)
@@ -123,17 +126,25 @@ class Controller extends BaseController
       $JSON4 = json_encode($harga);
       if (Session::get('level')==0)
       {
-        DB::insert("INSERT INTO import_data (user_id, name, stok, status, category_id, harga_unit) VALUES ($req->user_id,
-        '$JSON1','$JSON2','$JSONS','$JSON3','$JSON4')");
+        DB::insert("INSERT INTO import_data (req_id, name, stok, status, category_id, harga_unit, keterangan) VALUES ($req->user_id,
+        '$JSON1','$JSON2','$JSONS','$JSON3','$JSON4', '0')");
       }
       elseif (Session::get('level') == 2)
       {
-        DB::insert("INSERT INTO import_data (user_id, name, stok, status, category_id, harga_unit) VALUES ($req->user_id,
-          '$JSON1','$JSON2','$JSONM','$JSON3','$JSON4')");
+        DB::insert("INSERT INTO import_data (req_id, name, stok, status, category_id, harga_unit, keterangan) VALUES ($req->user_id,
+        '$JSON1','$JSON2','$JSONM','$JSON3','$JSON4', '0')");
+        for ($i=0; $i <$req->n ; $i++) {
+          DB::insert("INSERT INTO inventory (req_id, name, stok, category_id, harga_unit) VALUES ($req->user_id,
+            '$name[$i]','$stok[$i]','$category[$i]','$harga[$i]')");
+        }
       }
       return redirect('/table');
     }
     public function accpt($id,$index){
+      $email = Session::get('email');
+      $approval = DB::select("SELECT user_id FROM users where email = '$email'");
+      foreach($approval as $key)
+        $approval_id = $key->user_id;
       $status = DB::select("SELECT status FROM import_data where id = $id");
       foreach ($status as $key) {
       for ($i=0, $j=0; $i<strlen($key->status) ; $i++) {
@@ -164,11 +175,15 @@ class Controller extends BaseController
       }
     }
     $JSON = json_encode($status1);
-    DB::update("UPDATE import_data SET status = '$JSON' WHERE ID = $id");
+    DB::update("UPDATE import_data SET status = '$JSON', approval_id = $approval_id WHERE ID = $id");
     return redirect('/inbox');
     }
 
     public function decline($id,$index){
+      $email = Session::get('email');
+      $approval = DB::select("SELECT user_id FROM users where email = '$email'");
+      foreach($approval as $key)
+        $approval_id = $key->user_id;
       $status = DB::select("SELECT status FROM import_data where id = $id");
       foreach ($status as $key) {
       for ($i=0, $j=0; $i<strlen($key->status) ; $i++) {
@@ -199,16 +214,18 @@ class Controller extends BaseController
       }
     }
     $JSON = json_encode($status1);
-    DB::update("UPDATE import_data SET status = '$JSON' WHERE ID = $id");
+    DB::update("UPDATE import_data SET status = '$JSON', approval_id = $approval_id WHERE ID = $id");
     return redirect('/inbox');
     }
 
     public function done($id,$index){
       //cek add stok
-      $cek = DB::select("SELECT * FROM import_data");
       $status = DB::select("SELECT * FROM import_data where id = $id");
       foreach ($status as $key) {
-
+        $id123 = $key->id;
+        $req_id = $key->req_id;
+        $approval_id = $key->approval_id;
+        $keterangan = $key->keterangan;
         for ($i=0, $j=0; $i<strlen($key->name) ; $i++) {
           if($key->name[$i] == ',')
           {
@@ -230,98 +247,6 @@ class Controller extends BaseController
             $status2[$j][$i] = $key->status[$i];
           }
         }
-      }
-      $b = 0;
-      $c = 0;
-      $d = 0;
-      for ($i=0; $i <=$j; $i++) {
-        //cek add stock
-        foreach ($cek as $key) {
-          $ids[$d] = $key->id;
-          for ($a = 0; $a<strlen($key->name) ; $a++) {
-            if($b == 0)
-              $ida = $key->id;
-            if ($ida != $key->id)
-              $b+=1;
-            if($key->name[$a] == ',')
-              $b+=1;
-            if ($key->name[$a] >= 'a' && $key->name[$a] <= 'z' || $key->name[$a] >= 'A' && $key->name[$a] <= 'Z' || ord($key->name[$a]) >= 48 && ord($key->name[$a]) <= 57)
-              $nama[$b][$a] = $key->name[$a];
-            $ida = $key->id;
-          }
-
-          for ($a=0; $a<strlen($key->status) ; $a++) {
-            if($c == 0)
-            {
-              $idb = $key->id;
-            }
-            if ($idb != $key->id)
-            {
-              $c+=1;
-            }
-            if($key->status[$a] == ',')
-            {
-              $c+=1;
-            }
-            if (ord($key->status[$a]) >= 48 && ord($key->status[$a]) <= 57)
-            {
-              $status3[$c][$a] = $key->status[$a];
-            }
-            $idb = $key->id;
-          }
-          $d++;
-        }
-        for ($k=$i; $k <=$b ; $k++) {
-          if(implode("",$names[$i]) == implode("",$nama[$k]) && implode("",$status3[$k]) == "3")
-          {
-            $index1 = $k;
-            dd($index1);
-          }
-        }
-        //cek status
-        if($i != $index)
-        {
-          if(implode("",$status2[$i]) == "0")
-            $status1[$i] = "0";
-          elseif(implode("",$status2[$i]) == "2")
-            $status1[$i] = "2";
-          elseif(implode("",$status2[$i]) == "1")
-            $status1[$i] = "1";
-          elseif(implode("",$status2[$i]) == "3")
-            $status1[$i] = "3";
-        }
-        else {
-          $status1[$i] = "3";
-        }
-      }
-    $JSON = json_encode($status1);
-    DB::update("UPDATE import_data SET status = '$JSON' WHERE ID = $id");
-    return redirect('/inbox');
-    }
-
-    public function addstok($id,$i)
-    {
-      return view('addstok', compact('id'), compact('i'));
-    }
-
-    public function addstoks(Request $req)
-    {
-      $id = $req->id;
-      $index = $req->i;
-      $amount = $req->amount;
-      $stok = DB::select("SELECT * from import_data where id = $id");
-      foreach ($stok as $key) {
-        $user_id = $key->user_id;
-        for ($i=0, $j=0; $i<strlen($key->name) ; $i++) {
-          if($key->name[$i] == ',')
-          {
-            $j+=1;
-          }
-          if ($key->name[$i] >= 'a' && $key->name[$i] <= 'z' || $key->name[$i] >= 'A' && $key->name[$i] <= 'Z' || ord($key->name[$i]) >= 48 && ord($key->name[$i]) <= 57)
-          {
-            $names[$j][$i] = $key->name[$i];
-          }
-        }
 
         for ($i=0, $j=0; $i<strlen($key->stok) ; $i++) {
           if($key->stok[$i] == ',')
@@ -331,17 +256,6 @@ class Controller extends BaseController
           if (ord($key->stok[$i]) >= 48 && ord($key->stok[$i]) <= 57)
           {
             $stoks[$j][$i] = $key->stok[$i];
-          }
-        }
-
-        for ($i=0, $j=0; $i<strlen($key->status) ; $i++) {
-          if($key->status[$i] == ',')
-          {
-            $j+=1;
-          }
-          if (ord($key->status[$i]) >= 48 && ord($key->status[$i]) <= 57)
-          {
-            $statuss[$j][$i] = $key->status[$i];
           }
         }
 
@@ -366,51 +280,236 @@ class Controller extends BaseController
             $hargas[$j][$i] = $key->harga_unit[$i];
           }
         }
+
       }
-      for ($i=0; $i <$j ; $i++) {
-        $nama[$i] = implode("",$names[$i]);
-        $kategory[$i] = implode("", $categorys[$i]);
-        $stock[$i] = implode("", $stoks[$i]);
-        $harga5[$i] = implode("", $hargas[$i]);
-        $status3[$i] = implode("", $statuss[$i]);
-        if($i == $index)
+      // $b = 0;
+      // $c = 0;
+      // $d = 0;
+      // if($d==0)
+      //   $s[$d] = 1;
+      for ($i=0; $i <=$j; $i++) {
+      //   //cek add stock
+      //   foreach ($cek as $key) {
+      //     $ids[$d] = $key->id;
+      //     for ($a = 0; $a<strlen($key->name) ; $a++) {
+      //       if($b == 0)
+      //         $ida = $key->id;
+      //       if ($ida != $key->id)
+      //       {
+      //         $s[$d] = 1;
+      //         $b+=1;
+      //       }
+      //       if($key->name[$a] == ',')
+      //       {
+      //         $s[$d] =$s[$d] + 1;
+      //         $b+=1;
+      //       }
+      //       if ($key->name[$a] >= 'a' && $key->name[$a] <= 'z' || $key->name[$a] >= 'A' && $key->name[$a] <= 'Z' || ord($key->name[$a]) >= 48 && ord($key->name[$a]) <= 57)
+      //         $nama[$b][$a] = $key->name[$a];
+      //       $ida = $key->id;
+      //     }
+      //     for ($a=0; $a<strlen($key->status) ; $a++) {
+      //       if($c == 0)
+      //       {
+      //         $idb = $key->id;
+      //       }
+      //       if ($idb != $key->id)
+      //       {
+      //         $c+=1;
+      //       }
+      //       if($key->status[$a] == ',')
+      //       {
+      //         $c+=1;
+      //       }
+      //       if (ord($key->status[$a]) >= 48 && ord($key->status[$a]) <= 57)
+      //       {
+      //         $status3[$c][$a] = $key->status[$a];
+      //       }
+      //       $idb = $key->id;
+      //     }
+      //     $d++;
+      //   }
+      //   for ($k=$i; $k <=$b ; $k++) {
+      //     if(implode("",$names[$i]) == implode("",$nama[$k]) && implode("",$status3[$k]) == "3")
+      //     {
+      //       $index1 = $k;
+      //       $e = 0;
+      //       while($index1 > 0)
+      //       {
+      //         $index1 -= $s[$e];
+      //         $e++;
+      //       }
+      //       if ($index1 != 0)
+      //       {
+      //         $index1 = $index1 + $s[$e-1];
+      //       }
+      //       dd($index1);
+      //     }
+      //   }
+        //cek status
+        if($i != $index)
         {
-          $name1 = implode("", $names[$i]);
-          $stok1 = implode("", $stoks[$i]);
-          $category1 = implode("", $categorys[$i]);
-          $harga1 = implode("", $hargas[$i]);
-          $JSON = json_encode($name1);
-          $JSON1 = json_encode($category1);
-          $JSON2 = json_encode($harga1);
+          if(implode("",$status2[$i]) == "0")
+            $status1[$i] = "0";
+          elseif(implode("",$status2[$i]) == "2")
+            $status1[$i] = "2";
+          elseif(implode("",$status2[$i]) == "1")
+            $status1[$i] = "1";
+          elseif(implode("",$status2[$i]) == "3")
+            $status1[$i] = "3";
+        }
+        else {
+          $status1[$i] = "3";
         }
       }
-      //level 0
-      $stok1 = (int)$stok1;
-      $total = $stok1 + $req->amount;
-      $stok1 = (string)$total;
-      $stok10 = (string)$req->amount;
+    $JSON = json_encode($status1);
+    DB::update("UPDATE import_data SET status = '$JSON' WHERE ID = $id");
+    if($keterangan == 0)
+    {
+      for ($i=0; $i <=$j ; $i++) {
+        if($i == $index){
+        $name1 = implode("",$names[$i]);
+        $stok1 = implode("",$stoks[$i]);
+        $category1 = implode("",$categorys[$i]);
+        $harga1 = implode("",$hargas[$i]);
+        DB::insert("INSERT INTO inventory (req_id, approval_id, name, stok, category_id, harga_unit) VALUES ($req_id, $approval_id, '$name1','$stok1','$category1','$harga1')");
+        }
+      }
+    }
+    elseif($keterangan == 1)
+    {
+      for ($i=0; $i <=$j ; $i++) {
+        if($i == $index)
+        {
+          $stok1 = implode("",$stoks[$i]);
+          $name1 = implode("",$names[$i]);
+          $inventory = DB::select("SELECT stok FROM inventory WHERE name = '$name1'");
+          foreach ($inventory as $key)
+            $stok2 = $key->stok;
+          $total = $stok1+$stok2;
+          DB::update("UPDATE inventory SET stok = $total WHERE name = '$name1'");
+        }
+      }
+    }
+    elseif($keterangan == 2)
+    {
+      for ($i=0; $i <=$j ; $i++) {
+        if($i == $index)
+        {
+          $stok1 = implode("",$stoks[$i]);
+          $name1 = implode("",$names[$i]);
+          $inventory = DB::select("SELECT stok FROM inventory WHERE name = '$name1'");
+          foreach ($inventory as $key)
+            $stok2 = $key->stok;
+          $total = $stok2-$stok1;
+          DB::update("UPDATE inventory SET stok = $total WHERE name = '$name1'");
+        }
+      }
+    }
+    return redirect('/inbox');
+    }
+
+    public function addstok($id)
+    {
+      return view('addstok', compact('id'));
+    }
+
+    public function addstoks(Request $req)
+    {
+      $id = $req->id;
+      $amount = $req->amount;
+      $stok = DB::select("SELECT * from inventory where id = $id");
+      foreach ($stok as $key) {
+        $name = $key->name;
+        $req_id = $key->req_id;
+        $stok = $key->stok;
+        $category_id = $key->category_id;
+        $harga = $key->harga_unit;
+      }
       $status = "0";
       $status1 = "3";
-      $JSON3 = json_encode($req->amount);
+      $JSON = json_encode($name);
+      $JSON4 = json_encode($req_id);
+      $total = $amount+$stok;
+      $amount = (string)$amount;
+      $JSON1 = json_encode($amount);
+      $category_id = (string)$category_id;
+      $JSON2 = json_encode($category_id);
+      $harga = (string)$harga;
+      $JSON3 = json_encode($harga);
       $JSONS = json_encode($status);
       $JSONM = json_encode($status1);
-
-      //levl 1
-      for ($i=0; $i <$j ; $i++) {
-        if($i == $index)
-        {
-          $stock[$i] = $stok1;
-        }
-      }
-      $JSONA = json_encode($nama);
-      $JSONB = json_encode($stock);
-      $JSONC = json_encode($harga5);
-      $JSOND = json_encode($status3);
-      $JSONE = json_encode($kategory);
       if(Session::get('level')==0)
-        DB::insert("INSERT INTO import_data (user_id, name, stok, status, category_id, harga_unit) VALUES ($user_id, '$JSON', '$JSON3', '$JSONS', '$JSON1', '$JSON2')");
+        DB::insert("INSERT INTO import_data (req_id, name, stok, status, category_id, harga_unit, keterangan) VALUES ($JSON4, '$JSON', '$JSON1', '$JSONS', '$JSON2', '$JSON3','1')");
       elseif(Session::get('level')==2)
-        DB::insert("UPDATE import_data SET name = '$JSONA', stok = '$JSONB', status = '$JSOND', category_id = '$JSONE', harga_unit = '$JSONC' WHERE id = $id");
+      {
+        DB::insert("INSERT INTO import_data (req_id, name, stok, status, category_id, harga_unit, keterangan) VALUES ($JSON4, '$JSON', '$JSON1', '$JSONM', '$JSON2', '$JSON3','1')");
+        DB::insert("UPDATE inventory SET stok = '$total' WHERE id = $id");
+      }
+      return redirect('/table');
+    }
+
+    public function out($id)
+    {
+      $inventory = DB::select("SELECT * FROM inventory where id = $id");
+      return view('outstok', compact('inventory'), compact('id'));
+    }
+
+    public function outstok(Request $req)
+    {
+      $id = $req->id;
+      $amount = $req->amount;
+      $stok = DB::select("SELECT * from inventory where id = $id");
+      foreach ($stok as $key) {
+        $name = $key->name;
+        $req_id = $key->req_id;
+        $stok = $key->stok;
+        $category_id = $key->category_id;
+        $harga = $key->harga_unit;
+      }
+      $status = "0";
+      $status1 = "3";
+      $JSON = json_encode($name);
+      $JSON4 = json_encode($req_id);
+      $total = $stok - $amount;
+      $amount = (string)$amount;
+      $JSON1 = json_encode($amount);
+      $category_id = (string)$category_id;
+      $JSON2 = json_encode($category_id);
+      $harga = (string)$harga;
+      $JSON3 = json_encode($harga);
+      $JSONS = json_encode($status);
+      $JSONM = json_encode($status1);
+      if(Session::get('level')==0)
+        DB::insert("INSERT INTO import_data (req_id, name, stok, status, category_id, harga_unit, keterangan) VALUES ($JSON4, '$JSON', '$JSON1', '$JSONS', '$JSON2', '$JSON3','2')");
+      elseif(Session::get('level')==2)
+      {
+        DB::insert("INSERT INTO import_data (req_id, name, stok, status, category_id, harga_unit, keterangan) VALUES ($JSON4, '$JSON', '$JSON1', '$JSONM', '$JSON2', '$JSON3','2')");
+        DB::insert("UPDATE inventory SET stok = '$total' WHERE id = $id");
+      }
+      return redirect('/table');
+    }
+
+    public function editI($id)
+    {
+      $inventory = DB::select("SELECT * FROM inventory where id = $id");
+      $category = DB::select("SELECT * FROM category");
+      return view('editInventory')->with(compact('inventory'))->with(compact('category'))->with(compact('id'));
+    }
+
+    public function updateI(Request $req)
+    {
+      $id = $req->id;
+      $name = $req->name;
+      $category = $req->category;
+      $harga = $req->harga;
+      DB::update("UPDATE inventory SET name = '$name', category_id = $category, harga_unit = $harga WHERE id = $id");
+      return redirect('/table');
+    }
+
+    public function deleteI($id)
+    {
+      DB::delete("DELETE FROM inventory where id = $id");
       return redirect('/table');
     }
 }

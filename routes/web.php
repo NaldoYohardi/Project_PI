@@ -75,6 +75,16 @@ Route::get('/decline/{id},{i}', 'Controller@decline');
 
 Route::get('/done/{id},{i}', 'Controller@done');
 
-Route::get('/addstok/{id},{i}', 'Controller@addstok');
+Route::get('/addstok/{id}', 'Controller@addstok');
 
 Route::post('/addstoks', 'Controller@addstoks');
+
+Route::get('/outstok/{id}', 'Controller@out');
+
+Route::post('/outstoks', 'Controller@outstok');
+
+Route::get('/editInventory/{id}', 'Controller@editI');
+
+Route::post('/updateInventory', 'Controller@updateI');
+
+Route::get('/deleteInventory/{id}', 'Controller@deleteI');

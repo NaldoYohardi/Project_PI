@@ -23,15 +23,18 @@
               <th>Name</th>
               <th>Stock</th>
               <th>Category</th>
-              <th>Harga_unit</th>
+              <th>Harga unit</th>
+              <th>Keterangan</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
             <?php
+              $a = 1;
               $number = 0;
               $number1 = 0;
               foreach ($inbox as $key) {
+                $keterangan = $key->keterangan;
                 $id = $key->id;
                 if($number!=0)
                 {
@@ -112,6 +115,13 @@
                   <?php  }
                   } ?>
                   <td align="center"><?php echo implode("",$hargas[$i]); ?></td>
+                  @if($keterangan == 0)
+                  <td align="center">Tambah Barang Baru</td>
+                  @elseif($keterangan == 1)
+                  <td align="center">Tambah stok Barang</td>
+                  @elseif($keterangan == 2)
+                  <td align="center">Pengeluaran barang</td>
+                  @endif
                   <td><center>
                     <a onclick="return confirm('Are you sure?');" href="/accpt/<?php echo $id ?>,<?php echo $i; ?>" class="btn btn-success">&#10003;</a>
                     <a onclick="return confirm('Are you sure?');" href="/decline/<?php echo $id ?>,<?php echo $i; ?>" class="btn btn-danger">&#10006;</a>
@@ -130,7 +140,8 @@
               <th>Name</th>
               <th>Stock</th>
               <th>Category</th>
-              <th>Harga_unit</th>
+              <th>Harga unit</th>
+              <th>Keterangan</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -139,6 +150,7 @@
               $number = 0;
               $number1 = 0;
               foreach ($inbox as $key) {
+                $keterangan = $key->keterangan;
                 $id = $key->id;
                 if($number!=0)
                 {
@@ -219,6 +231,13 @@
                   <?php  }
                   } ?>
                   <td align="center"><?php echo implode("",$hargas[$i]); ?></td>
+                  @if($keterangan == 0)
+                  <td align="center">Tambah Barang Baru</td>
+                  @elseif($keterangan == 1)
+                  <td align="center">Tambah stok Barang</td>
+                  @elseif($keterangan == 2)
+                  <td align="center">Pengeluaran barang</td>
+                  @endif
                   <td><center><a onclick="return confirm('Are you sure?');" href="/done/<?php echo $id ?>,<?php echo $i; ?>" class="btn btn-success">&#10003;</a></center></td>
                 </tr>
           <?php }}$number+=1;} ?>
