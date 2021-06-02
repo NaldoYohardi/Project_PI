@@ -65,7 +65,7 @@
                   <th>Action</th>
                 </tr>
               </thead>
-              <tbody class="table-bordered text-center">
+              <tbody class="break" align="center">
                 @foreach ($user1 as $key)
                   <tr>
                     <td>{{ $loop->iteration }}</td>

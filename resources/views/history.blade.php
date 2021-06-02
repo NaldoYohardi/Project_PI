@@ -24,12 +24,12 @@
               <th>Name</th>
               <th>Stock</th>
               <th>Category</th>
-              <th>Harga unit</th>
+              <th>Harga Unit</th>
               <th>Keterangan</th>
               <th>Approve By</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody class="break" align="center">
             <?php
               $number = 0;
               $number1 = 0;
@@ -106,34 +106,34 @@
               for ($i=0; $i <=$j ; $i++) {
                 ?>
                 <tr>
-                  <td align="center"><?php echo $number1+1; ?></td>
+                  <td><?php echo $number1+1; ?></td>
                   <?php $number1+=1; ?>
                   @foreach($user as $key10)
                   @if($key10->user_id == $req_id)
-                  <td align="center">{{$key10->name}}</td>
+                  <td>{{$key10->name}}</td>
                   @endif
                   @endforeach
-                  <td align="center"><?php echo implode("",$names[$i]); ?></td>
-                  <td align="center"><?php echo implode("",$stoks[$i]); ?></td>
+                  <td><?php echo implode("",$names[$i]); ?></td>
+                  <td><?php echo implode("",$stoks[$i]); ?></td>
                   <?php foreach ($category as $key ) {
                     if ($key->id == implode("",$categorys[$i])){?>
-                      <td align="center"><?php echo $key->category; ?></td>
+                      <td><?php echo $key->category; ?></td>
                   <?php  }
                   } ?>
-                  <td align="center"><?php echo implode("",$hargas[$i]); ?></td>
+                  <td><?php echo implode("",$hargas[$i]); ?></td>
                   @if($keterangan == 0)
-                  <td align="center">Tambah Barang Baru</td>
+                  <td>Tambah Barang Baru</td>
                   @elseif($keterangan == 1)
-                  <td align="center">Tambah stok Barang</td>
+                  <td>Tambah stok Barang</td>
                   @elseif($keterangan == 2)
-                  <td align="center">Pengeluaran barang</td>
+                  <td>Pengeluaran barang</td>
                   @endif
                   @if($approval_id==NULL)
-                  <td align="center">-</td>
+                  <td>-</td>
                   @endif
                   @foreach($user as $key10)
                   @if($key10->user_id == $approval_id)
-                  <td align="center">{{$key10->name}}</td>
+                  <td>{{$key10->name}}</td>
                   @endif
                   @endforeach
                 </tr>
@@ -150,12 +150,12 @@
               <th>Name</th>
               <th>Stock</th>
               <th>Category</th>
-              <th>Harga unit</th>
+              <th>Harga Unit</th>
               <th>Keterangan</th>
               <th>Approve By</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody class="break" align="center">
             <?php
               $number = 0;
               $number1 = 0;
@@ -232,34 +232,34 @@
               for ($i=0; $i <=$j ; $i++) {
                 ?>
                 <tr>
-                  <td align="center"><?php echo $number1+1; ?></td>
+                  <td><?php echo $number1+1; ?></td>
                   <?php $number1+=1; ?>
                   @foreach($user as $key10)
                   @if($key10->user_id == $req_id)
-                  <td align="center">{{$key10->name}}</td>
+                  <td >{{$key10->name}}</td>
                   @endif
                   @endforeach
-                  <td align="center"><?php echo implode("",$names[$i]); ?></td>
-                  <td align="center"><?php echo implode("",$stoks[$i]); ?></td>
+                  <td ><?php echo implode("",$names[$i]); ?></td>
+                  <td ><?php echo implode("",$stoks[$i]); ?></td>
                   <?php foreach ($category as $key ) {
                     if ($key->id == implode("",$categorys[$i])){?>
-                      <td align="center"><?php echo $key->category; ?></td>
+                      <td ><?php echo $key->category; ?></td>
                   <?php  }
                   } ?>
-                  <td align="center"><?php echo implode("",$hargas[$i]); ?></td>
+                  <td ><?php echo implode("",$hargas[$i]); ?></td>
                   @if($keterangan == 0)
-                  <td align="center">Tambah Barang Baru</td>
+                  <td >Tambah Barang Baru</td>
                   @elseif($keterangan == 1)
-                  <td align="center">Tambah stok Barang</td>
+                  <td >Tambah stok Barang</td>
                   @elseif($keterangan == 2)
-                  <td align="center">Pengeluaran barang</td>
+                  <td >Pengeluaran barang</td>
                   @endif
                   @if($approval_id==NULL)
-                  <td align="center">-</td>
+                  <td >-</td>
                   @endif
                   @foreach($user as $key10)
                   @if($key10->user_id == $approval_id)
-                  <td align="center">{{$key10->name}}</td>
+                  <td >{{$key10->name}}</td>
                   @endif
                   @endforeach
                 </tr>

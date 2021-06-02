@@ -42,5 +42,5 @@
             <?php  }?>
             <div class="ripple-container">&nbsp; &nbsp; &nbsp;<input type="submit" class="btn-sm font-weight-bold btn-success" value="Submit"></div>
             <br>
-          </form>
+        </form>
 @endsection
