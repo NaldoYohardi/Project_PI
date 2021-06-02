@@ -44,7 +44,7 @@
           <div class="my-2 d-flex justify-content-between align-items-center">
             <div class="form-check">
               <label class="form-check-label text-muted" for="rememberMe">
-                <input type="checkbox" class="form-check-input" value="lsRememberMe" id="rememberMe" onclick="lsRememberMe()"> Remember Username </label>
+                <input type="checkbox" class="form-check-input" value="lsRememberMe" id="rememberMe" onclick="lsRememberMe()"> Remember User </label>
             </div>
             <a href="{{ url('/reset') }}" class="auth-link text-black">Forgot password?</a>
           </div>
