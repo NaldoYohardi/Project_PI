@@ -26,7 +26,7 @@
             </div>
           <?php }  ?>
           <div class="form-group">
-            <input id="email" class="form-control @error('email') is-invalid @enderror" type="email" name="email" placeholder="{{ __('E-Mail Address') }}" value="{{ old('email') }}" required>
+            <input id="email" class="form-control @error('email') is-invalid @enderror" type="email" name="email" placeholder="{{ __('E-Mail Address') }}" value="" required>
             @error('email')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -43,8 +43,8 @@
           </div>
           <div class="my-2 d-flex justify-content-between align-items-center">
             <div class="form-check">
-              <label class="form-check-label text-muted">
-                <input type="checkbox" class="form-check-input"> Remember Username </label>
+              <label class="form-check-label text-muted" for="rememberMe">
+                <input type="checkbox" class="form-check-input" value="lsRememberMe" id="rememberMe" onclick="lsRememberMe()"> Remember Username </label>
             </div>
             <a href="{{ url('/reset') }}" class="auth-link text-black">Forgot password?</a>
           </div>
