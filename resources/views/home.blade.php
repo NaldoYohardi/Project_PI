@@ -16,37 +16,12 @@
   <li>Dashboard</li>
 </ul>
   <div class="row">
-    <div class="col-md-4 grid-margin stretch-card">
-      <div class="card">
-        <div class="card-body">
-        <?php if(Session::get('level')== 1){ ?>
-          <i class="icon-user icon-md">&nbsp;Users</i>
-          <br><br>
-          <h4>Missing anyone?</h4>
-            <ul>
-              <li>There are <?php echo $mngr_count ?> Manager</li>
-              <li>There are <?php echo $adm_count ?> Administrator</li>
-              <li>There are <?php echo $emp_count ?> Employee</li>
-            </ul>
-          <br>
-          <a href="/profile/{{ Session::get('email') }}"  class="btn-sm font-weight-bold btn-primary w-50">View details >></a>
-        <?php } elseif(Session::get('level')== 0 || Session::get('level')== 2){ ?>
-          <i class="icon-user icon-md">&nbsp;Welcome!</i>
-            <br><br>
-            <div class="dash-logo" align="center" data-tilt>
-              <img src="/images/faces/Usu.jpg">
-            </div>
-            <h4>Hello, {{ Session::get('name') }}</h4>
-            <a href="/profile/{{ Session::get('email') }}"  class="btn-sm font-weight-bold btn-primary w-50">View your profile >></a>
-          <?php } ?>
-        </div>
-      </div>
-    </div>
     <?php if(Session::get('level')== 1){ ?>
       <div class="col-lg-8 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title">User List</h4>
+            <i class="icon-people icon-md"></i>
+            <span class="card-title">&nbsp User List</span>
             <p class="card-description">
               List containing User accounts from Database
             </p>
@@ -85,7 +60,37 @@
           </div>
         </div>
       </div>
+      <div class="col-md-4 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <i class="icon-user icon-md"></i>
+            <span class="card-title">&nbsp Total Account in Site</span>
+            <br><br>
+            <h4>Missing anyone?</h4>
+              <ul>
+                <li>There are <?php echo $mngr_count ?> Manager</li>
+                <li>There are <?php echo $adm_count ?> Administrator</li>
+                <li>There are <?php echo $emp_count ?> Employee</li>
+              </ul>
+            <br>
+            <a href="/profile/{{ Session::get('email') }}"  class="btn-sm font-weight-bold btn-primary w-50">View details</a>
+          </div>
+        </div>
+      </div>
     <?php } elseif(Session::get('level')== 0 || Session::get('level')== 2){ ?>
+      <div class="col-md-4 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <i class="icon-user icon-md">&nbsp;Welcome!</i>
+              <br><br>
+              <div class="dash-logo" align="center" data-tilt>
+                <img src="/images/faces/Usu.jpg">
+              </div>
+              <h4>Hello, {{ Session::get('name') }}</h4>
+              <a href="/profile/{{ Session::get('email') }}"  class="btn-sm font-weight-bold btn-primary w-50">View your profile</a>
+          </div>
+        </div>
+      </div>
       <div class="col-md-8 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
