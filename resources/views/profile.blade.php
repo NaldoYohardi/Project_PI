@@ -73,9 +73,8 @@
                     <td>{{ $key->email }}</td>
                     <td>{{ $key->level }}</td>
                     <td><center>
-                      <a href="/edit/{{$key->user_id}}" class="btn-sm font-weight-bold btn-warning w-50">Edit</a>
-                      &nbsp; &nbsp;
-                      <a href="/delete/{{$key->user_id}}" class="btn-sm font-weight-bold btn-danger w-50">Delete</a>
+                      <a href="/edit/{{$key->user_id}}" class="profile-btn edit-btn font-weight-bold">Edit</a>
+                      <a href="/delete/{{$key->user_id}}" class="profile-btn del-btn font-weight-bold">Delete</a>
                     </center></td>
                   </tr>
                 @endforeach

@@ -74,10 +74,10 @@
                 @endforeach
               @endif
               <td class="fixbreak"><center>
-                <a href="/addstok/<?php echo $key->id; ?>" class="btn btn-success">Input</a><br>
-                <a href="/outstok/<?php echo $key->id; ?>" class="btn btn-info">Output</a><br>
-                <a href="/editInventory/<?php echo $key->id; ?>" class="btn btn-primary">Edit</a><br>
-                <a href="/deleteInventory/<?php echo $key->id; ?>" class="btn btn-danger" onclick="return confirm('Confirm Item Deletion?');">Delete</a>
+                <a href="/addstok/<?php echo $key->id; ?>" class="inv-btn inv-success">Input</a><br>
+                <a href="/outstok/<?php echo $key->id; ?>" class="inv-btn inv-info">Output</a><br>
+                <a href="/editInventory/<?php echo $key->id; ?>" class="inv-btn inv-primary">Edit</a><br>
+                <a href="/deleteInventory/<?php echo $key->id; ?>" class="inv-btn inv-danger" onclick="return confirm('Confirm Item Deletion?');">Delete</a>
               </center></td>
             </tr>
             @endforeach
