@@ -4,6 +4,13 @@
 @section('MainTitle', 'Home')
 
 @section('content')
+
+<?php $inv_count = DB::table('inventory')->WHERE('stok', '<', '5')->count(); ?>
+<?php $inv_view = DB::table('inventory')->WHERE('stok', '<', '5')->get(); ?>
+<?php $emp_count = DB::table('users')->WHERE('level', '0')->count(); ?>
+<?php $adm_count = DB::table('users')->WHERE('level', '1')->count(); ?>
+<?php $mngr_count = DB::table('users')->WHERE('level', '2')->count(); ?>
+
 <ul class="breadcrumb">
   <li>Dashboard</li>
 </ul>
@@ -11,60 +18,51 @@
     <div class="col-md-4 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Sessions by channel</h4>
-          <div class="aligner-wrapper">
-            <canvas id="sessionsDoughnutChart" height="210"></canvas>
-            <div class="wrapper d-flex flex-column justify-content-center absolute absolute-center">
-              <h2 class="text-center mb-0 font-weight-bold">8.234</h2>
-              <small class="d-block text-center text-muted  font-weight-semibold mb-0">Total Leads</small>
-            </div>
-          </div>
-          <div class="wrapper mt-4 d-flex flex-wrap align-items-cente">
-            <div class="d-flex">
-              <span class="square-indicator bg-danger ml-2"></span>
-              <p class="mb-0 ml-2">Assigned</p>
-            </div>
-            <div class="d-flex">
-              <span class="square-indicator bg-success ml-2"></span>
-              <p class="mb-0 ml-2">Not Assigned</p>
-            </div>
-            <div class="d-flex">
-              <span class="square-indicator bg-warning ml-2"></span>
-              <p class="mb-0 ml-2">Reassigned</p>
-            </div>
-          </div>
+        <i class="icon-user icon-md">&nbsp;Users</i>
+          <br><br>
+          <h4>Missing anyone?</h4>
+          <ul>
+          <li>There are <?php echo $mngr_count ?> Manager</li>
+          <li>There are <?php echo $adm_count ?> Administrator</li>
+          <li>There are <?php echo $emp_count ?> Employee</li>
+          </ul>
+          <br>
+          <a href="{{ url('/table')}}">View details >></a>
         </div>
       </div>
     </div>
     <div class="col-md-8 grid-margin stretch-card">
       <div class="card">
-        <div class="card-body performane-indicator-card">
-          <div class="d-sm-flex">
-            <h4 class="card-title flex-shrink-1">Performance Indicator</h4>
-            <p class="m-sm-0 ml-sm-auto flex-shrink-0">
-              <span class="data-time-range ml-0">7d</span>
-              <span class="data-time-range active">2w</span>
-              <span class="data-time-range">1m</span>
-              <span class="data-time-range">3m</span>
-              <span class="data-time-range">6m</span>
-            </p>
-          </div>
-          <div class="d-sm-flex flex-wrap">
-            <div class="d-flex align-items-center">
-              <span class="dot-indicator bg-primary ml-2"></span>
-              <p class="mb-0 ml-2 text-muted font-weight-semibold">Complaints (2098)</p>
-            </div>
-            <div class="d-flex align-items-center">
-              <span class="dot-indicator bg-info ml-2"></span>
-              <p class="mb-0 ml-2 text-muted font-weight-semibold"> Task Done (1123)</p>
-            </div>
-            <div class="d-flex align-items-center">
-              <span class="dot-indicator bg-danger ml-2"></span>
-              <p class="mb-0 ml-2 text-muted font-weight-semibold">Attends (876)</p>
-            </div>
-          </div>
-          <div id="performance-indicator-chart" class="ct-chart mt-4"></div>
-        </div>
+        <div class="card-body">
+          <i class="icon-folder-alt icon-md">&nbsp;Inventory News</i>
+          <br><br>
+          <h4>There are now <?php echo $inv_count ?> items running low in stocks!</h4>
+            <table id="example" class="hover table table-bordered table-striped">
+              <thead class="thead-dark font-weight-bold text-center">
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Category</th>
+                  <th>Stock</th>
+                </tr>
+              </thead>
+              <tbody class="break" align="center">
+                @foreach ($inv_view as $key)
+                <tr>
+                  <td>{{ $loop->iteration }}</td>
+                  <td>{{ $key->name }}</td>
+                  @foreach ($category as $key1)
+                  @if ($key1->id == $key->category_id)
+                  <td>{{ $key1->category }}</td>
+                  @endif
+                  @endforeach
+                  <td>{{ $key->stok }}</td>
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
+            <br>
+          <a href="{{ url('/table')}}">Take action >></a>
       </div>
     </div>
   </div>

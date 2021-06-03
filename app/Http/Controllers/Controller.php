@@ -22,7 +22,10 @@ class Controller extends BaseController
 
     public function home()
     {
-        return view('home');
+      $category = DB::select("SELECT * FROM category");
+      $inv_view = DB::table('inventory')->WHERE('stok', '<', '5')->get();
+        return view('home')
+        ->with(compact('category'));
     }
 
     public function table()
