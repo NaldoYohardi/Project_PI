@@ -16,8 +16,8 @@
           @csrf
           <div class="form-group">
             <input type="hidden" name="id" value="<?php echo $id; ?>">
-            <input type="number" name="amount">
-            <br>
+            <input type="number" name="amount" min="1" value="1">
+            <br><br>
             <input type="submit" class="btn-sm font-weight-bold btn-success" name="submit" value="Submit">
           </div>
         </form>

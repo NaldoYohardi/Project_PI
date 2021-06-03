@@ -25,7 +25,7 @@
             @endforeach
           </select>
           harga Unit
-          <input type="number" name="harga" value="{{$key->harga_unit}}">
+          <input type="number" name="harga" min="0" step="1000" value="{{$key->harga_unit}}">
           <input type="submit" name="submit">
           @endforeach
         </form>

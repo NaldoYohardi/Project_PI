@@ -18,10 +18,10 @@
             <input type="hidden" name="id" value="<?php echo $id; ?>">
             @foreach ($inventory as $key)
             @if($key->id == $id)
-            <input type="number" name="amount" value="<?php echo $key->stok; ?>">
+            <input type="number" name="amount" min="1" max="<?php echo $key->stok; ?>" value="<?php echo $key->stok; ?>">
             @endif
             @endforeach
-            <br>
+            <br><br>
             <input type="submit" class="btn-sm font-weight-bold btn-success" name="submit" value="Submit">
           </div>
         </form>
