@@ -81,7 +81,7 @@
       <div class="col-md-4 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <i class="icon-user icon-md">&nbsp;Welcome!</i>
+            <i class="icon-user icon-md"><span class="card-title">&nbsp Welcome!</span></i>
               <br><br>
               <div class="dash-logo" align="center" data-tilt>
                 <img src="/images/faces/Usu.jpg">
@@ -94,7 +94,7 @@
       <div class="col-md-8 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <i class="icon-folder-alt icon-md">&nbsp;Inventory News</i>
+            <i class="icon-folder-alt icon-md"><span class="card-title">&nbsp Inventory News</span></i>
             <br><br>
             <h4>There are now <?php echo $inv_count ?> items running low in stocks!</h4>
               <table id="example" class="hover table table-bordered table-striped">
