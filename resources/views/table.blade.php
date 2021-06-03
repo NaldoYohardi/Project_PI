@@ -143,8 +143,8 @@
               @endforeach
               @endif
               <td class="fixbreak"><center>
-                <a href="/addstok/<?php echo $key->id; ?>" class="btn btn-success">Input</a><br>
-                <a href="/outstok/<?php echo $key->id; ?>" class="btn btn-info">Output</a>
+                <a href="/addstok/<?php echo $key->id; ?>" class="inv-btn inv-success">Input</a><br>
+                <a href="/outstok/<?php echo $key->id; ?>" class="inv-btn inv-info">Output</a>
               </center></td>
             </tr>
             @endforeach
