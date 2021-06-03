@@ -24,8 +24,24 @@ class Controller extends BaseController
     {
       $category = DB::select("SELECT * FROM category");
       $inv_view = DB::table('inventory')->WHERE('stok', '<', '5')->get();
-        return view('home')
-        ->with(compact('category'));
+      $user = DB::select("select * from users");
+      $user1 = \App\Models\User::all();
+      return view('home')
+        ->with(compact('category'))
+        ->with(compact('user'))
+        ->with(compact('user1'));
+    }
+
+    public function home2()
+    {
+      $category = DB::select("SELECT * FROM category");
+      $inv_view = DB::table('inventory')->WHERE('stok', '<', '5')->get();
+      $user = DB::select("select * from users");
+      $user1 = \App\Models\User::all();
+      return view('home')
+        ->with(compact('category'))
+        ->with(compact('user'))
+        ->with(compact('user1'));
     }
 
     public function table()

@@ -5,8 +5,9 @@
 
 @section('content')
 
-<?php $inv_count = DB::table('inventory')->WHERE('stok', '<', '5')->count(); ?>
+<?php $category = DB::select("SELECT * FROM category"); ?>
 <?php $inv_view = DB::table('inventory')->WHERE('stok', '<', '5')->get(); ?>
+<?php $inv_count = DB::table('inventory')->WHERE('stok', '<', '5')->count(); ?>
 <?php $emp_count = DB::table('users')->WHERE('level', '0')->count(); ?>
 <?php $adm_count = DB::table('users')->WHERE('level', '1')->count(); ?>
 <?php $mngr_count = DB::table('users')->WHERE('level', '2')->count(); ?>
@@ -18,53 +19,108 @@
     <div class="col-md-4 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
-        <i class="icon-user icon-md">&nbsp;Users</i>
+        <?php if(Session::get('level')== 1){ ?>
+          <i class="icon-user icon-md">&nbsp;Users</i>
           <br><br>
           <h4>Missing anyone?</h4>
-          <ul>
-          <li>There are <?php echo $mngr_count ?> Manager</li>
-          <li>There are <?php echo $adm_count ?> Administrator</li>
-          <li>There are <?php echo $emp_count ?> Employee</li>
-          </ul>
+            <ul>
+              <li>There are <?php echo $mngr_count ?> Manager</li>
+              <li>There are <?php echo $adm_count ?> Administrator</li>
+              <li>There are <?php echo $emp_count ?> Employee</li>
+            </ul>
           <br>
-          <a href="{{ url('/table')}}">View details >></a>
+          <a href="/profile/{{ Session::get('email') }}"  class="btn-sm font-weight-bold btn-primary w-50">View details >></a>
+        <?php } elseif(Session::get('level')== 0 || Session::get('level')== 2){ ?>
+          <i class="icon-user icon-md">&nbsp;Welcome!</i>
+            <br><br>
+            <div class="dash-logo" align="center" data-tilt>
+              <img src="/images/faces/Usu.jpg">
+            </div>
+            <h4>Hello, {{ Session::get('name') }}</h4>
+            <a href="/profile/{{ Session::get('email') }}"  class="btn-sm font-weight-bold btn-primary w-50">View your profile >></a>
+          <?php } ?>
         </div>
       </div>
     </div>
-    <div class="col-md-8 grid-margin stretch-card">
-      <div class="card">
-        <div class="card-body">
-          <i class="icon-folder-alt icon-md">&nbsp;Inventory News</i>
-          <br><br>
-          <h4>There are now <?php echo $inv_count ?> items running low in stocks!</h4>
-            <table id="example" class="hover table table-bordered table-striped">
+    <?php if(Session::get('level')== 1){ ?>
+      <div class="col-lg-8 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">User List</h4>
+            <p class="card-description">
+              List containing User accounts from Database
+            </p>
+            <table class="hover table table-bordered table-striped">
               <thead class="thead-dark font-weight-bold text-center">
                 <tr>
-                  <th>ID</th>
-                  <th>Name</th>
-                  <th>Category</th>
-                  <th>Stock</th>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th>Account Level</th>
                 </tr>
               </thead>
               <tbody class="break" align="center">
-                @foreach ($inv_view as $key)
-                <tr>
-                  <td>{{ $loop->iteration }}</td>
-                  <td>{{ $key->name }}</td>
-                  @foreach ($category as $key1)
-                  @if ($key1->id == $key->category_id)
-                  <td>{{ $key1->category }}</td>
-                  @endif
-                  @endforeach
-                  <td>{{ $key->stok }}</td>
-                </tr>
+                <?php $a = 0; ?>
+                @foreach ($user as $key)
+                  <tr>
+                    <td>{{ $key->name }}</td>
+                    <td>{{ $key->email }}</td>
+                    <td>
+                      <?php if ($key->level == 0) { ?>Employee
+                      <?php } elseif($key->level == 1){ ?>Administrator
+                      <?php } elseif($key->level == 2){ ?>Manager
+                      <?php } else { ?>-<?php } ?>
+                    </td>
+                  </tr>
+                <?php $a++;
+                if ($a == 4) { ?>
+                  <td>...</td>
+                  <td>...</td>
+                  <td>...</td>
+                <?php break;} ?>
                 @endforeach
               </tbody>
             </table>
             <br>
-          <a href="{{ url('/table')}}">Take action >></a>
+            <a href="/register" class="btn-sm font-weight-bold btn-primary w-50">Take Action</a>
+          </div>
+        </div>
       </div>
-    </div>
+    <?php } elseif(Session::get('level')== 0 || Session::get('level')== 2){ ?>
+      <div class="col-md-8 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <i class="icon-folder-alt icon-md">&nbsp;Inventory News</i>
+            <br><br>
+            <h4>There are now <?php echo $inv_count ?> items running low in stocks!</h4>
+              <table id="example" class="hover table table-bordered table-striped">
+                <thead class="thead-dark font-weight-bold text-center">
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Stock</th>
+                  </tr>
+                </thead>
+                <tbody class="break" align="center">
+                  @foreach ($inv_view as $key)
+                  <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $key->name }}</td>
+                    @foreach ($category as $key1)
+                    @if ($key1->id == $key->category_id)
+                    <td>{{ $key1->category }}</td>
+                    @endif
+                    @endforeach
+                    <td>{{ $key->stok }}</td>
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
+              <br>
+            <a href="{{ url('/table')}}" class="btn-sm font-weight-bold btn-primary w-50">Take action</a>
+        </div>
+      </div>
+    <?php } ?>
   </div>
   <div class="row">
     <div class="col-md-12 grid-margin stretch-card">

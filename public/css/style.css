@@ -13514,3 +13514,8 @@ ul.breadcrumb li a:hover {
     border-color: #ff1a41;
     -webkit-box-shadow: 0 0 0 0.2rem rgba(255, 104, 129, 0.5);
     box-shadow: 0 0 0 0.2rem rgba(255, 104, 129, 0.5); }
+
+.dash-logo {
+  margin-bottom: 2rem; }
+  .dash-logo img {
+    width: 80px; }

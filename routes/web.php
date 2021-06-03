@@ -23,6 +23,8 @@ Route::get('/reset', 'Controller@forget');
 
 Route::get('/home', 'Controller@home');
 
+Route::get('/homeadmin/{name}', 'Controller@home2');
+
 Route::get('/table', 'Controller@table');
 
 Route::get('/inbox', 'Controller@inbox');

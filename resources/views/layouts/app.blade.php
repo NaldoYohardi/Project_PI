@@ -86,14 +86,13 @@
                 <?php } ?>
               </a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('/home')}}">
+                <span class="menu-title">Dashboard</span>
+                <i class="icon-screen-desktop menu-icon"></i>
+              </a>
+            </li>
             <?php if(Session::get('level')== 1){ ?>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ url('/home')}}">
-                  <span class="menu-title">Dashboard</span>
-                  <i class="icon-screen-desktop menu-icon"></i>
-                </a>
-              </li>
-            <?php if ( Session::get('level') == 1){ ?>
               @if (Route::has('register'))
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('register') }}">
@@ -103,25 +102,13 @@
                 </li>
               @endif
             <?php } ?>
-              <li class="nav-item">
-                <a class="nav-link" href="/profile/{{ Session::get('email') }}">
-                  <span class="menu-title">Profile</span>
-                  <i class="icon-user menu-icon"></i>
-                </a>
-              </li>
-            <?php } elseif(Session::get('level')== 0){ ?>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ url('/home')}}">
-                  <span class="menu-title">Dashboard</span>
-                  <i class="icon-screen-desktop menu-icon"></i>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/profile/{{ Session::get('email') }}">
-                  <span class="menu-title">Profile</span>
-                  <i class="icon-user menu-icon"></i>
-                </a>
-              </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/profile/{{ Session::get('email') }}">
+                <span class="menu-title">Profile</span>
+                <i class="icon-user menu-icon"></i>
+              </a>
+            </li>
+            <?php if(Session::get('level')== 0){ ?>
               <li class="nav-item">
                 <a class="nav-link" href="{{ url('/table')}}">
                   <span class="menu-title">Inventory</span>

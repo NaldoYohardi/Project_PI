@@ -31,10 +31,10 @@
                           <p class="designation">Manager</p>
                         <?php } ?>
                         <center>
-                        <br>
-                        <a href="/edit/{{$key->user_id}}" class="btn btn-primary w-100"><div class="ripple-container">Update Data</div></a>
-                        <br></br>
-                        <a href="/logOUT" onclick="return confirm('Are you sure you want to Sign Out?');" class="btn btn-danger w-100"><div class="ripple-container">Logout</div></a>
+                          <br>
+                          <a href="/edit/{{$key->user_id}}" class="btn btn-primary w-100"><div class="ripple-container">Update Data</div></a>
+                          <br></br>
+                          <a href="/logOUT" onclick="return confirm('Are you sure you want to Sign Out?');" class="btn btn-danger w-100"><div class="ripple-container">Logout</div></a>
                         </center>
                       @endforeach
                     </div>

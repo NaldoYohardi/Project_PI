@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Session;
 use Cookie;
 use Tracker;
+use Redirect;
 
 class LoginController extends Controller
 {
@@ -26,7 +27,6 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
-
     /**
      * Where to redirect users after login.
      *
@@ -59,13 +59,22 @@ class LoginController extends Controller
           if(password_verify($request->password,$pswd)){
             Session::put('user_id',$user_id);
             Session::put('name',$name);
-            Session::put('email', $email);
-            Session::put('level', $level);
+            Session::put('email',$email);
+            Session::put('level',$level);
             Session::put('LoggIN', 1);
 
               if($email_verified == 1)
               {
-                return redirect('/loginIN');
+                if($level == 1)
+                {
+                  $user = DB::select("select * from users");
+                  $user1 = \App\Models\User::all();
+                  return view('home', compact('user','user1'));
+                }
+                else
+                {
+                  return redirect('/loginIN');
+                }
               }
               else
               {
