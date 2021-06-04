@@ -76,11 +76,11 @@
           <div class="card-body">
             <i class="icon-user icon-md"><span class="card-title">&nbsp Welcome!</span></i>
               <br><br>
-              <div class="text-center py-1" data-tilt>
+              <div class="text-center pb-1" data-tilt>
                 <img class="img-lg" src="/images/faces/Usu.jpg">
               </div>
               <div class="text-center">
-                <h4 class="py-2">Hello, {{ Session::get('name') }}</h4>
+                <h4 class="my-4">Hello, {{ Session::get('name') }}</h4>
                 <a href="/profile/{{ Session::get('email') }}"  class="btn-sm font-weight-bold btn-primary w-50">View your profile</a>
               </div>
           </div>
@@ -100,7 +100,7 @@
                     <th>Stock</th>
                   </tr>
                 </thead>
-                <tbody class="break" align="center">
+                <tbody class="break text-center">
                   @foreach ($inv_view as $key)
                   <tr>
                     <td>{{ $loop->iteration }}</td>
@@ -116,7 +116,7 @@
                 </tbody>
               </table>
               <br>
-            <a href="{{ url('/table')}}" class="btn-sm font-weight-bold btn-primary w-50">Take action</a>
+            <a href="{{ url('/table')}}" class="btn-sm font-weight-bold btn-primary w-50 mx-3">Take action</a>
         </div>
       </div>
     <?php } ?>
