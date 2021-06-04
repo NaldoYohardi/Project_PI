@@ -15,27 +15,26 @@
             <div class="row flex-grow">
               <div class="col-lg-4 mx-auto">
                 <div class="auth-form-light text-left p-5">
-                  <div class="brand-logo js-tilt" align="center" data-tilt>
+                  <div class="brand-logo js-tilt text-center mb-1" data-tilt>
                     <img src="/laravel.PNG">
                   </div>
                   <div class="form-group">
-                    <div class="pt-3">
+                    <div class="pt-3 text-center">
                       @foreach ($user as $key)
-                        <h6 class="font-weight-light">{{ $key->name }}</h6>
-                        <h4>{{ $key->email }}</h4>
-                        <?php if(Session::get('level')== 1){ ?>
-                          <p class="designation">Administrator</p>
-                        <?php } elseif(Session::get('level')== 0){ ?>
-                          <p class="designation">Employee</p>
-                        <?php } elseif(Session::get('level')== 2){ ?>
-                          <p class="designation">Manager</p>
+                        <h6 class="icon-sm">{{ $key->name }}</h6>
+                        <h4 >{{ $key->email }}</h4>
+                        <div class="icon-md font-weight-semibold designation">
+                          <?php if(Session::get('level')== 1){ ?>
+                            <p>Administrator</p>
+                          <?php } elseif(Session::get('level')== 0){ ?>
+                           <p>Employee</p>
+                          <?php } elseif(Session::get('level')== 2){ ?>
+                            <p>Manager</p>
+                        </div>
                         <?php } ?>
-                        <center>
-                          <br>
-                          <a href="/edit/{{$key->user_id}}" class="btn btn-primary w-100"><div class="ripple-container">Update Data</div></a>
+                          <a href="/edit/{{$key->user_id}}" class="btn btn-primary w-100 mt-3"><div class="ripple-container">Update Data</div></a>
                           <br></br>
                           <a href="/logOUT" onclick="return confirm('Are you sure you want to Sign Out?');" class="btn btn-danger w-100"><div class="ripple-container">Logout</div></a>
-                        </center>
                       @endforeach
                     </div>
                   </div>
