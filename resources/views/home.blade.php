@@ -83,11 +83,13 @@
           <div class="card-body">
             <i class="icon-user icon-md"><span class="card-title">&nbsp Welcome!</span></i>
               <br><br>
-              <div class="dash-logo" align="center" data-tilt>
-                <img src="/images/faces/Usu.jpg">
+              <div class="text-center py-1" data-tilt>
+                <img class="img-lg" src="/images/faces/Usu.jpg">
               </div>
-              <h4>Hello, {{ Session::get('name') }}</h4>
-              <a href="/profile/{{ Session::get('email') }}"  class="btn-sm font-weight-bold btn-primary w-50">View your profile</a>
+              <div class="text-center">
+                <h4 class="py-2">Hello, {{ Session::get('name') }}</h4>
+                <a href="/profile/{{ Session::get('email') }}"  class="btn-sm font-weight-bold btn-primary w-50">View your profile</a>
+              </div>
           </div>
         </div>
       </div>
