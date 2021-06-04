@@ -74,13 +74,13 @@
       <div class="col-md-4 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <i class="icon-user icon-md"><span class="card-title">&nbsp Welcome!</span></i>
+            <i class="icon-user icon-md"><span class="card-title mx-1">&nbsp Welcome!</span></i>
               <br><br>
               <div class="text-center pb-1" data-tilt>
                 <img class="img-lg" src="/images/faces/Usu.jpg">
               </div>
               <div class="text-center">
-                <h4 class="my-4">Hello, {{ Session::get('name') }}</h4>
+                <h4 class="my-3">Hello, {{ Session::get('name') }} !</h4>
                 <a href="/profile/{{ Session::get('email') }}"  class="btn-sm font-weight-bold btn-primary w-50">View your profile</a>
               </div>
           </div>
@@ -89,7 +89,7 @@
       <div class="col-md-8 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <i class="icon-folder-alt icon-md"><span class="card-title">&nbsp Inventory News</span></i>
+            <i class="icon-folder-alt icon-md"><span class="mx-1 card-title">&nbsp Inventory News</span></i>
             <br><br>
               <table id="example" class="hover table table-bordered table-striped">
                 <thead class="thead-dark font-weight-bold text-center">
