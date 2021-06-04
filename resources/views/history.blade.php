@@ -27,6 +27,8 @@
               <th>Harga Unit</th>
               <th>Keterangan</th>
               <th>Approve By</th>
+              <th>tanggal masuk</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody class="break" align="center">
@@ -38,6 +40,7 @@
                 $approval_id = $key->approval_id;
                 $req_id = $key->req_id;
                 $id = $key->id;
+                $date = $key->date;
                 if($number!=0)
                 {
                   for ($i=0; $i<=$n; $i++) {
@@ -136,6 +139,14 @@
                   <td>{{$key10->name}}</td>
                   @endif
                   @endforeach
+                  <td><?php echo substr($date, 0, 10); ?></td>
+                  <?php if(implode("", $status1[$i]) == 1){ ?>
+                    <td>Declined</td>
+                  <?php }elseif(implode("", $status1[$i]) == 2){ ?>
+                    <td>Accepted</td>
+                  <?php }elseif(implode("", $status1[$i])== 3){?>
+                    <td>Accepted</td>
+                  <?php  } ?>
                 </tr>
           <?php }$number+=1;} ?>
           </tbody>
@@ -153,6 +164,8 @@
               <th>Harga Unit</th>
               <th>Keterangan</th>
               <th>Approve By</th>
+              <th>tanggal masuk</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody class="break" align="center">
@@ -164,6 +177,7 @@
                 $approval_id = $key->approval_id;
                 $req_id = $key->req_id;
                 $id = $key->id;
+                $date = $key->date;
                 if($number!=0)
                 {
                   for ($i=0; $i<=$n; $i++) {
@@ -236,32 +250,40 @@
                   <?php $number1+=1; ?>
                   @foreach($user as $key10)
                   @if($key10->user_id == $req_id)
-                  <td >{{$key10->name}}</td>
+                  <td>{{$key10->name}}</td>
                   @endif
                   @endforeach
-                  <td ><?php echo implode("",$names[$i]); ?></td>
-                  <td ><?php echo implode("",$stoks[$i]); ?></td>
+                  <td><?php echo implode("",$names[$i]); ?></td>
+                  <td><?php echo implode("",$stoks[$i]); ?></td>
                   <?php foreach ($category as $key ) {
                     if ($key->id == implode("",$categorys[$i])){?>
-                      <td ><?php echo $key->category; ?></td>
+                      <td><?php echo $key->category; ?></td>
                   <?php  }
                   } ?>
-                  <td ><?php echo implode("",$hargas[$i]); ?></td>
+                  <td><?php echo implode("",$hargas[$i]); ?></td>
                   @if($keterangan == 0)
-                  <td >Tambah Barang Baru</td>
+                  <td>Tambah Barang Baru</td>
                   @elseif($keterangan == 1)
-                  <td >Tambah stok Barang</td>
+                  <td>Tambah stok Barang</td>
                   @elseif($keterangan == 2)
-                  <td >Pengeluaran barang</td>
+                  <td>Pengeluaran barang</td>
                   @endif
                   @if($approval_id==NULL)
-                  <td >-</td>
+                  <td>-</td>
                   @endif
                   @foreach($user as $key10)
                   @if($key10->user_id == $approval_id)
-                  <td >{{$key10->name}}</td>
+                  <td>{{$key10->name}}</td>
                   @endif
                   @endforeach
+                  <td><?php echo substr($date, 0, 10); ?></td>
+                  <?php if(implode("", $status1[$i]) == 1){ ?>
+                    <td>Declined</td>
+                  <?php }elseif(implode("", $status1[$i]) == 2){ ?>
+                    <td>Accepted</td>
+                  <?php }elseif(implode("", $status1[$i])== 3){?>
+                    <td>Accepted</td>
+                  <?php  } ?>
                 </tr>
           <?php }$number+=1;} ?>
           </tbody>

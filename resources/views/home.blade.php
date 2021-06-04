@@ -5,13 +5,6 @@
 
 @section('content')
 
-<?php $category = DB::select("SELECT * FROM category"); ?>
-<?php $inv_view = DB::table('inventory')->WHERE('stok', '<', '5')->get(); ?>
-<?php $inv_count = DB::table('inventory')->WHERE('stok', '<', '5')->count(); ?>
-<?php $emp_count = DB::table('users')->WHERE('level', '0')->count(); ?>
-<?php $adm_count = DB::table('users')->WHERE('level', '1')->count(); ?>
-<?php $mngr_count = DB::table('users')->WHERE('level', '2')->count(); ?>
-
 <ul class="breadcrumb">
   <li>Dashboard</li>
 </ul>
@@ -98,7 +91,6 @@
           <div class="card-body">
             <i class="icon-folder-alt icon-md"><span class="card-title">&nbsp Inventory News</span></i>
             <br><br>
-            <h4>There are now <?php echo $inv_count ?> items running low in stocks!</h4>
               <table id="example" class="hover table table-bordered table-striped">
                 <thead class="thead-dark font-weight-bold text-center">
                   <tr>

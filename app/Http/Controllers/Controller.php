@@ -24,12 +24,19 @@ class Controller extends BaseController
     {
       $category = DB::select("SELECT * FROM category");
       $inv_view = DB::table('inventory')->WHERE('stok', '<', '5')->get();
+      $inv_count = DB::table('inventory')->WHERE('stok', '<', '5')->count();
+      $emp_count = DB::table('users')->WHERE('level', '0')->count();
+      $adm_count = DB::table('users')->WHERE('level', '1')->count();
+      $mngr_count = DB::table('users')->WHERE('level', '2')->count();
       $user = DB::select("select * from users");
-      $user1 = \App\Models\User::all();
       return view('home')
         ->with(compact('category'))
         ->with(compact('user'))
-        ->with(compact('user1'));
+        ->with(compact('inv_view'))
+        ->with(compact('inv_count'))
+        ->with(compact('emp_count'))
+        ->with(compact('adm_count'))
+        ->with(compact('mngr_count'));
     }
 
     public function home2()
