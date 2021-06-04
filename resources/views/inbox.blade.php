@@ -249,7 +249,12 @@
 </div>
 <script>
   $(document).ready(function() {
-    $('#example').DataTable();
+    $('#example').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    } );
   } );
 </script>
 @endsection
