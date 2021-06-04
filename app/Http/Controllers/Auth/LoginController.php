@@ -65,16 +65,7 @@ class LoginController extends Controller
 
               if($email_verified == 1)
               {
-                if($level == 1)
-                {
-                  $user = DB::select("select * from users");
-                  $user1 = \App\Models\User::all();
-                  return view('home', compact('user','user1'));
-                }
-                else
-                {
-                  return redirect('/loginIN');
-                }
+                  return redirect('/home');
               }
               else
               {
@@ -99,10 +90,5 @@ class LoginController extends Controller
     {
       Session::flush();
       return redirect('/');
-    }
-
-    public function LoginIN()
-    {
-      return view('home');
     }
 }
