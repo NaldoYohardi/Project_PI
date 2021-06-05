@@ -13519,3 +13519,39 @@ ul.breadcrumb li a:hover {
   margin-bottom: 2rem; }
   .dash-logo img {
     width: 80px; }
+
+.home-btn{
+  display: inline-block;
+  font-weight: bold;
+  color: #343a40;
+  text-align: center;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 7.5px;
+  font-size: 0.875rem;
+  line-height: 1;
+  border-radius: 0.1875rem;
+  margin: 3px;
+  width: 150px;
+  height: 35px;
+}
+
+.home-primary {
+  color: #fff;
+  background-color: #1bdbe0;
+  border-color: #1bdbe0; }
+  .home-primary:hover {
+    color: #fff;
+    background-color: #17babe;
+    border-color: #16afb2; }
+  .home-primary:focus, .home-primary.focus {
+    color: #fff;
+    background-color: #17babe;
+    border-color: #16afb2;
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(28, 192, 197, 0.5);
+    box-shadow: 0 0 0 0.2rem rgba(28, 192, 197, 0.5); }

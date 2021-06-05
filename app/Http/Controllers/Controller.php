@@ -28,10 +28,12 @@ class Controller extends BaseController
       $emp_count = DB::table('users')->WHERE('level', '0')->count();
       $adm_count = DB::table('users')->WHERE('level', '1')->count();
       $mngr_count = DB::table('users')->WHERE('level', '2')->count();
+      $inbox = DB::select("SELECT * FROM import_data");
       $user = DB::select("select * from users");
       return view('home')
         ->with(compact('category'))
         ->with(compact('user'))
+        ->with(compact('inbox'))
         ->with(compact('inv_view'))
         ->with(compact('inv_count'))
         ->with(compact('emp_count'))

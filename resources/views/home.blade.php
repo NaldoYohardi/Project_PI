@@ -117,101 +117,160 @@
                 </tbody>
               </table>
               <br>
-            <a href="{{ url('/table')}}" class="btn-sm font-weight-bold btn-primary w-50 mx-3">Take action</a>
+            <a href="{{ url('/table')}}" class="btn-sm font-weight-bold btn-primary w-50">Take action</a>
         </div>
       </div>
     </div>
     <?php } ?>
   </div>
-  <div class="row">
-    <div class="col-md-12 grid-margin stretch-card">
-      <div class="card">
-        <div class="card-body">
-          <div class="d-sm-flex align-items-center mb-4">
-            <h4 class="card-title mb-sm-0">Products Inventory</h4>
-            <a href="#" class="text-dark ml-auto mb-3 mb-sm-0"> View all Products</a>
-          </div>
-          <div class="table-responsive border rounded p-1">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th class="font-weight-bold">Store ID</th>
-                  <th class="font-weight-bold">Amount</th>
-                  <th class="font-weight-bold">Gateway</th>
-                  <th class="font-weight-bold">Created at</th>
-                  <th class="font-weight-bold">Paid at</th>
-                  <th class="font-weight-bold">Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <img class="img-sm rounded-circle" src="images/faces/face1.jpg" alt="profile image"> Katie Holmes
-                  </td>
-                  <td>$3621</td>
-                  <td><img src="images/dashboard/alipay.png" alt="alipay" class="gateway-icon mr-2"> alipay</td>
-                  <td>04 Jun 2019</td>
-                  <td>18 Jul 2019</td>
-                  <td>
-                    <div class="badge badge-success p-2">Paid</div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <img class="img-sm rounded-circle" src="images/faces/face2.jpg" alt="profile image"> Minnie Copeland
-                  </td>
-                  <td>$6245</td>
-                  <td><img src="images/dashboard/paypal.png" alt="alipay" class="gateway-icon mr-2"> Paypal</td>
-                  <td>25 Sep 2019</td>
-                  <td>07 Oct 2019</td>
-                  <td>
-                    <div class="badge badge-danger p-2">Pending</div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <img class="img-sm rounded-circle" src="images/faces/face3.jpg" alt="profile image"> Rodney Sims
-                  </td>
-                  <td>$9265</td>
-                  <td><img src="images/dashboard/alipay.png" alt="alipay" class="gateway-icon mr-2"> alipay</td>
-                  <td>12 dec 2019</td>
-                  <td>26 Aug 2019</td>
-                  <td>
-                    <div class="badge badge-warning p-2">Failed</div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <img class="img-sm rounded-circle" src="images/faces/face4.jpg" alt="profile image"> Carolyn Barker
-                  </td>
-                  <td>$2263</td>
-                  <td><img src="images/dashboard/alipay.png" alt="alipay" class="gateway-icon mr-2"> alipay</td>
-                  <td>30 Sep 2019</td>
-                  <td>20 Oct 2019</td>
-                  <td>
-                    <div class="badge badge-success p-2">Paid</div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="d-flex mt-4 flex-wrap">
-            <p class="text-muted">Showing 1 to 10 of 57 entries</p>
-            <nav class="ml-auto">
-              <ul class="pagination separated pagination-info">
-                <li class="page-item"><a href="#" class="page-link"><i class="icon-arrow-left"></i></a></li>
-                <li class="page-item active"><a href="#" class="page-link">1</a></li>
-                <li class="page-item"><a href="#" class="page-link">2</a></li>
-                <li class="page-item"><a href="#" class="page-link">3</a></li>
-                <li class="page-item"><a href="#" class="page-link">4</a></li>
-                <li class="page-item"><a href="#" class="page-link"><i class="icon-arrow-right"></i></a></li>
-              </ul>
-            </nav>
+  <?php if(Session::get('level')== 0 || Session::get('level')== 2){ ?>  <div class="row">
+      <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-sm-flex align-items-center mb-4">
+              <h4 class="card-title mb-sm-0">Inventory History</h4>
+              <a href="#" class="text-dark ml-auto mb-3 mb-sm-0">&nbsp;</a>
+              <a href="{{ url('/history')}}" class="home-btn home-primary mb-3 mb-sm-0">
+                <i class="icon-refresh menu-icon"></i> View history
+              </a>
+              <a href="#" class="text-dark ml-3 mb-3 mb-sm-0">&nbsp;</a>
+              <a href="{{ url('/inventory')}}" class="home-btn home-primary mb-3 mb-sm-0">
+                <i class="icon-folder-alt menu-icon"></i> View inventory
+              </a>
+            </div>
+            <div class="table-responsive border rounded p-1">
+              <table id="preview" class="hover table table-bordered table-striped">
+                <thead class="thead-dark font-weight-bold text-center">
+                  <tr>
+                    <th>ID</th>
+                    <th>Item Name</th>
+                    <th>Stock</th>
+                    <th>Category</th>
+                    <th>Harga Unit</th>
+                    <th>Details</th>
+                    <th>Entry Created</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody class="break" align="center">
+                  <?php
+                    $number = 0;
+                    $number1 = 0;
+                    foreach ($inbox as $key) {
+                      $keterangan = $key->keterangan;
+                      $approval_id = $key->approval_id;
+                      $id = $key->id;
+                      $date = $key->date;
+                      if($number!=0)
+                      {
+                        for ($i=0; $i<=$n; $i++) {
+                          unset($names[$i]);
+                          unset($stoks[$i]);
+                          unset($hargas[$i]);
+                          unset($categorys[$i]);
+                          unset($status1[$i]);
+                        }
+                      }
+                    for ($i=0, $j=0; $i<strlen($key->name) ; $i++) {
+                      if($key->name[$i] == ',')
+                      {
+                        $j+=1;
+                      }
+                      if ($key->name[$i] >= 'a' && $key->name[$i] <= 'z' || $key->name[$i] >= 'A' && $key->name[$i] <= 'Z' || ord($key->name[$i]) >= 48 && ord($key->name[$i]) <= 57)
+                      {
+                        $names[$j][$i] = $key->name[$i];
+                      }
+                    }
+
+                    for ($i=0, $j=0; $i<strlen($key->stok) ; $i++) {
+                      if($key->stok[$i] == ',')
+                      {
+                        $j+=1;
+                      }
+                      if (ord($key->stok[$i]) >= 48 && ord($key->stok[$i]) <= 57)
+                      {
+                        $stoks[$j][$i] = $key->stok[$i];
+                      }
+                    }
+
+                    for ($i=0, $j=0; $i<strlen($key->category_id) ; $i++) {
+                      if($key->category_id[$i] == ',')
+                      {
+                        $j+=1;
+                      }
+                      if (ord($key->category_id[$i]) >= 48 && ord($key->category_id[$i]) <= 57)
+                      {
+                        $categorys[$j][$i] = $key->category_id[$i];
+                      }
+                    }
+
+                    for ($i=0, $j=0; $i<strlen($key->status) ; $i++) {
+                      if($key->status[$i] == ',')
+                      {
+                        $j+=1;
+                      }
+                      if (ord($key->status[$i]) >= 48 && ord($key->status[$i]) <= 57)
+                      {
+                        $status1[$j][$i] = $key->status[$i];
+                      }
+                    }
+
+                    for ($i=0, $j=0; $i<strlen($key->harga_unit) ; $i++) {
+                      if($key->harga_unit[$i] == ',')
+                      {
+                        $j+=1;
+                      }
+                      if (ord($key->harga_unit[$i]) >= 48 && ord($key->harga_unit[$i]) <= 57)
+                      {
+                        $hargas[$j][$i] = $key->harga_unit[$i];
+                      }
+                    }
+                    $n = $j;
+                    for ($i=0; $i <=$j ; $i++) {
+                      ?>
+                      <tr>
+                        <td><?php echo $number1+1; ?></td>
+                        <?php $number1+=1; ?>
+                        <td><?php echo implode("",$names[$i]); ?></td>
+                        <td><?php echo implode("",$stoks[$i]); ?></td>
+                        <?php foreach ($category as $key ) {
+                          if ($key->id == implode("",$categorys[$i])){?>
+                            <td><?php echo $key->category; ?></td>
+                        <?php  }
+                        } ?>
+                        <td><?php echo implode("",$hargas[$i]); ?></td>
+                        @if($keterangan == 0)
+                        <td>Tambah Barang Baru</td>
+                        @elseif($keterangan == 1)
+                        <td>Tambah stok Barang</td>
+                        @elseif($keterangan == 2)
+                        <td>Pengeluaran barang</td>
+                        @endif
+                        <td><?php echo substr($date, 0, 10); ?></td>
+                        <?php if(implode("", $status1[$i]) == 1){ ?>
+                          <td><div class="badge badge-danger p-2">Declined</div></td>
+                        <?php }elseif(implode("", $status1[$i]) == 2){ ?>
+                          <td><div class="badge badge-success p-2">Accepted</div></td>
+                        <?php }elseif(implode("", $status1[$i])== 3){?>
+                          <td><div class="badge badge-success p-2">Accepted</div></td>
+                        <?php }elseif(implode("", $status1[$i])== 0){?>
+                          <td><div class="badge badge-warning p-2">Pending</div></td>
+                        <?php  } ?>
+                      </tr>
+                <?php }$number+=1;} ?>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  <?php } ?>
+  <script>
+    $(document).ready(function() {
+      $('#preview').DataTable();
+    } );
+  </script>
 @endsection
 
 @section('content_data')
