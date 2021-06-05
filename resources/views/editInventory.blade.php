@@ -17,7 +17,7 @@
           @foreach($inventory as $key)
           <input type="hidden" name="id" value="<?php echo $id; ?>">
           Nama
-          <input type="text" name="name" value="{{ $key->name }}">
+          <input type="text" name="name" value="{{ $key->name }}" required>
           &nbsp;
           Kategori
           <select name="category">
