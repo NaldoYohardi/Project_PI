@@ -40,7 +40,7 @@
                     </td>
                   </tr>
                 <?php $a++;
-                if ($a == 4) { ?>
+                if ($a == 3) { ?>
                   <td>...</td>
                   <td>...</td>
                   <td>...</td>
@@ -91,6 +91,7 @@
           <div class="card-body">
             <i class="icon-folder-alt icon-md"><span class="font-weight-bold page-title card-title mx-1 m">&nbsp Inventory News</span></i>
             <br><br>
+            <h4>You have <?php echo $inv_count ?> item low on stock!</h4>
               <table id="example" class="hover table table-bordered table-striped">
                 <thead class="thead-dark font-weight-bold text-center">
                   <tr>
@@ -119,6 +120,7 @@
             <a href="{{ url('/table')}}" class="btn-sm font-weight-bold btn-primary w-50 mx-3">Take action</a>
         </div>
       </div>
+    </div>
     <?php } ?>
   </div>
   <div class="row">
