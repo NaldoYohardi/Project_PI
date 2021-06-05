@@ -106,9 +106,4 @@
         </div>
       </div>
     <?php } ?>
-    <script>
-      $(document).ready(function() {
-        $('#example').DataTable();
-      } );
-    </script>
   @endsection

@@ -92,7 +92,7 @@
             <i class="icon-folder-alt icon-md"><span class="font-weight-bold page-title card-title mx-1 m">&nbsp Inventory News</span></i>
             <br><br>
             <h4>You have <?php echo $inv_count ?> item low on stock!</h4>
-              <table id="example" class="hover table table-bordered table-striped">
+              <table class="hover table table-bordered table-striped">
                 <thead class="thead-dark font-weight-bold text-center">
                   <tr>
                     <th>ID</th>
@@ -144,7 +144,7 @@
               </a>
             </div>
             <div class="table-responsive border rounded p-1">
-              <table id="preview" class="hover table table-bordered table-striped">
+              <table id="example" class="hover table table-bordered table-striped">
                 <thead class="thead-dark font-weight-bold text-center">
                   <tr>
                     <th>ID</th>
@@ -271,11 +271,6 @@
       </div>
     </div>
   <?php } ?>
-  <script>
-    $(document).ready(function() {
-      $('#preview').DataTable();
-    } );
-  </script>
 @endsection
 
 @section('content_data')
