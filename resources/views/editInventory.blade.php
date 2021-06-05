@@ -16,16 +16,19 @@
           @csrf
           @foreach($inventory as $key)
           <input type="hidden" name="id" value="<?php echo $id; ?>">
-          nama
+          Nama
           <input type="text" name="name" value="{{ $key->name }}">
-          kategori
+          &nbsp;
+          Kategori
           <select name="category">
             @foreach($category as $key1)
             <option value="{{$key1->id}}">{{$key1->category}}</option>
             @endforeach
           </select>
-          harga Unit
+          &nbsp;
+          Harga Unit
           <input type="number" name="harga" min="0" step="1000" value="{{$key->harga_unit}}">
+          &nbsp;
           <input type="submit" name="submit">
           @endforeach
         </form>

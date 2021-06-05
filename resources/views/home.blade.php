@@ -139,7 +139,7 @@
                 <i class="icon-refresh menu-icon"></i> View history
               </a>
               <a href="#" class="text-dark ml-3 mb-3 mb-sm-0">&nbsp;</a>
-              <a href="{{ url('/inventory')}}" class="home-btn home-primary mb-3 mb-sm-0">
+              <a href="{{ url('/table')}}" class="home-btn home-primary mb-3 mb-sm-0">
                 <i class="icon-folder-alt menu-icon"></i> View inventory
               </a>
             </div>

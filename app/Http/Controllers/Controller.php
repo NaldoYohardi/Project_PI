@@ -28,7 +28,7 @@ class Controller extends BaseController
       $emp_count = DB::table('users')->WHERE('level', '0')->count();
       $adm_count = DB::table('users')->WHERE('level', '1')->count();
       $mngr_count = DB::table('users')->WHERE('level', '2')->count();
-      $inbox = DB::select("SELECT * FROM import_data");
+      $inbox = DB::table('import_data')->orderBy('id','desc')->get();
       $user = DB::select("select * from users");
       return view('home')
         ->with(compact('category'))
