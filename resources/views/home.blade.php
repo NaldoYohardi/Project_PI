@@ -273,7 +273,14 @@
   <?php } ?>
   <script>
     $(document).ready(function() {
-      $('#preview').DataTable();
+      $('#preview').DataTable({
+        dom: 'lBfrtip',
+        buttons: [
+        { extend: 'pdf', text: '<div class="badge badge-success p-2"> PDF</div>' },
+        { extend: 'csv', text: '<div class="badge badge-success p-2"> CSV</div>'},
+        { extend: 'excel', text: '<div class="badge badge-success p-2"> EXCEL</div>' }
+        ],
+      });
     } );
   </script>
 @endsection
