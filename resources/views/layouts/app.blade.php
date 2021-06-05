@@ -159,6 +159,7 @@
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
+            <br>
             @yield('content')
           </div>
           <!-- content-wrapper ends -->
