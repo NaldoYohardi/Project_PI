@@ -102,6 +102,7 @@
                   </tr>
                 </thead>
                 <tbody class="break text-center">
+                  <?php $a = 0; ?>
                   @foreach ($inv_view as $key)
                   <tr>
                     <td>{{ $loop->iteration }}</td>
@@ -113,6 +114,10 @@
                     @endforeach
                     <td>{{ $key->stok }}</td>
                   </tr>
+                  <?php $a++;
+                  if ($a == 3) { ?>
+                    <td colspan="4"><a href="{{ url('/table')}}" class="home-link">And more...</a></td>
+                  <?php break;} ?>
                   @endforeach
                 </tbody>
               </table>
