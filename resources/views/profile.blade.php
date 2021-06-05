@@ -16,7 +16,7 @@
               <div class="col-lg-4 mx-auto">
                 <div class="auth-form-light text-left p-5">
                   <div class="brand-logo js-tilt text-center mb-1" data-tilt>
-                    <img src="/laravel.PNG">
+                    <img src="/Usu.jpg">
                   </div>
                   <div class="form-group">
                     <div class="pt-3 text-center">
