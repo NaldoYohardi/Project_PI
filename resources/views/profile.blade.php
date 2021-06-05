@@ -32,9 +32,8 @@
                             <p>Manager</p>
                         </div>
                         <?php } ?>
-                          <a href="/edit/{{$key->user_id}}" class="btn btn-primary w-100 mt-3"><div class="ripple-container">Update Data</div></a>
-                          <br></br>
-                          <a href="/logOUT" onclick="return confirm('Are you sure you want to Sign Out?');" class="btn btn-danger w-100"><div class="ripple-container">Logout</div></a>
+                          <a href="/edit/{{$key->user_id}}" class="btn btn-primary w-80 p-3"><div class="ripple-container">Update Data</div></a>
+                          <a href="/logOUT" onclick="return confirm('Are you sure you want to Sign Out?');" class="btn btn-danger w-80 p-3 mt-3"><div class="ripple-container">Logout</div></a>
                       @endforeach
                     </div>
                   </div>
