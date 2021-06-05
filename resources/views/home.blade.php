@@ -139,12 +139,12 @@
                 <i class="icon-refresh menu-icon"></i> View history
               </a>
               <a href="#" class="text-dark ml-3 mb-3 mb-sm-0">&nbsp;</a>
-              <a href="{{ url('/inventory')}}" class="home-btn home-primary mb-3 mb-sm-0">
+              <a href="{{ url('/table')}}" class="home-btn home-primary mb-3 mb-sm-0">
                 <i class="icon-folder-alt menu-icon"></i> View inventory
               </a>
             </div>
             <div class="table-responsive border rounded p-1">
-              <table id="preview" class="hover table table-bordered table-striped">
+              <table id="example" class="hover table table-bordered table-striped">
                 <thead class="thead-dark font-weight-bold text-center">
                   <tr>
                     <th>ID</th>
@@ -271,18 +271,6 @@
       </div>
     </div>
   <?php } ?>
-  <script>
-    $(document).ready(function() {
-      $('#preview').DataTable({
-        dom: 'lBfrtip',
-        buttons: [
-        { extend: 'pdf', text: '<div class="badge badge-success p-2"> PDF</div>' },
-        { extend: 'csv', text: '<div class="badge badge-success p-2"> CSV</div>'},
-        { extend: 'excel', text: '<div class="badge badge-success p-2"> EXCEL</div>' }
-        ],
-      });
-    } );
-  </script>
 @endsection
 
 @section('content_data')

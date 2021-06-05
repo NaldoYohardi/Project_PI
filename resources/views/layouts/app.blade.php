@@ -177,6 +177,16 @@
     </div>
     <!-- container-scroller -->
 
+    <script>
+      $(document).ready(function() {
+        $('#example').DataTable({
+          dom: 'lBfrtip',
+          buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+          ],
+        });
+      } );
+    </script>
     <!-- plugins:js -->
     <!-- endinject -->
     <!-- Plugin js for this page -->

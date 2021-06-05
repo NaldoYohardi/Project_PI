@@ -18,6 +18,7 @@
             <input type="hidden" name="id" value="<?php echo $id; ?>">
             @foreach ($inventory as $key)
             @if($key->id == $id)
+            Out : 
             <input type="number" name="amount" min="1" max="<?php echo $key->stok; ?>" value="<?php echo $key->stok; ?>">
             @endif
             @endforeach
