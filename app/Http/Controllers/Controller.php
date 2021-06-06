@@ -479,7 +479,7 @@ class Controller extends BaseController
       }
       $status = "0";
       $status1 = "3";
-      $approval_id[$i] ="0";
+      $approval_id ="0";
       $JSON = json_encode($name);
       $total = $amount+$stok;
       $amount = (string)$amount;
@@ -521,7 +521,7 @@ class Controller extends BaseController
       }
       $status = "0";
       $status1 = "3";
-      $approval_id[$i] ="0";
+      $approval_id ="0";
       $JSON = json_encode($name);
       $total = $stok - $amount;
       $amount = (string)$amount;
