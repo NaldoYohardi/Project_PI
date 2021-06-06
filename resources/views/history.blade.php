@@ -48,6 +48,7 @@
                     unset($hargas[$i]);
                     unset($categorys[$i]);
                     unset($status1[$i]);
+                    unset($approval_ids[$i]);
                   }
                 }
               for ($i=0, $j=0; $i<strlen($key->name) ; $i++) {
@@ -197,6 +198,7 @@
                     unset($hargas[$i]);
                     unset($categorys[$i]);
                     unset($status1[$i]);
+                    unset($approval_ids[$i]);
                   }
                 }
               for ($i=0, $j=0; $i<strlen($key->name) ; $i++) {
