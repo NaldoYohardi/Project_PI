@@ -20,6 +20,7 @@
           <thead class="thead-dark font-weight-bold text-center">
             <tr>
               <th>ID</th>
+              <th>Request_by</th>
               <th>Item Name</th>
               <th>Stock</th>
               <th>Category</th>
@@ -34,6 +35,7 @@
               $number = 0;
               $number1 = 0;
               foreach ($inbox as $key) {
+                $req_id = $key->req_id;
                 $keterangan = $key->keterangan;
                 $id = $key->id;
                 if($number!=0)
@@ -107,6 +109,11 @@
                 <tr>
                   <td ><?php echo $number1+1; ?></td>
                   <?php $number1+=1; ?>
+                  @foreach ($user as $key20)
+                  @if($key20->user_id == $req_id)
+                    <td>{{$key20->name}}</td>
+                  @endif
+                  @endforeach
                   <td ><?php echo implode("",$names[$i]); ?></td>
                   <td ><?php echo implode("",$stoks[$i]); ?></td>
                   <?php foreach ($category as $key ) {
@@ -142,6 +149,7 @@
               <th>Category</th>
               <th>Unit Price</th>
               <th>Details</th>
+              <th>Aprrove By</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -150,6 +158,7 @@
               $number = 0;
               $number1 = 0;
               foreach ($inbox as $key) {
+                $approve_id = $key->approve_id;
                 $keterangan = $key->keterangan;
                 $id = $key->id;
                 if($number!=0)
@@ -238,6 +247,11 @@
                   @elseif($keterangan == 2)
                   <td>Output Stock</td>
                   @endif
+                  @foreach ($user as $key20)
+                  @if($key20->user_id == $approve_id)
+                    <td>{{$key20->name}}</td>
+                  @endif
+                  @endforeach
                   <td><center><a onclick="return confirm('Are you sure?');" href="/done/<?php echo $id ?>,<?php echo $i; ?>" class="btn btn-success">&#10003;</a></center></td>
                 </tr>
           <?php }}$number+=1;} ?>

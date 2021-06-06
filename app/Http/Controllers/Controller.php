@@ -66,9 +66,10 @@ class Controller extends BaseController
 
     public function inbox()
     {
+      $user = DB::select("SELECT * FROM users");
       $category = DB::select("SELECT * FROM category");
       $inbox = DB::select("SELECT * FROM import_data");
-      return view('inbox', compact('inbox'), compact('category'));
+      return view('inbox')->with(compact('inbox'))->with(compact('category'))->with(compact('user'));
     }
 
     public function history()
@@ -174,7 +175,7 @@ class Controller extends BaseController
       $approval = DB::select("SELECT user_id FROM users where email = '$email'");
       foreach($approval as $key)
         $approval_id = $key->user_id;
-      $status = DB::select("SELECT status FROM import_data where id = $id");
+      $status = DB::select("SELECT * FROM import_data where id = $id");
       foreach ($status as $key) {
       for ($i=0, $j=0; $i<strlen($key->status) ; $i++) {
         if($key->status[$i] == ',')
