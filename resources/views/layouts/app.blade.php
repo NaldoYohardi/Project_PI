@@ -181,7 +181,10 @@
     <script>
       $(document).ready(function() {
         $('#example').DataTable({
-          dom: 'lBfrtip',
+          dom: 'Bfr<t>lip',
+          buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+          ],
           buttons: [
             'copy', 'csv', 'excel', 'pdf', 'print'
           ],
