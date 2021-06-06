@@ -422,7 +422,7 @@ class Controller extends BaseController
         $stok1 = implode("",$stoks[$i]);
         $category1 = implode("",$categorys[$i]);
         $harga1 = implode("",$hargas[$i]);
-        DB::insert("INSERT INTO inventory (req_id, approval_id, name, stok, category_id, harga_unit) VALUES ($req_id, $approval_id, '$name1','$stok1','$category1','$harga1')");
+        DB::insert("INSERT INTO inventory (name, stok, category_id, harga_unit) VALUES ('$name1','$stok1','$category1','$harga1')");
         }
       }
     }
