@@ -347,9 +347,13 @@
                         <tr>
                           <td ><?php echo $number1+1; ?></td>
                           <?php $number1+=1; ?>
-                          @foreach ($user as $key20)
-                          @if($key20->user_id == $req_id)
-                            <td>{{$key20->name}}</td>
+                          @foreach($user as $key10)
+                          @if($key10->user_id == $req_id)
+                            @if($key10->level == 0)
+                              <td bgcolor="lightgreen"><h5>{{$key10->name}}</h5></td>
+                            @elseif($key10->level == 2)
+                              <td bgcolor="lightblue"><h5>{{$key10->name}}</h5></td>
+                            @endif
                           @endif
                           @endforeach
                           <td ><?php echo implode("",$names[$i]); ?></td>
@@ -359,7 +363,7 @@
                               <td ><?php echo $key->category; ?></td>
                           <?php  }
                           } ?>
-                          <td >Rp.<?php echo implode("",$hargas[$i]); ?></td>
+                          <td class="fixbreak">Rp.<?php echo number_format(implode("",$hargas[$i])); ?></td>
                           @if($keterangan == 0)
                           <td>Input New Item</td>
                           @elseif($keterangan == 1)
@@ -508,7 +512,7 @@
                             <td><?php echo $key->category; ?></td>
                         <?php  }
                         } ?>
-                        <td class="fixbreak">Rp.<?php echo number_format(implode("",$hargas[$i]),3); ?></td>
+                        <td class="fixbreak">Rp.<?php echo number_format(implode("",$hargas[$i])); ?></td>
                         @if($keterangan == 0)
                         <td>Input New Item</td>
                         @elseif($keterangan == 1)
