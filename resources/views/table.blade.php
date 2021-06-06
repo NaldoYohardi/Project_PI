@@ -127,8 +127,8 @@
                             "></a></td>
               <td class="fixbreak">Rp.{{ $key->harga_unit }}</td>
               <td class="fixbreak"><center>
-                <a href="/addstok/<?php echo $key->id; ?>" class="inv-btn inv-success">Input</a><br>
-                <a href="/outstok/<?php echo $key->id; ?>" class="inv-btn inv-info">Output</a>
+                <a href="/addstok/<?php echo Session::get('user_id'); ?>" class="inv-btn inv-success">Input</a><br>
+                <a href="/outstok/<?php echo Session::get('user_id'); ?>" class="inv-btn inv-info">Output</a>
               </center></td>
             </tr>
             @endforeach
