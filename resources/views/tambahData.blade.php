@@ -18,20 +18,20 @@
       <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <p style="font-size:200%; font-family:serif;"><b>Data barang <?php echo $i+1; ?></b></p>
+            <p style="font-size:180%;"><b>Data barang <?php echo $i+1; ?></b></p>
             <input type="hidden" name="user_id" value="<?php echo Session::get('user_id'); ?>">
             <input type="hidden" name="n" value="<?php echo $n; ?>">
-              <p style="font-size:140%; font-family:serif;">Nama</p>
+              <p style="font-size:120%;">Nama</p>
               <input class="form-control" type="text" name="name<?php echo $i; ?>" required><br>
-              <p style="font-size:140%; font-family:serif;">Stock</p>
+              <p style="font-size:120%;">Stock</p>
               <input class="form-control" type="number" min="1" value="1" name="stok<?php echo $i; ?>"><br>
-              <p style="font-size:140%; font-family:serif;">Category</p>
-              <select class="form-control" style="font-size:130%; font-family:serif;" name="category<?php echo $i; ?>">
+              <p style="font-size:120%;">Category</p>
+              <select class="form-control" style="font-size:130%;" name="category<?php echo $i; ?>">
                 @foreach($category as $key)
                 <option value="{{$key->id}}">{{$key->category}}</option>
                 @endforeach
               </select><br>
-              <p style="font-size:140%; font-family:serif;">Harga per Unit</p>
+              <p style="font-size:120%;">Harga per Unit</p>
               <input class="form-control" type="number" min="0" step="1000" name="harga<?php echo $i; ?>" required>
           </div>
         </div>
