@@ -1834,6 +1834,10 @@
   --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
 
+#example {
+    margin: 10px 0;
+}
+
 *,
 *::before,
 *::after {
@@ -8593,7 +8597,7 @@ button.bg-dark:focus {
 
 .w-80 {
   width: 80% !important; }
-  
+
 .w-100 {
   width: 100% !important; }
 
@@ -13563,4 +13567,3 @@ ul.breadcrumb li a:hover {
   color: #000; }
   .home-link:hover {
     color: #000; }
-  
