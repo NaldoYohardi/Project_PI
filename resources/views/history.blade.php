@@ -122,9 +122,9 @@
                   @if($keterangan == 0)
                   <td>Input New Item</td>
                   @elseif($keterangan == 1)
-                  <td>Add Stock</td>
+                  <td>Add Current Stock</td>
                   @elseif($keterangan == 2)
-                  <td>Stock</td>
+                  <td>Output Stock</td>
                   @endif
                   @if($approval_id==NULL)
                     <td bgcolor="lightblue">Requesting Manager</td>

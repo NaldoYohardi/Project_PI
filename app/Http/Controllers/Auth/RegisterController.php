@@ -82,7 +82,7 @@ class RegisterController extends Controller
 
          if($user != null){
             MailController::sendSignupEmail($user->name, $user->email, $user->verification_code);
-            return redirect('/loginIN')->with(session()->flash('alert-success', 'Your account has been created. Please check email for verification.'));
+            return redirect('/home')->with(session()->flash('alert-success', 'Your account has been created. Please check email for verification.'));
         }
          return redirect('/')->with(session()->flash('alert-danger', 'Something went wrong!'));
        }

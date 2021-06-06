@@ -20,11 +20,11 @@
           <thead class="thead-dark font-weight-bold text-center">
             <tr>
               <th>ID</th>
-              <th>Name</th>
+              <th>Item Name</th>
               <th>Stock</th>
               <th>Category</th>
-              <th>Harga unit</th>
-              <th>Keterangan</th>
+              <th>Unit Price</th>
+              <th>Details</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -116,11 +116,11 @@
                   } ?>
                   <td ><?php echo implode("",$hargas[$i]); ?></td>
                   @if($keterangan == 0)
-                  <td >Tambah Barang Baru</td>
+                  <td>Input New Item</td>
                   @elseif($keterangan == 1)
-                  <td >Tambah stok Barang</td>
+                  <td>Add Current Stock</td>
                   @elseif($keterangan == 2)
-                  <td >Pengeluaran barang</td>
+                  <td>Output Stock</td>
                   @endif
                   <td><center>
                     <a onclick="return confirm('Are you sure?');" href="/accpt/<?php echo $id ?>,<?php echo $i; ?>" class="btn btn-success">&#10003;</a>
@@ -137,11 +137,11 @@
           <thead class="thead-dark font-weight-bold text-center">
             <tr>
               <th>ID</th>
-              <th>Name</th>
+              <th>Item Name</th>
               <th>Stock</th>
               <th>Category</th>
-              <th>Harga unit</th>
-              <th>Keterangan</th>
+              <th>Unit Price</th>
+              <th>Details</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -232,11 +232,11 @@
                   } ?>
                   <td ><?php echo implode("",$hargas[$i]); ?></td>
                   @if($keterangan == 0)
-                  <td >Tambah Barang Baru</td>
+                  <td>Input New Item</td>
                   @elseif($keterangan == 1)
-                  <td >Tambah stok Barang</td>
+                  <td>Add Current Stock</td>
                   @elseif($keterangan == 2)
-                  <td >Pengeluaran barang</td>
+                  <td>Output Stock</td>
                   @endif
                   <td><center><a onclick="return confirm('Are you sure?');" href="/done/<?php echo $id ?>,<?php echo $i; ?>" class="btn btn-success">&#10003;</a></center></td>
                 </tr>

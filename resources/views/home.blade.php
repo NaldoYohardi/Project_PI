@@ -96,7 +96,7 @@
                 <thead class="thead-dark font-weight-bold text-center">
                   <tr>
                     <th>ID</th>
-                    <th>Name</th>
+                    <th>Item Name</th>
                     <th>Category</th>
                     <th>Stock</th>
                   </tr>
@@ -147,14 +147,14 @@
               <table id="example" class="hover table table-bordered table-striped">
                 <thead class="thead-dark font-weight-bold text-center">
                   <tr>
+                    <th>Status</th>
                     <th>ID</th>
                     <th>Item Name</th>
                     <th>Stock</th>
                     <th>Category</th>
-                    <th>Harga Unit</th>
+                    <th>Unit Price</th>
                     <th>Details</th>
                     <th>Entry Created</th>
-                    <th>Status</th>
                   </tr>
                 </thead>
                 <tbody class="break" align="center">
@@ -245,11 +245,11 @@
                         } ?>
                         <td><?php echo implode("",$hargas[$i]); ?></td>
                         @if($keterangan == 0)
-                        <td>Tambah Barang Baru</td>
+                        <td>Input New Item</td>
                         @elseif($keterangan == 1)
-                        <td>Tambah stok Barang</td>
+                        <td>Add Current Stock</td>
                         @elseif($keterangan == 2)
-                        <td>Pengeluaran barang</td>
+                        <td>Output Stock</td>
                         @endif
                         <td><?php echo substr($date, 0, 10); ?></td>
                         <?php if(implode("", $status1[$i]) == 1){ ?>

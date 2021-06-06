@@ -23,12 +23,12 @@
             <tr>
               <th>ID</th>
               <th>User Request</th>
-              <th>Name</th>
+              <th>Item Name</th>
               <th>Stock</th>
               <th>Category</th>
-              <th>Qr Code</th>
-              <th>Harga unit</th>
-              <th>User Approve</th>
+              <th>QR</th>
+              <th>Unit Price</th>
+              <th>Checked By</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -92,12 +92,12 @@
             <tr>
               <th>ID</th>
               <th>User Request</th>
-              <th>Name</th>
+              <th>Item Name</th>
               <th>Stock</th>
               <th>Category</th>
-              <th>Qr Code</th>
-              <th>Harga unit</th>
-              <th>User Approve</th>
+              <th>QR</th>
+              <th>Unit Price</th>
+              <th>Checked By</th>
               <th>Action</th>
             </tr>
           </thead>
