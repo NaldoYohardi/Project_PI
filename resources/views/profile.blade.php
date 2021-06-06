@@ -21,7 +21,7 @@
                   <div class="form-group">
                     <div class="pt-3 text-center">
                       @foreach ($user as $key)
-                        <h6 class="icon-sm">{{ $key->name }}</h6>
+                        <h6 class="icon-md">{{ $key->name }}</h6>
                         <h4 >{{ $key->email }}</h4>
                         <div class="icon-md font-weight-semibold designation">
                           <?php if(Session::get('level')== 1){ ?>
