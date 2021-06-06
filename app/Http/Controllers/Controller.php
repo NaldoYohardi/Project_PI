@@ -220,11 +220,8 @@ class Controller extends BaseController
     }
 
     public function decline($id,$index){
-      $email = Session::get('email');
-      $approval = DB::select("SELECT user_id FROM users where email = '$email'");
-      foreach($approval as $key)
-        $approval_id = $key->user_id;
-      $status = DB::select("SELECT status FROM import_data where id = $id");
+      $approval_ida = Session::get('user_id');
+      $status = DB::select("SELECT * FROM import_data where id = $id");
       foreach ($status as $key) {
       for ($i=0, $j=0; $i<strlen($key->status) ; $i++) {
         if($key->status[$i] == ',')
@@ -236,10 +233,21 @@ class Controller extends BaseController
           $status2[$j][$i] = $key->status[$i];
         }
       }
+      for ($i=0, $j=0; $i<strlen($key->approval_id) ; $i++) {
+        if($key->approval_id[$i] == ',')
+        {
+          $j+=1;
+        }
+        if (ord($key->approval_id[$i]) >= 48 && ord($key->approval_id[$i]) <= 57)
+        {
+          $approval_ids[$j][$i] = $key->approval_id[$i];
+        }
+      }
     }
     for ($i=0; $i <=$j ; $i++) {
       if($i != $index)
       {
+        $approval_id1[$i] = implode("",$approval_ids[$i]);
         if(implode("",$status2[$i]) == "0")
           $status1[$i] = "0";
         elseif(implode("",$status2[$i]) == "2")
@@ -250,12 +258,13 @@ class Controller extends BaseController
           $status1[$i] = "3";
       }
       else {
+        $approval_id1[$i] = (string)$approval_ida;
         $status1[$i] = "1";
       }
     }
     $JSON = json_encode($status1);
-    $JSON1 =
-    DB::update("UPDATE import_data SET status = '$JSON', approval_id = $approval_id WHERE ID = $id");
+    $JSON1 = json_encode($approval_id1);
+    DB::update("UPDATE import_data SET status = '$JSON', approval_id = '$JSON1' WHERE ID = $id");
     return redirect('/inbox');
     }
 
