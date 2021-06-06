@@ -158,7 +158,7 @@
               $number = 0;
               $number1 = 0;
               foreach ($inbox as $key) {
-                $approve_id = $key->approve_id;
+                $approve_id = $key->approval_id;
                 $keterangan = $key->keterangan;
                 $id = $key->id;
                 if($number!=0)
