@@ -7,7 +7,7 @@
   <ul class="breadcrumb">
     <li><a href="{{ url('/home')}}">Dashboard</a></li>
     <li><a href="{{ url('/table')}}">Inventory</a></li>
-    <li>Out Stocks</li>
+    <li>Output Stock</li>
   </ul>
   <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
@@ -18,8 +18,8 @@
             <input type="hidden" name="id" value="<?php echo $id; ?>">
             @foreach ($inventory as $key)
             @if($key->id == $id)
-            Out : 
-            <input type="number" name="amount" min="1" max="<?php echo $key->stok; ?>" value="<?php echo $key->stok; ?>">
+            Output Stock Amount:
+            <input class="form-control" type="number" name="amount" min="1" max="<?php echo $key->stok; ?>" value="<?php echo $key->stok; ?>">
             @endif
             @endforeach
             <br><br>

@@ -261,7 +261,7 @@
                   <td>Output Stock</td>
                   @endif
                   @if($approval_id==NULL)
-                    <td bgcolor="lightblue">Requesting Manager</td>
+                    <td bgcolor="lightyellow">-</td>
                   @endif
                   @foreach($user as $key10)
                   @if($key10->user_id == $approval_id)
@@ -386,15 +386,9 @@
                   @foreach($user as $key10)
                   @if($key10->user_id == $req_id)
                     @if($key10->level == 0)
-<<<<<<< HEAD
-                      <td bgcolor="green">{{$key10->name}}</td>
-                    @elseif($key10->level == 2)
-                      <td bgcolor="blue">{{$key10->name}}</td>
-=======
                       <td bgcolor="lightgreen"><h5>{{$key10->name}}</h5></td>
                     @elseif($key10->level == 2)
                       <td bgcolor="lightblue"><h5>{{$key10->name}}</h5></td>
->>>>>>> 4864c92fb4ff5111f2e97de70e6e591579fa31cf
                     @endif
                   @endif
                   @endforeach
@@ -414,24 +408,15 @@
                   <td>Output Stock</td>
                   @endif
                   @if($approval_id==NULL)
-<<<<<<< HEAD
-                    <td bgcolor="blue">Requesting Manager</td>
-=======
                     <td bgcolor="lightblue">Requesting Manager</td>
->>>>>>> 4864c92fb4ff5111f2e97de70e6e591579fa31cf
+                    <td bgcolor="lightyellow">-</td>
                   @endif
                   @foreach($user as $key10)
                   @if($key10->user_id == $approval_id)
                     @if($key10->level == 0)
-<<<<<<< HEAD
-                      <td bgcolor="green">{{$key10->name}}</td>
-                    @elseif($key10->level == 2)
-                      <td bgcolor="blue">{{$key10->name}}</td>
-=======
                       <td bgcolor="red"><h5>{{$key10->name}}</h5></td>
                     @elseif($key10->level == 2)
                       <td bgcolor="lightblue"><h5>{{$key10->name}}</h5></td>
->>>>>>> 4864c92fb4ff5111f2e97de70e6e591579fa31cf
                     @endif
                   @endif
                   @endforeach
