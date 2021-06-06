@@ -127,7 +127,7 @@
                   <td>Output Stock</td>
                   @endif
                   @if($approval_id==NULL)
-                    <td bgcolor="lightblue">Requesting Manager</td>
+                    <td bgcolor="lightyellow">-</td>
                   @endif
                   @foreach($user as $key10)
                   @if($key10->user_id == $approval_id)
@@ -274,7 +274,7 @@
                   <td>Output Stock</td>
                   @endif
                   @if($approval_id==NULL)
-                    <td bgcolor="lightblue">Requesting Manager</td>
+                    <td bgcolor="lightyellow">-</td>
                   @endif
                   @foreach($user as $key10)
                   @if($key10->user_id == $approval_id)

@@ -22,13 +22,11 @@
           <thead class="thead-dark font-weight-bold text-center">
             <tr>
               <th>ID</th>
-              <th>User Request</th>
               <th>Item Name</th>
               <th>Stock</th>
               <th>Category</th>
               <th>QR</th>
               <th>Unit Price</th>
-              <th>Checked By</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -37,9 +35,6 @@
             <tr>
               <td>{{ $loop->iteration }}</td>
               @foreach($user as $key1)
-              @if($key1->user_id == $key->req_id)
-              <td>{{ $key1->name }}</td>
-              @endif
               @endforeach
               <td>{{ $key->name }}</td>
               <td>{{ $key->stok }}</td>
@@ -63,16 +58,7 @@
                             ->generate($a))
                             !!}
                             "></a></td>
-              <td>{{ $key->harga_unit }}</td>
-              @if ($key->approval_id == NULL)
-              <td>-</td>
-              @else
-                @foreach($user as $key1)
-                @if($key1->user_id == $key->approval_id)
-                <td>{{ $key1->name }}</td>
-                @endif
-                @endforeach
-              @endif
+              <td>Rp.{{ $key->harga_unit }}</td>
               <td class="fixbreak"><center>
                 <a href="/addstok/<?php echo $key->id; ?>" class="inv-btn inv-success">Input</a><br>
                 <a href="/outstok/<?php echo $key->id; ?>" class="inv-btn inv-info">Output</a><br>
@@ -127,8 +113,8 @@
                             "></a></td>
               <td class="fixbreak">Rp.{{ $key->harga_unit }}</td>
               <td class="fixbreak"><center>
-                <a href="/addstok/<?php echo $key->id; ?>" class="inv-btn inv-success">Input</a><br>
-                <a href="/outstok/<?php echo $key->id; ?>" class="inv-btn inv-info">Output</a>
+                <a href="/addstok/<?php echo Session::get('user_id'); ?>" class="inv-btn inv-success">Input</a><br>
+                <a href="/outstok/<?php echo Session::get('user_id'); ?>" class="inv-btn inv-info">Output</a>
               </center></td>
             </tr>
             @endforeach
