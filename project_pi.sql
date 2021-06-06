@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 02, 2021 at 12:29 PM
+-- Generation Time: Jun 06, 2021 at 02:55 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -83,27 +83,23 @@ CREATE TABLE `failed_jobs` (
 CREATE TABLE `import_data` (
   `id` int(11) NOT NULL,
   `req_id` int(3) NOT NULL,
-  `approval_id` int(3) DEFAULT NULL,
+  `approval_id` text DEFAULT NULL,
   `name` text NOT NULL,
   `stok` text DEFAULT NULL,
   `status` text DEFAULT NULL,
   `category_id` text DEFAULT NULL,
   `harga_unit` text DEFAULT NULL,
-  `keterangan` int(1) NOT NULL
+  `keterangan` int(1) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `import_data`
 --
 
-INSERT INTO `import_data` (`id`, `req_id`, `approval_id`, `name`, `stok`, `status`, `category_id`, `harga_unit`, `keterangan`) VALUES
-(1, 28, NULL, '[\"endity\",\"wasita\"]', '[\"1\",\"2\"]', '[\"3\",\"3\"]', '[\"1\",\"2\"]', '[\"10000\",\"1000\"]', 0),
-(6, 28, NULL, '\"wasita\"', '\"2\"', '\"3\"', '\"2\"', '\"1000\"', 1),
-(7, 28, 4, '[\"aaa\",\"bbb\"]', '[\"3\",\"4\"]', '[\"1\",\"3\"]', '[\"3\",\"4\"]', '[\"30000\",\"3000\"]', 0),
-(9, 28, 28, '\"endity\"', '\"2\"', '[\"3\"]', '\"1\"', '\"10000\"', 1),
-(11, 28, 28, '\"endity\"', '\"8\"', '[\"3\"]', '\"1\"', '\"10000\"', 2),
-(12, 28, NULL, '\"wasita\"', '\"5\"', '\"3\"', '\"2\"', '\"1000\"', 2),
-(13, 28, NULL, '\"endity\"', '\"2\"', '[\"3\"]', '\"1\"', '\"10000\"', 2);
+INSERT INTO `import_data` (`id`, `req_id`, `approval_id`, `name`, `stok`, `status`, `category_id`, `harga_unit`, `keterangan`, `date`) VALUES
+(1, 30, '[\"0\",\"28\"]', '[\"endity\",\"wasita\"]', '[\"10\",\"20\"]', '[\"3\",\"3\"]', '[\"1\",\"2\"]', '[\"10000\",\"20000\"]', 0, '2021-06-06 12:54:52'),
+(2, 30, '[\"28\",\"28\"]', '[\"asd\",\"asdada\"]', '[\"30\",\"40\"]', '[\"1\",\"3\"]', '[\"1\",\"1\"]', '[\"300000\",\"40000\"]', 0, '2021-06-06 12:54:54');
 
 -- --------------------------------------------------------
 
@@ -113,8 +109,6 @@ INSERT INTO `import_data` (`id`, `req_id`, `approval_id`, `name`, `stok`, `statu
 
 CREATE TABLE `inventory` (
   `id` int(11) NOT NULL,
-  `req_id` int(3) NOT NULL,
-  `approval_id` int(3) DEFAULT NULL,
   `name` varchar(255) NOT NULL,
   `stok` int(7) NOT NULL,
   `category_id` int(2) NOT NULL,
@@ -125,8 +119,12 @@ CREATE TABLE `inventory` (
 -- Dumping data for table `inventory`
 --
 
-INSERT INTO `inventory` (`id`, `req_id`, `approval_id`, `name`, `stok`, `category_id`, `harga_unit`) VALUES
-(4, 28, 4, 'bbb', 4, 4, 3000);
+INSERT INTO `inventory` (`id`, `name`, `stok`, `category_id`, `harga_unit`) VALUES
+(1, 'endity', 10, 1, 10000),
+(2, 'wasita', 20, 2, 20000),
+(3, 'endity', 10, 1, 10000),
+(4, 'wasita', 20, 2, 20000),
+(5, 'asdada', 40, 1, 40000);
 
 -- --------------------------------------------------------
 
@@ -198,8 +196,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_id`, `name`, `email`, `email_verified`, `password`, `verification_code`, `level`, `remember_token`, `created_at`, `updated_at`) VALUES
 (3, 'aldrich', 'aldrich@gmail.com', 0, '$2y$10$vadIvj69BqhAHVXGFWhzsOlzWY4KhMTwRKU4RYMG6YUKX3PUzYM9y', 'e7850ca2d5b8fb08206b46dfb8ec34fd7e3dcc98', 0, NULL, '2021-05-19 19:54:05', '2021-05-19 19:54:05'),
-(4, 'naldo', 'naldo@gmail.com', 1, '$2y$10$bbe1C/UtxqERj6XIjvYkRexq4mSeUmZmlzkTPbmV96fyhUwKo5z56', '1d8a38060d237bc12e2307782741bed6ce214d95', 1, NULL, '2021-05-21 21:27:57', '2021-05-21 21:27:57'),
-(28, 'endity', 'enditywasita@gmail.com', 1, '$2y$10$29dHEUUEm0oW7VS5hf0ORuAy3kT7/xPjcWjjVT140EpACNrCy8oHO', 'bea48591d186dbe878889ce2aa2f16fe49ce53df', 2, 'ZdKZ39OD4pZOpq4RKTC6doVqJebrIx99GnCFNaY1CeXBdu3tC3NGOVGxKKc1', '2021-05-30 09:19:43', '2021-05-31 02:15:57');
+(4, 'naldo', 'naldo@gmail.com', 1, '$2y$10$bbe1C/UtxqERj6XIjvYkRexq4mSeUmZmlzkTPbmV96fyhUwKo5z56', '1d8a38060d237bc12e2307782741bed6ce214d95', 0, NULL, '2021-05-21 21:27:57', '2021-05-21 21:27:57'),
+(28, 'endity', 'enditywasita@gmail.com', 1, '$2y$10$29dHEUUEm0oW7VS5hf0ORuAy3kT7/xPjcWjjVT140EpACNrCy8oHO', 'bea48591d186dbe878889ce2aa2f16fe49ce53df', 2, 'ZdKZ39OD4pZOpq4RKTC6doVqJebrIx99GnCFNaY1CeXBdu3tC3NGOVGxKKc1', '2021-05-30 09:19:43', '2021-06-06 01:52:18'),
+(30, 'wasita@gmail.com', 'ndtblank@gmail.com', 1, '$2y$10$jUTkEFHPdkrrTYwpFwr4webPYquVPpzHb0rf2OVtrJrFSSlpDu5Fm', '5d800fc0a579b9f68376107ecabb55f333d865ec', 0, NULL, '2021-06-06 01:51:58', '2021-06-06 01:52:12');
 
 --
 -- Indexes for dumped tables
@@ -231,14 +230,13 @@ ALTER TABLE `failed_jobs`
 ALTER TABLE `import_data`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`req_id`),
-  ADD KEY `approval_id` (`approval_id`);
+  ADD KEY `approval_id` (`approval_id`(768));
 
 --
 -- Indexes for table `inventory`
 --
 ALTER TABLE `inventory`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `req_id` (`req_id`,`approval_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `migrations`
@@ -292,13 +290,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `import_data`
 --
 ALTER TABLE `import_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `inventory`
 --
 ALTER TABLE `inventory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -316,7 +314,7 @@ ALTER TABLE `request`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `user_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
