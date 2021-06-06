@@ -479,6 +479,7 @@ class Controller extends BaseController
       }
       $status = "0";
       $status1 = "3";
+      $approval_id[$i] ="0";
       $JSON = json_encode($name);
       $total = $amount+$stok;
       $amount = (string)$amount;
@@ -487,13 +488,14 @@ class Controller extends BaseController
       $JSON2 = json_encode($category_id);
       $harga = (string)$harga;
       $JSON3 = json_encode($harga);
+      $JSON4 = json_encode($approval_id);
       $JSONS = json_encode($status);
       $JSONM = json_encode($status1);
       if(Session::get('level')==0)
-        DB::insert("INSERT INTO import_data (req_id, name, stok, status, category_id, harga_unit, keterangan) VALUES ($request_id, '$JSON', '$JSON1', '$JSONS', '$JSON2', '$JSON3','1')");
+        DB::insert("INSERT INTO import_data (req_id, approval_id, name, stok, status, category_id, harga_unit, keterangan) VALUES ($request_id,'$JSON4','$JSON', '$JSON1', '$JSONS', '$JSON2', '$JSON3','1')");
       elseif(Session::get('level')==2)
       {
-        DB::insert("INSERT INTO import_data (req_id, name, stok, status, category_id, harga_unit, keterangan) VALUES ($request_id, '$JSON', '$JSON1', '$JSONM', '$JSON2', '$JSON3','1')");
+        DB::insert("INSERT INTO import_data (req_id, approval_id, name, stok, status, category_id, harga_unit, keterangan) VALUES ($request_id,'$JSON4','$JSON', '$JSON1', '$JSONM', '$JSON2', '$JSON3','1')");
         DB::insert("UPDATE inventory SET stok = '$total' WHERE id = $id");
       }
       return redirect('/table');
@@ -519,6 +521,7 @@ class Controller extends BaseController
       }
       $status = "0";
       $status1 = "3";
+      $approval_id[$i] ="0";
       $JSON = json_encode($name);
       $total = $stok - $amount;
       $amount = (string)$amount;
@@ -527,13 +530,14 @@ class Controller extends BaseController
       $JSON2 = json_encode($category_id);
       $harga = (string)$harga;
       $JSON3 = json_encode($harga);
+      $JSON4 = json_encode($approval_id);
       $JSONS = json_encode($status);
       $JSONM = json_encode($status1);
       if(Session::get('level')==0)
-        DB::insert("INSERT INTO import_data (req_id, name, stok, status, category_id, harga_unit, keterangan) VALUES ($request_id, '$JSON', '$JSON1', '$JSONS', '$JSON2', '$JSON3','2')");
+        DB::insert("INSERT INTO import_data (req_id, approval_id, name, stok, status, category_id, harga_unit, keterangan) VALUES ($request_id, '$JSON4', '$JSON', '$JSON1', '$JSONS', '$JSON2', '$JSON3','2')");
       elseif(Session::get('level')==2)
       {
-        DB::insert("INSERT INTO import_data (req_id, name, stok, status, category_id, harga_unit, keterangan) VALUES ($request_id, '$JSON', '$JSON1', '$JSONM', '$JSON2', '$JSON3','2')");
+        DB::insert("INSERT INTO import_data (req_id, approval_id, name, stok, status, category_id, harga_unit, keterangan) VALUES ($request_id, '$JSON4', '$JSON', '$JSON1', '$JSONM', '$JSON2', '$JSON3','2')");
         DB::insert("UPDATE inventory SET stok = '$total' WHERE id = $id");
       }
       return redirect('/table');
