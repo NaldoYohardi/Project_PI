@@ -7,7 +7,7 @@
   <ul class="breadcrumb">
     <li><a href="{{ url('/home')}}">Dashboard</a></li>
     <li><a href="/profile/{{ Session::get('email') }}">Profiles</a></li>
-    <li>Edit</li>
+    <li>Edit Profile</li>
   </ul>
     <div class="content">
     <div class="container-fluid">

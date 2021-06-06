@@ -20,7 +20,7 @@
           <thead class="thead-dark font-weight-bold text-center">
             <tr>
               <th>ID</th>
-              <th>Request_by</th>
+              <th>Requested by</th>
               <th>Item Name</th>
               <th>Stock</th>
               <th>Category</th>
@@ -149,7 +149,7 @@
               <th>Category</th>
               <th>Unit Price</th>
               <th>Details</th>
-              <th>Aprrove By</th>
+              <th>Checked By</th>
               <th>Action</th>
             </tr>
           </thead>
