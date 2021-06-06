@@ -165,8 +165,8 @@ class Controller extends BaseController
       {
         DB::insert("INSERT INTO import_data (req_id, approval_id, name, stok, status, category_id, harga_unit, keterangan) VALUES ($req->user_id,'$JSON5','$JSON1','$JSON2','$JSONM','$JSON3','$JSON4', '0')");
         for ($i=0; $i <$req->n ; $i++) {
-          DB::insert("INSERT INTO inventory (req_id, name, stok, category_id, harga_unit) VALUES ($req->user_id,
-            '$name[$i]','$stok[$i]','$category[$i]','$harga[$i]')");
+        DB::insert("INSERT INTO inventory (name, stok, category_id, harga_unit) VALUES (
+          '$name[$i]','$stok[$i]','$category[$i]','$harga[$i]')");
         }
       }
       return redirect('/table');

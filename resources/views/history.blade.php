@@ -20,6 +20,7 @@
           <thead class="thead-dark font-weight-bold text-center">
             <tr>
               <th>ID</th>
+              <th>Requested By</th>
               <th>Item Name</th>
               <th>Stock</th>
               <th>Category</th>
@@ -105,6 +106,7 @@
                   $hargas[$j][$i] = $key->harga_unit[$i];
                 }
               }
+
               for ($i=0, $j=0; $i<strlen($key->approval_id) ; $i++) {
                 if($key->approval_id[$i] == ',')
                 {
@@ -122,6 +124,15 @@
                 <tr>
                   <td><?php echo $number1+1; ?></td>
                   <?php $number1+=1; ?>
+                  @foreach($user as $key10)
+                  @if($key10->user_id == $req_id)
+                    @if($key10->level == 0)
+                      <td bgcolor="lightgreen"><h5>{{$key10->name}}</h5></td>
+                    @elseif($key10->level == 2)
+                      <td bgcolor="lightblue"><h5>{{$key10->name}}</h5></td>
+                    @endif
+                  @endif
+                  @endforeach
                   <td><?php echo implode("",$names[$i]); ?></td>
                   <td><?php echo implode("",$stoks[$i]); ?></td>
                   <?php foreach ($category as $key ) {
@@ -255,6 +266,7 @@
                   $hargas[$j][$i] = $key->harga_unit[$i];
                 }
               }
+
               for ($i=0, $j=0; $i<strlen($key->approval_id) ; $i++) {
                 if($key->approval_id[$i] == ',')
                 {
