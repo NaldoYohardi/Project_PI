@@ -13567,3 +13567,91 @@ ul.breadcrumb li a:hover {
   color: #000; }
   .home-link:hover {
     color: #000; }
+
+.ibx-btn{
+  display: inline-block;
+  font-weight: 400;
+  color: #343a40;
+  text-align: center;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 7.5px;
+  font-size: 0.875rem;
+  line-height: 1;
+  border-radius: 0.1875rem;
+  margin: 3px;
+  width: 50px;
+  height: 30px;
+}
+
+.ibx-success {
+  color: #fff;
+  background-color: #38ce3c;
+  border-color: #38ce3c; }
+  .ibx-success:hover {
+    color: #fff;
+    background-color: #2cb430;
+    border-color: #2aa92d; }
+  .ibx-success:focus, .ibx-success.focus {
+    color: #fff;
+    background-color: #2cb430;
+    border-color: #2aa92d;
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(86, 213, 89, 0.5);
+    box-shadow: 0 0 0 0.2rem rgba(86, 213, 89, 0.5); }
+
+.ibx-danger {
+  color: #fff;
+  background-color: #ff4d6b;
+  border-color: #ff4d6b; }
+  .ibx-danger:hover {
+    color: #fff;
+    background-color: #ff274b;
+    border-color: #ff1a41; }
+  .ibx-danger:focus, .ibx-danger.focus {
+    color: #fff;
+    background-color: #ff274b;
+    border-color: #ff1a41;
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(255, 104, 129, 0.5);
+    box-shadow: 0 0 0 0.2rem rgba(255, 104, 129, 0.5); }
+
+.add-btn{
+  display: inline-block;
+  font-family: sans-serif;
+  font-weight: bold;
+  color: #343a40;
+  text-align: center;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 7.5px;
+  font-size: 0.875rem;
+  line-height: 1;
+  border-radius: 0.1875rem;
+  margin: 3px;
+  width: 70px;
+  height: 40px;
+}
+
+.add-success {
+  color: #fff;
+  background-color: #38ce3c;
+  border-color: #38ce3c; }
+  .add-success:hover {
+    color: #fff;
+    background-color: #2cb430;
+    border-color: #2aa92d; }
+  .add-success:focus, .add-success.focus {
+    color: #fff;
+    background-color: #2cb430;
+    border-color: #2aa92d;
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(86, 213, 89, 0.5);
+    box-shadow: 0 0 0 0.2rem rgba(86, 213, 89, 0.5); }

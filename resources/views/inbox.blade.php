@@ -112,9 +112,9 @@
                   @foreach($user as $key10)
                   @if($key10->user_id == $req_id)
                     @if($key10->level == 0)
-                      <td bgcolor="lightgreen"><h5>{{$key10->name}}</h5></td>
+                      <td bgcolor="lightgreen"><b>{{$key10->name}}</b></td>
                     @elseif($key10->level == 2)
-                      <td bgcolor="lightblue"><h5>{{$key10->name}}</h5></td>
+                      <td bgcolor="lightblue"><b>{{$key10->name}}</b></td>
                     @endif
                   @endif
                   @endforeach
@@ -134,8 +134,8 @@
                   <td>Output Stock</td>
                   @endif
                   <td><center>
-                    <a onclick="return confirm('Are you sure?');" href="/accpt/<?php echo $id ?>,<?php echo $i; ?>" class="btn btn-success">&#10003;</a>
-                    <a onclick="return confirm('Are you sure?');" href="/decline/<?php echo $id ?>,<?php echo $i; ?>" class="btn btn-danger">&#10006;</a>
+                    <a onclick="return confirm('Are you sure?');" href="/accpt/<?php echo $id ?>,<?php echo $i; ?>" class="ibx-btn ibx-success">&#10003;</a>
+                    <a onclick="return confirm('Are you sure?');" href="/decline/<?php echo $id ?>,<?php echo $i; ?>" class="ibx-btn ibx-danger">&#10006;</a>
                   </center></td>
                 </tr>
           <?php }}$number+=1;} ?>
@@ -274,7 +274,7 @@
                       <td bgcolor="lightblue"><h5><?php echo $key10->name; ?></h5></td>
                     <?php } ?>
                     <?php }} ?>
-                  <td><center><a onclick="return confirm('Are you sure?');" href="/done/<?php echo $id ?>,<?php echo $i; ?>" class="btn btn-success">&#10003;</a></center></td>
+                  <td><center><a onclick="return confirm('Are you sure?');" href="/done/<?php echo $id ?>,<?php echo $i; ?>" class="ibx-btn btn-success">&#10003;</a></center></td>
                 </tr>
           <?php }}$number+=1;} ?>
           </tbody>

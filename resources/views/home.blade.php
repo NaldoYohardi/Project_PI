@@ -41,7 +41,7 @@
                       </td>
                     </tr>
                     <?php $a++;
-                    if ($a == 4) { ?>
+                    if ($a == 3) { ?>
                       <td colspan="4" class="break text-center"><a href="{{ url('/table')}}" class="home-link">More...</a></td>
                     <?php break;} ?>
                   @endforeach
@@ -105,6 +105,9 @@
                 <tbody class="break">
                   <?php $a = 0; ?>
                   @foreach ($inv_view as $key)
+                  <?php if (!$key) { ?>
+                    <td colspan="4" class="break text-center">No Data</td>
+                  <?php break;} ?>
                   <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $key->name }}</td>
@@ -116,7 +119,7 @@
                     <td>{{ $key->stok }}</td>
                   </tr>
                   <?php $a++;
-                  if ($a == 4) { ?>
+                  if ($a == 3) { ?>
                     <td colspan="4" class="break text-center"><a href="{{ url('/table')}}" class="home-link">More...</a></td>
                   <?php break;} ?>
                   @endforeach
@@ -389,7 +392,7 @@
         <div class="card">
           <div class="card-body">
             <div class="d-sm-flex align-items-center mb-4">
-              <h4 class="card-title mb-sm-0">History</h4>
+              <h4 class="card-title mb-sm-0">Preview</h4>
               <a href="#" class="text-dark ml-auto mb-3 mb-sm-0">&nbsp;</a>
               <a href="{{ url('/history')}}" class="home-btn home-primary mb-3 mb-sm-0">
                 <i class="icon-refresh menu-icon"></i> View history

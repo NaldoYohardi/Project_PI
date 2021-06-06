@@ -127,9 +127,9 @@
                   @foreach($user as $key10)
                   @if($key10->user_id == $req_id)
                     @if($key10->level == 0)
-                      <td bgcolor="lightgreen"><h5>{{$key10->name}}</h5></td>
+                      <td bgcolor="lightgreen"><b>{{$key10->name}}</b></td>
                     @elseif($key10->level == 2)
-                      <td bgcolor="lightblue"><h5>{{$key10->name}}</h5></td>
+                      <td bgcolor="lightblue"><b>{{$key10->name}}</b></td>
                     @endif
                   @endif
                   @endforeach
@@ -140,11 +140,11 @@
                       <td><?php echo $key->category; ?></td>
                   <?php  }
                   } ?>
-                  <td>Rp.<?php echo implode("",$hargas[$i]); ?></td>
+                  <td class="fixbreak">Rp.<?php echo implode("",$hargas[$i]); ?></td>
                   @if($keterangan == 0)
-                  <td>Input New Item</td>
+                  <td>New Item</td>
                   @elseif($keterangan == 1)
-                  <td>Add Current Stock</td>
+                  <td>Add Stock</td>
                   @elseif($keterangan == 2)
                   <td>Output Stock</td>
                   @endif
@@ -160,7 +160,7 @@
                       <td bgcolor="lightblue"><h5><?php echo $key10->name; ?></h5></td>
                     <?php } ?>
                     <?php }} ?>
-                  <td><?php echo substr($date, 0, 10); ?></td>
+                  <td class="fixbreak"><?php echo substr($date, 0, 10); ?></td>
                   <?php if(implode("", $status1[$i]) == 1){ ?>
                     <td><div class="badge badge-danger p-2 w-100">Declined</div></td>
                   <?php }elseif(implode("", $status1[$i]) == 2){ ?>
@@ -286,9 +286,9 @@
                   @foreach($user as $key10)
                   @if($key10->user_id == $req_id)
                     @if($key10->level == 0)
-                      <td bgcolor="lightgreen"><h5>{{$key10->name}}</h5></td>
+                      <td bgcolor="lightgreen"><b>{{$key10->name}}</b></td>
                     @elseif($key10->level == 2)
-                      <td bgcolor="lightblue"><h5>{{$key10->name}}</h5></td>
+                      <td bgcolor="lightblue"><b>{{$key10->name}}</b></td>
                     @endif
                   @endif
                   @endforeach

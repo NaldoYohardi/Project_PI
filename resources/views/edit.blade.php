@@ -48,13 +48,13 @@
                         <div class="col-md-4">
                           <div class="form-group bmd-form-group">
                             <label class="bmd-label-floating">Username</label>
-                            <input type="text" name="name"class="form-control" value="{{ $user->name }}">
+                            <input type="text" name="name"class="form-control" value="{{ $user->name }}" required>
                           </div>
                         </div>
                         <div class="col-md-4">
                           <div class="form-group bmd-form-group">
                             <label class="bmd-label-floating">Email address</label>
-                            <input type="text" name="email" class="form-control" value="{{ $user->email }}">
+                            <input type="text" name="email" class="form-control" value="{{ $user->email }}" required>
                           </div>
                         </div>
                         <div class="col-md-4">
