@@ -147,6 +147,7 @@ class Controller extends BaseController
         $harga[$i] = $req->$d;
         $status[$i] = "0";
         $status1[$i] = "3";
+        $approval_id[$i] ="0";
       }
       $JSON1 = json_encode($name);
       $JSON2 = json_encode($stok);
@@ -154,15 +155,14 @@ class Controller extends BaseController
       $JSONM = json_encode($status1);
       $JSON3 = json_encode($category);
       $JSON4 = json_encode($harga);
+      $JSON5 = json_encode($approval_id);
       if (Session::get('level')==0)
       {
-        DB::insert("INSERT INTO import_data (req_id, name, stok, status, category_id, harga_unit, keterangan) VALUES ($req->user_id,
-        '$JSON1','$JSON2','$JSONS','$JSON3','$JSON4', '0')");
+        DB::insert("INSERT INTO import_data (req_id, approval_id, name, stok, status, category_id, harga_unit, keterangan) VALUES ($req->user_id,'$JSON5','$JSON1','$JSON2','$JSONS','$JSON3','$JSON4', '0')");
       }
       elseif (Session::get('level') == 2)
       {
-        DB::insert("INSERT INTO import_data (req_id, name, stok, status, category_id, harga_unit, keterangan) VALUES ($req->user_id,
-        '$JSON1','$JSON2','$JSONM','$JSON3','$JSON4', '0')");
+        DB::insert("INSERT INTO import_data (req_id, approval_id, name, stok, status, category_id, harga_unit, keterangan) VALUES ($req->user_id,'$JSON5','$JSON1','$JSON2','$JSONM','$JSON3','$JSON4', '0')");
         for ($i=0; $i <$req->n ; $i++) {
           DB::insert("INSERT INTO inventory (req_id, name, stok, category_id, harga_unit) VALUES ($req->user_id,
             '$name[$i]','$stok[$i]','$category[$i]','$harga[$i]')");
@@ -171,10 +171,7 @@ class Controller extends BaseController
       return redirect('/table');
     }
     public function accpt($id,$index){
-      $email = Session::get('email');
-      $approval = DB::select("SELECT user_id FROM users where email = '$email'");
-      foreach($approval as $key)
-        $approval_id = $key->user_id;
+      $approval_ida = Session::get('user_id');
       $status = DB::select("SELECT * FROM import_data where id = $id");
       foreach ($status as $key) {
       for ($i=0, $j=0; $i<strlen($key->status) ; $i++) {
@@ -187,10 +184,21 @@ class Controller extends BaseController
           $status2[$j][$i] = $key->status[$i];
         }
       }
+      for ($i=0, $j=0; $i<strlen($key->approval_id) ; $i++) {
+        if($key->approval_id[$i] == ',')
+        {
+          $j+=1;
+        }
+        if (ord($key->approval_id[$i]) >= 48 && ord($key->approval_id[$i]) <= 57)
+        {
+          $approval_ids[$j][$i] = $key->approval_id[$i];
+        }
+      }
     }
     for ($i=0; $i <=$j ; $i++) {
       if($i != $index)
       {
+        $approval_id1[$i] = implode("",$approval_ids[$i]);
         if(implode("",$status2[$i]) == "0")
           $status1[$i] = "0";
         elseif(implode("",$status2[$i]) == "2")
@@ -201,11 +209,13 @@ class Controller extends BaseController
           $status1[$i] = "3";
       }
       else {
+        $approval_id1[$i] = (string)$approval_ida;
         $status1[$i] = "2";
       }
     }
+    $JSON1 = json_encode($approval_id1);
     $JSON = json_encode($status1);
-    DB::update("UPDATE import_data SET status = '$JSON', approval_id = $approval_id WHERE ID = $id");
+    DB::update("UPDATE import_data SET status = '$JSON', approval_id = '$JSON1' WHERE ID = $id");
     return redirect('/inbox');
     }
 
@@ -244,6 +254,7 @@ class Controller extends BaseController
       }
     }
     $JSON = json_encode($status1);
+    $JSON1 =
     DB::update("UPDATE import_data SET status = '$JSON', approval_id = $approval_id WHERE ID = $id");
     return redirect('/inbox');
     }

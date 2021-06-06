@@ -104,6 +104,16 @@
                   $hargas[$j][$i] = $key->harga_unit[$i];
                 }
               }
+              for ($i=0, $j=0; $i<strlen($key->approval_id) ; $i++) {
+                if($key->approval_id[$i] == ',')
+                {
+                  $j+=1;
+                }
+                if (ord($key->approval_id[$i]) >= 48 && ord($key->approval_id[$i]) <= 57)
+                {
+                  $approval_ids[$j][$i] = $key->approval_id[$i];
+                }
+              }
               $n = $j;
               for ($i=0; $i <=$j ; $i++) {
                 if(Session::get('user_id') == $req_id){
@@ -126,18 +136,18 @@
                   @elseif($keterangan == 2)
                   <td>Output Stock</td>
                   @endif
-                  @if($approval_id==NULL)
+                  <?php if(implode("",$approval_ids[$i])=='0'){ ?>
                     <td bgcolor="lightyellow">-</td>
-                  @endif
-                  @foreach($user as $key10)
-                  @if($key10->user_id == $approval_id)
-                    @if($key10->level == 0)
-                      <td bgcolor="lightgreen"><h5>{{$key10->name}}</h5></td>
-                    @elseif($key10->level == 2)
-                      <td bgcolor="lightblue"><h5>{{$key10->name}}</h5></td>
-                    @endif
-                  @endif
-                  @endforeach
+                  <?php } ?>
+                  <?php foreach($user as $key10){
+                    if(implode("",$approval_ids[$i])==$key10->user_id){
+                    if ($key10->level == 0){?>
+                      <td bgcolor="red"><h5><?php echo $key10->name; ?></h5></td>
+                    <?php } ?>
+                    <?php if ($key10->level == 2){ ?>
+                      <td bgcolor="lightblue"><h5><?php echo $key10->name; ?></h5></td>
+                    <?php } ?>
+                    <?php }} ?>
                   <td><?php echo substr($date, 0, 10); ?></td>
                   <?php if(implode("", $status1[$i]) == 1){ ?>
                     <td><div class="badge badge-danger p-2 w-100">Declined</div></td>
@@ -243,6 +253,16 @@
                   $hargas[$j][$i] = $key->harga_unit[$i];
                 }
               }
+              for ($i=0, $j=0; $i<strlen($key->approval_id) ; $i++) {
+                if($key->approval_id[$i] == ',')
+                {
+                  $j+=1;
+                }
+                if (ord($key->approval_id[$i]) >= 48 && ord($key->approval_id[$i]) <= 57)
+                {
+                  $approval_ids[$j][$i] = $key->approval_id[$i];
+                }
+              }
               $n = $j;
               for ($i=0; $i <=$j ; $i++) {
                 ?>
@@ -273,18 +293,18 @@
                   @elseif($keterangan == 2)
                   <td>Output Stock</td>
                   @endif
-                  @if($approval_id==NULL)
+                  <?php if(implode("",$approval_ids[$i])=='0'){ ?>
                     <td bgcolor="lightyellow">-</td>
-                  @endif
-                  @foreach($user as $key10)
-                  @if($key10->user_id == $approval_id)
-                    @if($key10->level == 0)
-                      <td bgcolor="red"><h5>{{$key10->name}}</h5></td>
-                    @elseif($key10->level == 2)
-                      <td bgcolor="lightblue"><h5>{{$key10->name}}</h5></td>
-                    @endif
-                  @endif
-                  @endforeach
+                  <?php } ?>
+                  <?php foreach($user as $key10){
+                    if(implode("",$approval_ids[$i])==$key10->user_id){
+                    if ($key10->level == 0){?>
+                      <td bgcolor="red"><h5><?php echo $key10->name; ?></h5></td>
+                    <?php } ?>
+                    <?php if ($key10->level == 2){ ?>
+                      <td bgcolor="lightblue"><h5><?php echo $key10->name; ?></h5></td>
+                    <?php } ?>
+                    <?php }} ?>
                   <td><?php echo substr($date, 0, 10); ?></td>
                   <?php if(implode("", $status1[$i]) == 1){ ?>
                     <td><div class="badge badge-danger p-2 w-100">Declined</div></td>
