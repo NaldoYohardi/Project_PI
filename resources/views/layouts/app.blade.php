@@ -43,7 +43,7 @@
             <i class=icon-notebook menu-icon></i> TUBES PI 2021
           </a>
           <a class="navbar-brand brand-logo-mini" href="{{ url('/home')}}">
-            <img src="laravel.png" alt="logo" />
+            <center><i class=icon-notebook menu-icon></i></center>
           </a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-center flex-grow-1">
@@ -181,10 +181,7 @@
     <script>
       $(document).ready(function() {
         $('#example').DataTable({
-          dom: 'Bfr<t>lip',
-          buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-          ],
+          "dom": '<"top"Bfr>t<"bottom"lip><"clear">',
           buttons: [
             'copy', 'csv', 'excel', 'pdf', 'print'
           ],
