@@ -147,7 +147,6 @@
               <table id="example" class="hover table table-bordered table-striped">
                 <thead class="thead-dark font-weight-bold text-center">
                   <tr>
-                    <th>Status</th>
                     <th>ID</th>
                     <th>Item Name</th>
                     <th>Stock</th>
@@ -155,6 +154,7 @@
                     <th>Unit Price</th>
                     <th>Details</th>
                     <th>Entry Created</th>
+                    <th>Status</th>
                   </tr>
                 </thead>
                 <tbody class="break" align="center">
@@ -243,7 +243,7 @@
                             <td><?php echo $key->category; ?></td>
                         <?php  }
                         } ?>
-                        <td><?php echo implode("",$hargas[$i]); ?></td>
+                        <td>Rp.<?php echo implode("",$hargas[$i]); ?></td>
                         @if($keterangan == 0)
                         <td>Input New Item</td>
                         @elseif($keterangan == 1)

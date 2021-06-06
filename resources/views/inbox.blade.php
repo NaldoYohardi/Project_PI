@@ -114,7 +114,7 @@
                       <td ><?php echo $key->category; ?></td>
                   <?php  }
                   } ?>
-                  <td ><?php echo implode("",$hargas[$i]); ?></td>
+                  <td >Rp.<?php echo implode("",$hargas[$i]); ?></td>
                   @if($keterangan == 0)
                   <td>Input New Item</td>
                   @elseif($keterangan == 1)
@@ -230,7 +230,7 @@
                       <td ><?php echo $key->category; ?></td>
                   <?php  }
                   } ?>
-                  <td ><?php echo implode("",$hargas[$i]); ?></td>
+                  <td >Rp.<?php echo implode("",$hargas[$i]); ?></td>
                   @if($keterangan == 0)
                   <td>Input New Item</td>
                   @elseif($keterangan == 1)
