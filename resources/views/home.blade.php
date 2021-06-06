@@ -385,7 +385,7 @@
         <div class="card">
           <div class="card-body">
             <div class="d-sm-flex align-items-center mb-4">
-              <h4 class="card-title mb-sm-0">Inventory History</h4>
+              <h4 class="card-title mb-sm-0">History</h4>
               <a href="#" class="text-dark ml-auto mb-3 mb-sm-0">&nbsp;</a>
               <a href="{{ url('/history')}}" class="home-btn home-primary mb-3 mb-sm-0">
                 <i class="icon-refresh menu-icon"></i> View history
@@ -416,6 +416,7 @@
                     foreach ($inbox as $key) {
                       $keterangan = $key->keterangan;
                       $approval_id = $key->approval_id;
+                      $req_id = $key->req_id;
                       $id = $key->id;
                       $date = $key->date;
                       if($number!=0)
@@ -426,6 +427,7 @@
                           unset($hargas[$i]);
                           unset($categorys[$i]);
                           unset($status1[$i]);
+                          unset($approval_ids[$i]);
                         }
                       }
                     for ($i=0, $j=0; $i<strlen($key->name) ; $i++) {
@@ -482,6 +484,17 @@
                         $hargas[$j][$i] = $key->harga_unit[$i];
                       }
                     }
+
+                    for ($i=0, $j=0; $i<strlen($key->approval_id) ; $i++) {
+                      if($key->approval_id[$i] == ',')
+                      {
+                        $j+=1;
+                      }
+                      if (ord($key->approval_id[$i]) >= 48 && ord($key->approval_id[$i]) <= 57)
+                      {
+                        $approval_ids[$j][$i] = $key->approval_id[$i];
+                      }
+                    }
                     $n = $j;
                     for ($i=0; $i <=$j ; $i++) {
                       ?>
@@ -495,7 +508,7 @@
                             <td><?php echo $key->category; ?></td>
                         <?php  }
                         } ?>
-                        <td>Rp.<?php echo implode("",$hargas[$i]); ?></td>
+                        <td class="fixbreak">Rp.<?php echo number_format(implode("",$hargas[$i]),3); ?></td>
                         @if($keterangan == 0)
                         <td>Input New Item</td>
                         @elseif($keterangan == 1)

@@ -58,7 +58,7 @@
                             ->generate($a))
                             !!}
                             "></a></td>
-              <td>Rp.{{ $key->harga_unit }}</td>
+              <td class="fixbreak">Rp.{{ number_format($key->harga_unit,3) }}</td>
               <td class="fixbreak"><center>
                 <a href="/addstok/<?php echo $key->id; ?>" class="inv-btn inv-success">Input</a><br>
                 <a href="/outstok/<?php echo $key->id; ?>" class="inv-btn inv-info">Output</a><br>
@@ -113,7 +113,7 @@
                             ->generate($a))
                             !!}
                             "></a></td>
-              <td>Rp.{{ $key->harga_unit }}</td>
+              <td class="fixbreak">Rp.{{ number_format($key->harga_unit,3) }}</td>
               <td class="fixbreak"><center>
                 <a href="/addstok/<?php echo $key->id; ?>" class="inv-btn inv-success">Input</a><br>
                 <a href="/outstok/<?php echo $key->id; ?>" class="inv-btn inv-info">Output</a>

@@ -125,7 +125,7 @@
                       <td ><?php echo $key->category; ?></td>
                   <?php  }
                   } ?>
-                  <td >Rp.<?php echo implode("",$hargas[$i]); ?></td>
+                  <td class="fixbreak">Rp.<?php echo number_format(implode("",$hargas[$i]),3); ?></td>
                   @if($keterangan == 0)
                   <td>Input New Item</td>
                   @elseif($keterangan == 1)
