@@ -10,7 +10,7 @@
     <li><a href="{{ url('/add')}}">Request Amount</a></li>
     <li>Add Item</li>
   </ul>
-  &nbsp; <?php echo Session::get('email'); ?>
+  &nbsp; Add Item as <?php echo Session::get('email'); ?>
   <br><br>
   <form action="/tambahData" method="post">
     @csrf
