@@ -39,11 +39,11 @@
                         <?php } elseif($key->level == 2){ ?>Manager
                         <?php } else { ?>-<?php } ?>
                       </td>
+                    </tr>
                     <?php $a++;
                     if ($a == 4) { ?>
-                      <td colspan="4"><a href="/profile/{{ Session::get('email') }}" class="home-link">More...</a></td>
+                      <td colspan="4" class="break text-center"><a href="{{ url('/table')}}" class="home-link">More...</a></td>
                     <?php break;} ?>
-                    </tr>
                   @endforeach
                 </tbody>
               </table>
@@ -102,7 +102,7 @@
                     <th>Stock</th>
                   </tr>
                 </thead>
-                <tbody class="break text-center">
+                <tbody class="break">
                   <?php $a = 0; ?>
                   @foreach ($inv_view as $key)
                   <tr>
@@ -117,7 +117,7 @@
                   </tr>
                   <?php $a++;
                   if ($a == 4) { ?>
-                    <td colspan="4"><a href="{{ url('/table')}}" class="home-link">More...</a></td>
+                    <td colspan="4" class="break text-center"><a href="{{ url('/table')}}" class="home-link">More...</a></td>
                   <?php break;} ?>
                   @endforeach
                 </tbody>
