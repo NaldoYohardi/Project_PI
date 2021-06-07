@@ -27,9 +27,9 @@
     <?php if(Session::get('LoggIN')==1)
       Session::flush();
     ?>
-    <div class="container-scroller bgmain">
+    <div class="container-scroller">
       <div class="container-fluid page-body-wrapper full-page-wrapper">
-        <div class="content-wrapper d-flex align-items-center auth">
+        <div class="content-wrapper d-flex align-items-center auth bgmain">
           @yield('content')
         </div>
       </div>
