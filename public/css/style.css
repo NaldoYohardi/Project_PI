@@ -11391,6 +11391,7 @@ code {
 
 /* Cards */
 .card {
+  border-radius: 20px;
   border: 0; }
   .card .card-body {
     padding: 1.875rem 1.875rem; }
@@ -12503,7 +12504,7 @@ dl {
 .navbar {
   font-family: "Open Sans", sans-serif;
   font-weight: 300;
-  background: #fff;
+  background: #38ce3d;
   transition: background 0.25s ease;
   -webkit-transition: background 0.25s ease;
   -moz-transition: background 0.25s ease;

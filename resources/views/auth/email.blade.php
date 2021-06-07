@@ -13,7 +13,7 @@
     <div class="col-lg-6 mx-auto">
       <div class="auth-form-light text-left p-5">
         <div class="brand-logo js-tilt" align="center" data-tilt>
-          <img src="laravel.PNG">
+          <img src="Usu.jpg">
         </div>
         <h4>Reset Password</h4>
         <h6 class="font-weight-light">Send Password Reset Link</h6>
