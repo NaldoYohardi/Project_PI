@@ -153,7 +153,6 @@
                       <th>Category</th>
                       <th>Unit Price</th>
                       <th>Details</th>
-                      <th>Checked By</th>
                     </tr>
                   </thead>
                   <tbody class="break" align="center">

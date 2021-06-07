@@ -12505,6 +12505,7 @@ dl {
 .navbar {
   font-family: "Open Sans", sans-serif;
   font-weight: 300;
+  /*navbarbg*/
   background-image: linear-gradient(to right, rgb(29, 97, 23), rgb(79, 231, 65));
   border-bottom: 1px solid black;
   transition: background 0.25s ease;
