@@ -17,7 +17,6 @@ class Controller extends BaseController
 
     public function forget()
     {
-        Session::flush();
         return view('/auth/email');
     }
 
