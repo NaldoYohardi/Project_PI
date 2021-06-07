@@ -2285,7 +2285,6 @@ pre {
     max-width: 1140px; } }
 
 .row {
-  border-radius: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -8986,7 +8985,7 @@ button.bg-dark:focus {
 .mx-auto {
   margin-left: auto !important; }
 
-@media (min-width: 576px) {
+  @media (min-width: 576px) {
   .m-sm-0 {
     margin: 0 !important; }
   .mt-sm-0,
@@ -13055,7 +13054,7 @@ dl {
       width: 100%; } }
 
 .content-wrapper {
-  background: #ecf0f4;
+  background-image: linear-gradient(to right, rgb(57, 201, 44) , rgb(36, 117, 28), rgb(57, 201, 44));
   padding: 0 1.5rem 0;
   width: 100%;
   -webkit-box-flex: 1;
