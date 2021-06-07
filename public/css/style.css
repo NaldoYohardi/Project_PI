@@ -2285,6 +2285,7 @@ pre {
     max-width: 1140px; } }
 
 .row {
+  border-radius: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -8586,7 +8587,7 @@ button.bg-dark:focus {
 .w-10 {
   width: 10% !important; }
 
-  .w-25 {
+.w-25 {
   width: 25% !important; }
 
 .w-50 {
@@ -11391,7 +11392,7 @@ code {
 
 /* Cards */
 .card {
-  border-radius: 20px;
+  border-radius: 12px;
   border: 0; }
   .card .card-body {
     padding: 1.875rem 1.875rem; }
