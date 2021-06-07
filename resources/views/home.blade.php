@@ -105,7 +105,7 @@
                 <tbody class="break" align="center">
                   <?php if ($inv_count == 0) { ?>
                     <td colspan="4" class="break text-center">No Data</td>
-                  <?php break;} ?>
+                  <?php } ?>
                   <?php $a = 0; ?>
                   @foreach ($inv_view as $key)
                   <tr>
