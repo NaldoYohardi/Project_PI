@@ -5867,6 +5867,7 @@ input[type="button"].btn-block {
   background-color: #fff;
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
   border-radius: 0; }
   .card > hr {
     margin-right: 0;
@@ -12505,7 +12506,7 @@ dl {
 .navbar {
   font-family: "Open Sans", sans-serif;
   font-weight: 300;
-  background: #38ce3d;
+  background: #fff;
   transition: background 0.25s ease;
   -webkit-transition: background 0.25s ease;
   -moz-transition: background 0.25s ease;

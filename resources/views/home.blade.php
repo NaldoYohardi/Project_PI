@@ -11,7 +11,7 @@
   <div class="row">
     <?php if(Session::get('level')== 1){ ?>
       <div class="col-lg-8 grid-margin stretch-card">
-        <div class="card">
+        <div class="card" >
           <div class="card-body">
             <i class="icon-people icon-md"></i>
             <span class="card-title">&nbsp User List</span>
@@ -525,13 +525,13 @@
                         @endif
                         <td><?php echo substr($date, 0, 10); ?></td>
                         <?php if(implode("", $status1[$i]) == 1){ ?>
-                          <td><div class="badge badge-danger p-2 w-100">Declined</div></td>
+                          <td><div class="a-badge badge-danger p-2">Declined</div></td>
                         <?php }elseif(implode("", $status1[$i]) == 2){ ?>
-                          <td><div class="badge badge-success p-2 w-100">Accepted</div></td>
+                          <td><div class="a-badge badge-success p-2">Accepted</div></td>
                         <?php }elseif(implode("", $status1[$i])== 3){?>
-                          <td><div class="badge badge-success p-2 w-100">Accepted</div></td>
+                          <td><div class="a-badge badge-success p-2">Accepted</div></td>
                         <?php }elseif(implode("", $status1[$i])== 0){?>
-                          <td><div class="badge badge-warning p-2 w-100">Pending</div></td>
+                          <td><div class="a-badge badge-warning p-2">Pending</div></td>
                         <?php  } ?>
                       </tr>
                 <?php }$number+=1;} ?>
