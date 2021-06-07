@@ -274,7 +274,7 @@
                       <td bgcolor="lightblue"><h5><?php echo $key10->name; ?></h5></td>
                     <?php } ?>
                     <?php }} ?>
-                  <td><center><a onclick="return confirm('Are you sure?');" href="/done/<?php echo $id ?>,<?php echo $i; ?>" class="ibx-btn btn-success">&#10003;</a></center></td>
+                  <td><center><a onclick="return confirm('Are you sure?');" href="/done/<?php echo $id ?>,<?php echo $i; ?>" class="ibx-btn ibx-success">&#10003;</a></center></td>
                 </tr>
           <?php }}$number+=1;} ?>
           </tbody>

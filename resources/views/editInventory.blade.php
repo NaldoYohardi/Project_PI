@@ -13,23 +13,22 @@
     <div class="card">
       <div class="card-body">
         <h3>Data Item</h3>
-        &nbsp;
         <form action="/updateInventory" method="post">
           @csrf
           @foreach($inventory as $key)
           <input class="form-control" type="hidden" name="id" value="<?php echo $id; ?>"><br>
-          <p style="font-size:140%; font-family:Helvetica;">Item Name</p>
+          <p style="font-size:120%;">Item Name</p>
           <input class="form-control" type="text" name="name" value="{{ $key->name }}" required><br>
           &nbsp;
-          <p style="font-size:140%; font-family:Helvetica;">Category</p>
-          <select style="font-size:130%; font-family:Helvetica;" name="category">
+          <p style="font-size:120%;">Category</p>
+          <select class="form-control" style="font-size:120%;" name="category">
             @foreach($category as $key1)
-            <option class="form-control" value="{{$key1->id}}">{{$key1->category}}</option>
+            <option value="{{$key1->id}}">{{$key1->category}}</option>
             @endforeach
           </select><br><br>
           &nbsp;
-          <p style="font-size:140%; font-family:Helvetica;">Harga per Unit</p>
-          <input class="form-control" type="number" name="harga" min="0" step="1000" value="{{$key->harga_unit}}"><br>
+          <p style="font-size:120%;">Harga per Unit</p>
+          <input class="form-control" type="number" name="harga" min="0" step="1000" value="{{$key->harga_unit}}" required><br>
           &nbsp;
           <div class="ripple-container">&nbsp; &nbsp; &nbsp;<input type="submit" class="btn-sm font-weight-bold btn-success" value="Submit"></div>
           @endforeach

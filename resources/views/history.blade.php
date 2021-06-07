@@ -301,9 +301,9 @@
                   } ?>
                   <td class="fixbreak">Rp.<?php echo number_format(implode("",$hargas[$i])); ?></td>
                   @if($keterangan == 0)
-                  <td>Input New Item</td>
+                  <td>New Item</td>
                   @elseif($keterangan == 1)
-                  <td>Add Current Stock</td>
+                  <td>Add Stock</td>
                   @elseif($keterangan == 2)
                   <td>Output Stock</td>
                   @endif
@@ -319,15 +319,15 @@
                       <td bgcolor="lightblue"><h5><?php echo $key10->name; ?></h5></td>
                     <?php } ?>
                     <?php }} ?>
-                  <td><?php echo substr($date, 0, 10); ?></td>
+                  <td class="fixbreak"><?php echo substr($date, 0, 10); ?></td>
                   <?php if(implode("", $status1[$i]) == 1){ ?>
-                    <td><div class="badge badge-danger p-2 w-100">Declined</div></td>
+                    <td><div class="a-badge badge-danger p-2">Declined</div></td>
                   <?php }elseif(implode("", $status1[$i]) == 2){ ?>
-                    <td><div class="badge badge-success p-2 w-100">Accepted</div></td>
+                    <td><div class="a-badge badge-success p-2">Accepted</div></td>
                   <?php }elseif(implode("", $status1[$i])== 3){?>
-                    <td><div class="badge badge-success p-2 w-100">Accepted</div></td>
+                    <td><div class="a-badge badge-success p-2">Accepted</div></td>
                   <?php }elseif(implode("", $status1[$i])== 0){?>
-                    <td><div class="badge badge-warning p-2 w-100">Pending</div></td>
+                    <td><div class="a-badge badge-warning p-2">Pending</div></td>
                   <?php  } ?>
                 </tr>
           <?php }$number+=1;} ?>
