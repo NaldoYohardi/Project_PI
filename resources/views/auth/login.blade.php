@@ -11,7 +11,7 @@
   @endforeach
   <div class="row flex-grow">
     <div class="col-lg-4 mx-auto">
-      <div class="auth-form-light text-left p-5">
+      <div class="auth-form-light text-left p-5 borderrad">
         <div class="brand-logo js-tilt" align="center" data-tilt>
           <img src="Usu.jpg">
         </div>

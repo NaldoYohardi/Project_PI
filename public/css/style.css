@@ -13054,7 +13054,7 @@ dl {
       width: 100%; } }
 
 .content-wrapper {
-  background-image: linear-gradient(to right, rgb(57, 201, 44) , rgb(36, 117, 28), rgb(57, 201, 44));
+  background: #ecf0f4;
   padding: 0 1.5rem 0;
   width: 100%;
   -webkit-box-flex: 1;
@@ -13710,4 +13710,12 @@ ul.breadcrumb li a:hover {
   right: 0px;
   margin-right: 30px;
   padding: 10px;
+}
+
+.borderrad{
+  border-radius: 20px;
+}
+
+.bgmain{
+  background-image: linear-gradient(to right, rgb(79, 231, 65) , rgb(29, 97, 23), rgb(79, 231, 65));
 }
