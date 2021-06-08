@@ -23,6 +23,7 @@
               <th>Requested By</th>
               <th>Item Name</th>
               <th>Stock</th>
+              <th>Qr</th>
               <th>Category</th>
               <th>Unit Price</th>
               <th>Details</th>
@@ -135,11 +136,18 @@
                   @endforeach
                   <td><?php echo implode("",$names[$i]); ?></td>
                   <td><?php echo implode("",$stoks[$i]); ?></td>
+                  <?php foreach($inventory as $inventory1){
+                    if($inventory1->name == implode("",$names[$i]) && $keterangan == 2)
+                    {?>
+                      <td><img src="<?php echo $inventory1->qr; ?>"></td>
+                  <?php  }}?>
+                  <?php if($keterangan != 2){ ?>
+                  <td>-</td>
+                  <?php } ?>
                   <?php foreach ($category as $key ) {
                     if ($key->id == implode("",$categorys[$i])){?>
                       <td><?php echo $key->category; ?></td>
-                  <?php  }
-                  } ?>
+                  <?php  }} ?>
                   <td class="fixbreak">Rp.<?php echo implode("",$hargas[$i]); ?></td>
                   @if($keterangan == 0)
                   <td>New Item</td>
@@ -183,6 +191,7 @@
               <th>Requested By</th>
               <th>Item Name</th>
               <th>Stock</th>
+              <th>Qr</th>
               <th>Category</th>
               <th>Unit Price</th>
               <th>Details</th>
@@ -294,6 +303,14 @@
                   @endforeach
                   <td><?php echo implode("",$names[$i]); ?></td>
                   <td><?php echo implode("",$stoks[$i]); ?></td>
+                  <?php foreach($inventory as $inventory1){
+                    if($inventory1->name == implode("",$names[$i]) && $keterangan == 2)
+                    {?>
+                      <td><img src="<?php echo $inventory1->qr; ?>"></td>
+                  <?php  }}?>
+                  <?php if($keterangan != 2){ ?>
+                  <td>-</td>
+                  <?php } ?>
                   <?php foreach ($category as $key ) {
                     if ($key->id == implode("",$categorys[$i])){?>
                       <td><?php echo $key->category; ?></td>

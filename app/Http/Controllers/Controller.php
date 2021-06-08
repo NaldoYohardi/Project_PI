@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Routing\Controller as BaseController;
 use Session;
 use Auth;
+use Qrcode;
 
 class Controller extends BaseController
 {
@@ -28,12 +29,14 @@ class Controller extends BaseController
       $emp_count = DB::table('users')->WHERE('level', '0')->count();
       $adm_count = DB::table('users')->WHERE('level', '1')->count();
       $mngr_count = DB::table('users')->WHERE('level', '2')->count();
-      $inbox = DB::table('import_data')->take(2)->get();
+      $inbox = DB::select("select * from import_data");
+      $inbox1 = DB::table('import_data')->take(2)->get();
       $user = DB::select("select * from users");
       return view('home')
         ->with(compact('category'))
         ->with(compact('user'))
         ->with(compact('inbox'))
+        ->with(compact('inbox1'))
         ->with(compact('inv_view'))
         ->with(compact('inv_count'))
         ->with(compact('emp_count'))
@@ -74,10 +77,11 @@ class Controller extends BaseController
 
     public function history()
     {
+      $inventory = DB::select("SELECT * FROM inventory");
       $user = DB::select("SELECT * FROM users");
       $category = DB::select("SELECT * FROM category");
       $inbox = DB::select("SELECT * FROM import_data");
-      return view('history')->with(compact('inbox'))->with(compact('category'))->with(compact('user'));
+      return view('history')->with(compact('inbox'))->with(compact('category'))->with(compact('user'))->with(compact('inventory'));
     }
 
     public function profile($name)
@@ -164,8 +168,42 @@ class Controller extends BaseController
       {
         DB::insert("INSERT INTO import_data (req_id, approval_id, name, stok, status, category_id, harga_unit, keterangan) VALUES ($req->user_id,'$JSON5','$JSON1','$JSON2','$JSONM','$JSON3','$JSON4', '0')");
         for ($i=0; $i <$req->n ; $i++) {
-        DB::insert("INSERT INTO inventory (name, stok, category_id, harga_unit) VALUES (
-          '$name[$i]','$stok[$i]','$category[$i]','$harga[$i]')");
+          $plugins = public_path('phpqrcode\qrlib.php');
+          require_once($plugins);
+          // Path where the images will be saved
+          $filepath = 'qr/'.$name[$i].'.PNG';
+          // Image (logo) to be drawn
+          $logopath = public_path('laravel.PNG');
+
+          // qr code content
+          $codeContents = $name[$i];
+          // Create the file in the providen path
+          // Customize how you want
+          QRcode::png($codeContents,$filepath , QR_ECLEVEL_H, 15);
+
+          // Start DRAWING LOGO IN QRCODE
+
+          $QR = imagecreatefrompng($filepath);
+
+          // START TO DRAW THE IMAGE ON THE QR CODE
+          $logo = imagecreatefromstring(file_get_contents($logopath));
+          $QR_width = imagesx($QR);
+          $QR_height = imagesy($QR);
+
+          $logo_width = imagesx($logo);
+          $logo_height = imagesy($logo);
+
+          // Scale logo to fit in the QR Code
+          $logo_qr_width = $QR_width/8;
+          $scale = $logo_width/$logo_qr_width;
+          $logo_qr_height = $logo_height/$scale;
+
+          imagecopyresampled($QR, $logo, $QR_width/2.3, $QR_height/2.3, 0, 0, $logo_qr_width, $logo_qr_height, $logo_width, $logo_height);
+
+          // Save QR code again, but with logo on it
+          imagepng($QR,$filepath);
+          DB::insert("INSERT INTO inventory (name, stok, qr, category_id, harga_unit) VALUES (
+          '$name[$i]','$stok[$i]','$filepath','$category[$i]','$harga[$i]')");
         }
       }
       return redirect('/table');
@@ -422,7 +460,41 @@ class Controller extends BaseController
         $stok1 = implode("",$stoks[$i]);
         $category1 = implode("",$categorys[$i]);
         $harga1 = implode("",$hargas[$i]);
-        DB::insert("INSERT INTO inventory (name, stok, category_id, harga_unit) VALUES ('$name1','$stok1','$category1','$harga1')");
+        $plugins = public_path('phpqrcode\qrlib.php');
+        require_once($plugins);
+        // Path where the images will be saved
+        $filepath = 'qr/'.$name1.'.PNG';
+        // Image (logo) to be drawn
+        $logopath = public_path('laravel.PNG');
+
+        // qr code content
+        $codeContents = $name1;
+        // Create the file in the providen path
+        // Customize how you want
+        QRcode::png($codeContents,$filepath , QR_ECLEVEL_H, 20);
+
+        // Start DRAWING LOGO IN QRCODE
+
+        $QR = imagecreatefrompng($filepath);
+
+        // START TO DRAW THE IMAGE ON THE QR CODE
+        imagepng($QR,$filepath);
+        $logo = imagecreatefromstring(file_get_contents($logopath));
+        $QR_width = imagesx($QR);
+        $QR_height = imagesy($QR);
+
+        $logo_width = imagesx($logo);
+        $logo_height = imagesy($logo);
+
+        // Scale logo to fit in the QR Code
+        $logo_qr_width = $QR_width/3;
+        $scale = $logo_width/$logo_qr_width;
+        $logo_qr_height = $logo_height/$scale;
+
+        imagecopyresampled($QR, $logo, $QR_width/3, $QR_height/3, 0, 0, $logo_qr_width, $logo_qr_height, $logo_width, $logo_height);
+
+        // Save QR code again, but with logo on it
+        DB::insert("INSERT INTO inventory (name, stok, qr, category_id, harga_unit) VALUES ('$name1','$stok1','$filepath','$category1','$harga1')");
         }
       }
     }

@@ -14,7 +14,7 @@
           <div class="content-wrapper d-flex align-items-center auth">
             <div class="row flex-grow">
               <div class="col-lg-6 mx-auto">
-                <div class="auth-form-light text-left p-5">
+                <div class="auth-form-light text-left p-5 borderrad">
                   <div class="brand-logo js-tilt text-center mb-1" data-tilt>
                     <img src="/Usu.jpg">
                   </div>

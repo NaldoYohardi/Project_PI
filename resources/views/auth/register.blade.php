@@ -19,7 +19,7 @@
       <div class="content-wrapper d-flex align-items-center auth">
         <div class="row flex-grow">
           <div class="col-lg-6 mx-auto">
-            <div class="auth-form-light text-left p-5">
+            <div class="auth-form-light text-left p-5 borderrad">
               <h4>Register</h4>
               <h6 class="font-weight-light">Register new Users to the Database</h6>
               <form method="POST" action="{{ route('register') }}" class="pt-3">

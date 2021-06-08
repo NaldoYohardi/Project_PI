@@ -53,11 +53,8 @@
                   $url = "http://";
                 $url.= $_SERVER['HTTP_HOST'];
                 $url.= $_SERVER['REQUEST_URI'];
-          if($url == 'http://127.0.0.1:8000/home'){ ?>
-            <h5 class="mb-0 font-weight-medium d-none d-lg-flex nav-text">Welcome, {{ Session::get('name') }}!</h5>
-          <?php } else { ?>
+          ?>
             <h5 class="mb-0 font-weight-medium d-none d-lg-flex nav-text">@yield('MainTitle')</h5>
-          <?php } ?>
           <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
             <span class="icon-menu"></span>
           </button>

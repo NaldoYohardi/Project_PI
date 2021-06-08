@@ -102,12 +102,12 @@
                     <th>Stock</th>
                   </tr>
                 </thead>
-                <tbody class="break">
+                <tbody class="break" align="center">
+                  <?php if ($inv_count == 0) { ?>
+                    <td colspan="4" class="break text-center">No Data</td>
+                  <?php } ?>
                   <?php $a = 0; ?>
                   @foreach ($inv_view as $key)
-                  <?php if (!$key) { ?>
-                    <td colspan="4" class="break text-center">No Data</td>
-                  <?php break;} ?>
                   <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $key->name }}</td>
@@ -153,7 +153,6 @@
                       <th>Category</th>
                       <th>Unit Price</th>
                       <th>Details</th>
-                      <th>Checked By</th>
                     </tr>
                   </thead>
                   <tbody class="break" align="center">
@@ -420,23 +419,18 @@
                   <?php
                     $number = 0;
                     $number1 = 0;
-                    foreach ($inbox as $key) {
+                    foreach ($inbox1 as $key) {
                       $keterangan = $key->keterangan;
                       $approval_id = $key->approval_id;
-                      $req_id = $key->req_id;
                       $id = $key->id;
                       $date = $key->date;
-                      if($number!=0)
-                      {
                         for ($i=0; $i<=$n; $i++) {
                           unset($names[$i]);
                           unset($stoks[$i]);
                           unset($hargas[$i]);
                           unset($categorys[$i]);
                           unset($status1[$i]);
-                          unset($approval_ids[$i]);
                         }
-                      }
                     for ($i=0, $j=0; $i<strlen($key->name) ; $i++) {
                       if($key->name[$i] == ',')
                       {
@@ -517,13 +511,13 @@
                         } ?>
                         <td class="fixbreak">Rp.<?php echo number_format(implode("",$hargas[$i])); ?></td>
                         @if($keterangan == 0)
-                        <td>Input New Item</td>
+                        <td>New Item</td>
                         @elseif($keterangan == 1)
-                        <td>Add Current Stock</td>
+                        <td>Add Stock</td>
                         @elseif($keterangan == 2)
                         <td>Output Stock</td>
                         @endif
-                        <td><?php echo substr($date, 0, 10); ?></td>
+                        <td class="fixbreak"><?php echo substr($date, 0, 10); ?></td>
                         <?php if(implode("", $status1[$i]) == 1){ ?>
                           <td><div class="a-badge badge-danger p-2">Declined</div></td>
                         <?php }elseif(implode("", $status1[$i]) == 2){ ?>

@@ -2285,7 +2285,6 @@ pre {
     max-width: 1140px; } }
 
 .row {
-  border-radius: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -8986,7 +8985,7 @@ button.bg-dark:focus {
 .mx-auto {
   margin-left: auto !important; }
 
-@media (min-width: 576px) {
+  @media (min-width: 576px) {
   .m-sm-0 {
     margin: 0 !important; }
   .mt-sm-0,
@@ -12506,9 +12505,11 @@ dl {
 .navbar {
   font-family: "Open Sans", sans-serif;
   font-weight: 300;
-  background: #38ce3c;
+  /*navbarbg*/
+  background-image: linear-gradient(to right, rgb(29, 97, 23), rgb(79, 140, 65));
+  border-bottom: 1px solid black;
   transition: background 0.25s ease;
-  box-shadow: 0px 1px 1px 0px #000000;
+  box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.11);
   -webkit-transition: background 0.25s ease;
   -moz-transition: background 0.25s ease;
   -ms-transition: background 0.25s ease; }
@@ -13705,5 +13706,18 @@ ul.breadcrumb li a:hover {
     display: none; }
 
 .nav-text{
-  color: #fff;
+  text-transform: uppercase;
+  position: absolute;
+  right: 0px;
+  margin-right: 30px;
+  padding: 10px;
+}
+
+.borderrad{
+  border-radius: 12px;
+  box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.11);
+}
+
+.bgmain{
+  background-image: linear-gradient(to right, rgb(79, 140, 65) , rgb(29, 97, 23), rgb(79, 140, 65));
 }
