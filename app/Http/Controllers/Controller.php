@@ -471,14 +471,13 @@ class Controller extends BaseController
         $codeContents = $name1;
         // Create the file in the providen path
         // Customize how you want
-        QRcode::png($codeContents,$filepath , QR_ECLEVEL_H, 20);
+        QRcode::png($codeContents,$filepath , QR_ECLEVEL_H, 15);
 
         // Start DRAWING LOGO IN QRCODE
 
         $QR = imagecreatefrompng($filepath);
 
         // START TO DRAW THE IMAGE ON THE QR CODE
-        imagepng($QR,$filepath);
         $logo = imagecreatefromstring(file_get_contents($logopath));
         $QR_width = imagesx($QR);
         $QR_height = imagesy($QR);
@@ -487,13 +486,14 @@ class Controller extends BaseController
         $logo_height = imagesy($logo);
 
         // Scale logo to fit in the QR Code
-        $logo_qr_width = $QR_width/3;
+        $logo_qr_width = $QR_width/8;
         $scale = $logo_width/$logo_qr_width;
         $logo_qr_height = $logo_height/$scale;
 
-        imagecopyresampled($QR, $logo, $QR_width/3, $QR_height/3, 0, 0, $logo_qr_width, $logo_qr_height, $logo_width, $logo_height);
+        imagecopyresampled($QR, $logo, $QR_width/2.3, $QR_height/2.3, 0, 0, $logo_qr_width, $logo_qr_height, $logo_width, $logo_height);
 
         // Save QR code again, but with logo on it
+        imagepng($QR,$filepath);
         DB::insert("INSERT INTO inventory (name, stok, qr, category_id, harga_unit) VALUES ('$name1','$stok1','$filepath','$category1','$harga1')");
         }
       }
