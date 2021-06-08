@@ -1,0 +1,1 @@
+2021-06-08 04:48:48: imagepng(../../../public/qr/ashfasha.PNG): failed to open stream: No such file or directory

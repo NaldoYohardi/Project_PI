@@ -43,21 +43,7 @@
               <td>{{ $key1->category }}</td>
               @endif
               @endforeach
-              <td><?php $a = $key->name; ?>
-                <a href="data:image/png;base64, {!!
-                            base64_encode(QrCode::format('png')
-                            ->merge(public_path('laravel.PNG'), 0.3, true)
-                            ->size(100)
-                            ->generate($a))
-                            !!}
-                            ">
-                <img src="data:image/png;base64, {!!
-                            base64_encode(QrCode::format('png')
-                            ->merge(public_path('laravel.PNG'), 0.3, true)
-                            ->size(100)
-                            ->generate($a))
-                            !!}
-                            "></a></td>
+              <td><img src="<?php echo $key->qr; ?>"></td>
               <td class="fixbreak">Rp.{{ number_format($key->harga_unit) }}</td>
               <td class="fixbreak"><center>
                 <a href="/addstok/<?php echo $key->id; ?>" class="inv-btn inv-success">Input</a><br>
@@ -98,21 +84,7 @@
               <td>{{ $key1->category }}</td>
               @endif
               @endforeach
-              <td><?php $a = $key->name; ?>
-                <a href="data:image/png;base64, {!!
-                            base64_encode(QrCode::format('png')
-                            ->merge(public_path('laravel.PNG'), 0.3, true)
-                            ->size(100)
-                            ->generate($a))
-                            !!}
-                            ">
-                <img src="data:image/png;base64, {!!
-                            base64_encode(QrCode::format('png')
-                            ->merge(public_path('laravel.PNG'), 0.3, true)
-                            ->size(100)
-                            ->generate($a))
-                            !!}
-                            "></a></td>
+              <td><img src="<?php echo $key->qr; ?>"></td>
               <td class="fixbreak">Rp.{{ number_format($key->harga_unit) }}</td>
               <td class="fixbreak"><center>
                 <a href="/addstok/<?php echo $key->id; ?>" class="inv-btn inv-success">Input</a><br>
