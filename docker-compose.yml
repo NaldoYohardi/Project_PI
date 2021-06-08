@@ -24,10 +24,10 @@ services:
         ports:
             - '${FORWARD_DB_PORT:-3306}:3306'
         environment:
-            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
-            MYSQL_DATABASE: '${DB_DATABASE}'
-            MYSQL_USER: '${DB_USERNAME}'
-            MYSQL_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ROOT_PASSWORD: secret
+            MYSQL_DATABASE: root
+            MYSQL_USER: root
+            MYSQL_PASSWORD: secret
             MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
         volumes:
             - 'sailmysql:/var/lib/mysql'
@@ -37,6 +37,17 @@ services:
           test: ["CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}"]
           retries: 3
           timeout: 5s
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        links:
+          - mysql:mysql
+        ports:
+          - 8080:80
+        networks:
+            - sail
+        environment:
+          MYSQL_ROOT_PASSWORD: secret
+          PMA_HOST: mysql
 networks:
     sail:
         driver: bridge
