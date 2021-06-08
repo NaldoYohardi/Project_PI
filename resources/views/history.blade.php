@@ -4,6 +4,16 @@
 @section('MainTitle', 'History')
 
 @section('content')
+<head>
+  <style media="screen">
+    img{
+      transition: transform .2s;
+    }
+    img:hover {
+      transform: scale(3);
+    }
+  </style>
+</head>
 <ul class="breadcrumb">
   <li><a href="{{ url('/home')}}">Dashboard</a></li>
   <li>History</li>

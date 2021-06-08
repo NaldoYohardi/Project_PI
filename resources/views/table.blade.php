@@ -4,6 +4,16 @@
 @section('MainTitle', 'Inventory')
 
 @section('content')
+<head>
+  <style media="screen">
+    img{
+      transition: transform .2s;
+    }
+    img:hover {
+      transform: scale(3);
+    }
+  </style>
+</head>
 <ul class="breadcrumb">
   <li><a href="{{ url('/home')}}">Dashboard</a></li>
   <li>Inventory</li>
@@ -43,7 +53,7 @@
               <td>{{ $key1->category }}</td>
               @endif
               @endforeach
-              <td><img src="<?php echo $key->qr; ?>"></td>
+              <td><a href="<?php echo $key->qr; ?>"><img src="<?php echo $key->qr; ?>"></a></td>
               <td class="fixbreak">Rp.{{ number_format($key->harga_unit) }}</td>
               <td class="fixbreak"><center>
                 <a href="/addstok/<?php echo $key->id; ?>" class="inv-btn inv-success">Input</a><br>

@@ -49,7 +49,10 @@
               </table>
             </div>
             <br>
-            <a href="/register" class="btn-sm font-weight-bold btn-primary w-50">Take Action</a>
+            <?php if ($inv_count == 0) { ?>
+            <?php } else {?>
+              <a href="{{ url('/table')}}" class="btn-sm font-weight-bold btn-primary w-50">Take action</a>
+            <?php } ?>
           </div>
         </div>
       </div>
@@ -127,7 +130,10 @@
               </table>
             </div>
             <br>
+            <?php if ($inv_count == 0) { ?>
+            <?php } else {?>
             <a href="{{ url('/table')}}" class="btn-sm font-weight-bold btn-primary w-50">Take action</a>
+          <?php } ?>
         </div>
       </div>
     </div>
