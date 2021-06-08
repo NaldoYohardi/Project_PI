@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 06, 2021 at 02:55 PM
+-- Generation Time: Jun 08, 2021 at 07:59 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -93,14 +93,6 @@ CREATE TABLE `import_data` (
   `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `import_data`
---
-
-INSERT INTO `import_data` (`id`, `req_id`, `approval_id`, `name`, `stok`, `status`, `category_id`, `harga_unit`, `keterangan`, `date`) VALUES
-(1, 30, '[\"0\",\"28\"]', '[\"endity\",\"wasita\"]', '[\"10\",\"20\"]', '[\"3\",\"3\"]', '[\"1\",\"2\"]', '[\"10000\",\"20000\"]', 0, '2021-06-06 12:54:52'),
-(2, 30, '[\"28\",\"28\"]', '[\"asd\",\"asdada\"]', '[\"30\",\"40\"]', '[\"1\",\"3\"]', '[\"1\",\"1\"]', '[\"300000\",\"40000\"]', 0, '2021-06-06 12:54:54');
-
 -- --------------------------------------------------------
 
 --
@@ -111,20 +103,10 @@ CREATE TABLE `inventory` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `stok` int(7) NOT NULL,
+  `qr` varchar(255) NOT NULL,
   `category_id` int(2) NOT NULL,
   `harga_unit` int(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `inventory`
---
-
-INSERT INTO `inventory` (`id`, `name`, `stok`, `category_id`, `harga_unit`) VALUES
-(1, 'endity', 10, 1, 10000),
-(2, 'wasita', 20, 2, 20000),
-(3, 'endity', 10, 1, 10000),
-(4, 'wasita', 20, 2, 20000),
-(5, 'asdada', 40, 1, 40000);
 
 -- --------------------------------------------------------
 
@@ -158,6 +140,13 @@ CREATE TABLE `password_resets` (
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `password_resets`
+--
+
+INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
+('enditywasita@gmail.com', '$2y$10$R/IbchCgU1A0GPyUCsCSXeLc/7bunIXSuTFZ0ZlMVyUHKM8Zd1IIq', '2021-06-06 21:35:03');
 
 -- --------------------------------------------------------
 
@@ -197,7 +186,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`user_id`, `name`, `email`, `email_verified`, `password`, `verification_code`, `level`, `remember_token`, `created_at`, `updated_at`) VALUES
 (3, 'aldrich', 'aldrich@gmail.com', 0, '$2y$10$vadIvj69BqhAHVXGFWhzsOlzWY4KhMTwRKU4RYMG6YUKX3PUzYM9y', 'e7850ca2d5b8fb08206b46dfb8ec34fd7e3dcc98', 0, NULL, '2021-05-19 19:54:05', '2021-05-19 19:54:05'),
 (4, 'naldo', 'naldo@gmail.com', 1, '$2y$10$bbe1C/UtxqERj6XIjvYkRexq4mSeUmZmlzkTPbmV96fyhUwKo5z56', '1d8a38060d237bc12e2307782741bed6ce214d95', 0, NULL, '2021-05-21 21:27:57', '2021-05-21 21:27:57'),
-(28, 'endity', 'enditywasita@gmail.com', 1, '$2y$10$29dHEUUEm0oW7VS5hf0ORuAy3kT7/xPjcWjjVT140EpACNrCy8oHO', 'bea48591d186dbe878889ce2aa2f16fe49ce53df', 2, 'ZdKZ39OD4pZOpq4RKTC6doVqJebrIx99GnCFNaY1CeXBdu3tC3NGOVGxKKc1', '2021-05-30 09:19:43', '2021-06-06 01:52:18'),
+(28, 'endity', 'enditywasita@gmail.com', 1, '$2y$10$zzC8Xsf2Gi1mHZEtXiABFuXoBkTiON5pKcXnubq0tfuBrBZPzgC.i', 'bea48591d186dbe878889ce2aa2f16fe49ce53df', 2, 'it7VNvuV6O5SQMOSuwCYDoJSDCYQpiOvn4iDeRasgc06zG2vknL2WhlHZBAk', '2021-05-30 09:19:43', '2021-06-06 20:42:06'),
 (30, 'wasita@gmail.com', 'ndtblank@gmail.com', 1, '$2y$10$jUTkEFHPdkrrTYwpFwr4webPYquVPpzHb0rf2OVtrJrFSSlpDu5Fm', '5d800fc0a579b9f68376107ecabb55f333d865ec', 0, NULL, '2021-06-06 01:51:58', '2021-06-06 01:52:12');
 
 --
@@ -290,13 +279,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `import_data`
 --
 ALTER TABLE `import_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `inventory`
 --
 ALTER TABLE `inventory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `migrations`
