@@ -69,7 +69,11 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $key->name }}</td>
                     <td>{{ $key->email }}</td>
-                    <td>{{ $key->level }}</td>
+                    <td>
+                      <?php if ($key->level == 0) { ?>Employee
+                      <?php } elseif($key->level == 1){ ?>Administrator
+                      <?php } elseif($key->level == 2){ ?>Manager
+                      <?php } else { ?>-<?php } ?></td>
                     <td><center>
                       <a href="/edit/{{$key->user_id}}" class="profile-btn edit-btn font-weight-bold">Edit</a>
                       <a href="/delete/{{$key->user_id}}" class="profile-btn del-btn font-weight-bold">Delete</a>
